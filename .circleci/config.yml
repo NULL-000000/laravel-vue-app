@@ -9,6 +9,7 @@ jobs:
       - run: composer install -n --prefer-dist
       - run: npm ci
       - run: ls -la
+      - run: pwd
       - run: npm run dev
       - run:
           name: php test
