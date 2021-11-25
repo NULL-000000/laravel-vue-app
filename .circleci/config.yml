@@ -5,9 +5,10 @@ jobs:
       - image: circleci/php:7.4-node-browsers
     steps:
       - checkout
-      # - run: sudo composer self-update --1
+      - run: sudo composer self-update --1
       - run: composer install -n --prefer-dist
       - run: npm ci
+      - run: ls -la
       - run: npm run dev
       - run:
           name: php test
