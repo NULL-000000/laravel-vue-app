@@ -15,12 +15,12 @@ jobs:
             - vendor
       # - restore_cache:
       #     key: npm-v1-{{ checksum "package-lock.json" }}
-      - run:
-          name: npm ci
-          command: |
-            if [ ! -d node_modules ]; then
-              npm ci
-            fi
+      # - run:
+      #     name: npm ci
+      #     command: |
+      #       if [ ! -d node_modules ]; then
+      #         npm ci
+      #       fi
       # - save_cache:
       #     key: npm-v1-{{ checksum "package-lock.json" }}
       #     paths:
@@ -29,6 +29,7 @@ jobs:
       - run: pwd
       - run: npm -v
       - run: node -v
+      - run: npm install
       - run: npm run dev
       - run:
           name: php test
