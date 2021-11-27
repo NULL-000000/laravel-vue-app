@@ -18,8 +18,8 @@ jobs:
       - run: which node
       - run: node -v
       - run: sudo npm install -g n
-      - run: sudo n 6.13.4
-      - run: sudo n use 6.13.4
+      - run: sudo n 12.14.1
+      - run: sudo n use 12.14.1
       - run: sudo chown -R $(whoami) ~/.npm
       - run: which node
       - run: node -v
