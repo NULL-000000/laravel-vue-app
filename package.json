@@ -18,8 +18,8 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.15.2",
         "sass-loader": "^12.3.0",
-        "vue": "^2.6.11",
+        "vue": "^2.6.12",
         "vue-loader": "^15.9.8",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.12"
     }
 }
