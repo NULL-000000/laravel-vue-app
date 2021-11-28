@@ -6,8 +6,54 @@ jobs:
     steps:
       - checkout
       - run: sudo composer self-update --1
+      - restore_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
       - run: composer install -n --prefer-dist
-      - run: npm ci
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+
+      # - run: whoami
+      # - run: which node
+      # - run: node -v
+      # - run: sudo npm install -g n
+      # - run: sudo n 12.14.1
+      # - run: sudo n use 12.14.1
+      # - run: sudo chown -R $(whoami) ~/.npm
+      # - run: which node
+      # - run: node -v
+
+      # - run:
+      #     name: Setup NodeJS and Yarn
+      #     command: |
+      #       # Install NVM
+      #       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+      #       echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+      #       echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+      #       source $BASH_ENV
+      #       # Install NodeJS
+      #       nvm install v12.14.1
+      #       nvm alias default v12.14.1
+      #       # Install Yarn
+      #       npm install -g yarn@1.13.0
+
+      - restore_cache:
+          key: npm-v1-{{ checksum "package-lock.json" }}
+      - run:
+          name: npm ci
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
+      - save_cache:
+          key: npm-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: ls -la
+      - run: pwd
+      - run: npm -v
+      - run: node -v
       - run: npm run dev
       - run:
           name: php test
