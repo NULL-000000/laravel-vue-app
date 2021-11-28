@@ -32,13 +32,11 @@ jobs:
       #       echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
       #       echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       #       source $BASH_ENV
-
       #       # Install NodeJS
       #       nvm install v12.14.1
       #       nvm alias default v12.14.1
-
       #       # Install Yarn
-      #       # npm install -g yarn@1.13.0
+      #       npm install -g yarn@1.13.0
 
       - restore_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
