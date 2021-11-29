@@ -19,6 +19,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo composer self-update --1
       - restore_cache:
@@ -41,6 +42,7 @@ jobs:
           paths:
             - node_modules
       - run: npm run dev
+
       - run: php artisan migrate
       - run: php artisan db:seed
       - run:
