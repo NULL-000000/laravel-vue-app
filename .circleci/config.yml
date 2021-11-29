@@ -51,7 +51,9 @@ jobs:
 
       - run: php artisan migrate
       - run: php artisan db:seed
-      
+
       - run:
           name: php test
           command: vendor/bin/phpunit
+
+          
