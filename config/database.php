@@ -93,7 +93,7 @@ return [
 
         'circle_testing' => [
             'driver' => 'mysql',
-            'host' => 'localhost',
+            'host' => '%',
             'port' => '3306',
             'database' => 'larasns',
             'username' => 'default',
