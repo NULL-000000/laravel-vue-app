@@ -93,7 +93,7 @@ return [
 
         'circle_testing' => [
             'driver' => 'mysql',
-            'host' => '%',
+            'host' => '127.0.0.1',
             'port' => '3306',
             'database' => 'larasns',
             'username' => 'default',
@@ -105,6 +105,9 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'options' => extension_loaded('pdo_mysql') ? array_filter([
+            PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+        ]) : [],
 
     ],
 
