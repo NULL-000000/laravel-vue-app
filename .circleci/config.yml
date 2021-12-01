@@ -1,8 +1,7 @@
 version: 2.1
 
 executors:
-  default:
-    working_directory: ~/repo
+  laravel-circleci:
     docker:
       - image: circleci/php:7.4-node-browsers
       - image: circleci/mysql:8.0
@@ -13,6 +12,8 @@ executors:
       - APP_KEY: base64:jZkt1raYbBNTIs7yj48j16EXq08epPKpDorwmJwNS9o=
       - DB_CONNECTION: circle_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
+    working_directory: ~/repo
+
 commands:
   install-dockerize:
     steps:
@@ -80,6 +81,7 @@ commands:
       - run:
           name: Run PHPUnit
           command: vendor/bin/phpunit
+
 jobs:
   build:
     executor:
