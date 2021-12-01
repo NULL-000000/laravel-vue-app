@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3-node-browsers
+      - image: circleci/php:7.4-node-browsers
       - image: circleci/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
 
@@ -59,6 +59,8 @@ jobs:
           paths:
             - node_modules
 
+      - run: php -v
+      - run: composer -v
       - run: npm run dev
 
       - run: php artisan migrate
