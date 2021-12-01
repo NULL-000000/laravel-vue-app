@@ -62,7 +62,7 @@ jobs:
       - run: php -v
       - run: composer -v
       - run: npm -v
-      - run: npde -v
+      - run: node -v
       - run: npm run dev
 
       - run: php artisan migrate
