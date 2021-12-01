@@ -32,7 +32,7 @@ commands:
       - restore_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
 
-  composer-install:
+  install-composer:
     steps:
       - run:
           name: Install Composer
