@@ -1,59 +1,49 @@
 version: 2.1
+
 jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
       - image: circleci/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
-
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
       - APP_KEY: base64:jZkt1raYbBNTIs7yj48j16EXq08epPKpDorwmJwNS9o=
       - DB_CONNECTION: circle_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
-
     working_directory: ~/repo
 
     steps:
       - checkout
-
       - run:
-          name: install dockerize
+          name: Install dockerize
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-
       - run:
           name: Install PHP Extensions
           command: sudo docker-php-ext-install pdo_mysql
-
       - restore_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
-
       - run:
           name: Install Composer
           command: composer install -n --prefer-dist
-
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
-
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
-
       - restore_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
-
       - run:
-          name: npm ci
+          name: npm CI
           command: |
             if [ ! -d node_modules ]; then
               npm ci
             fi
-
       - save_cache:
           key: npm-v1-{{ checksum "package-lock.json" }}
           paths:
@@ -63,12 +53,19 @@ jobs:
       - run: composer -v
       - run: npm -v
       - run: node -v
-      - run: npm run dev
-
-      - run: php artisan migrate
-      - run: php artisan db:seed
 
       - run:
-          name: php test
+          name: Run npm
+          command: npm run dev
+
+      # - run: php artisan migrate
+      # - run: php artisan db:seed
+
+      - run:
+          name: Migration & Seeding
+          command: php artisan migrate --seed
+
+      - run:
+          name: Run PHPUnit
           command: vendor/bin/phpunit
 
