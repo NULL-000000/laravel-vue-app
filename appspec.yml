@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/webapp/laravel-vue-app
+
+permissions:
+  - object: /home/webapp/laravel-vue-app
+    owner: webapp
+    group: webapp
+
+hooks:
+  AfterInstall:
+    - location: ./scripts/after_install.sh
+      timeout: 60
+      runas: webapp
