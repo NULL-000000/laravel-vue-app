@@ -48,19 +48,43 @@ class LoginController extends Controller
 
     public function handleProviderCallback(Request $request, string $provider)
     {
-        $providerUser = Socialite::driver($provider)->stateless()->user();
+        // $providerUser = Socialite::driver($provider)->stateless()->user();
+        $providerUser = Socialite::driver($provider)->user();
 
-        $user = User::where('email', $providerUser->getEmail())->first();
+        // $user = User::where('email', $providerUser->getEmail())->first();
+
+        if($provider === 'google') {
+            $user = User::where('email', $providerUser->getEmail())->first();
+        } elseif($provider === 'twitter') {
+            $user = User::where('twitter_id', $providerUser->getId())->first();
+        }
 
         if ($user) {
             $this->guard()->login($user, true);
             return $this->sendLoginResponse($request);
         }
 
-        return redirect()->route('register.{provider}', [
-            'provider' => $provider,
-            'email' => $providerUser->getEmail(),
-            'token' => $providerUser->token,
-        ]);
+        // return redirect()->route('register.{provider}', [
+        //     'provider' => $provider,
+        //     'email' => $providerUser->getEmail(),
+        //     'token' => $providerUser->token,
+        // ]);
+
+        if($provider === 'google') {
+            return redirect()->route('register.{provider}', [
+                'provider' => $provider,
+                'email' => $providerUser->getEmail(),
+                'token' => $providerUser->token,
+            ]);
+        } elseif($provider === 'twitter') {
+            return redirect()->route('register.{provider}', [
+                'provider' => $provider,
+                // 'email' => $providerUser->getEmail(),
+                'twitter_id' => $providerUser->getId(),
+                'token' => $providerUser->token,
+                'tokenSecret' => $providerUser->tokenSecret,
+            ]);
+        }
+
     }
 }

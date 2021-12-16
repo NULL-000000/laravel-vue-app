@@ -77,31 +77,83 @@ class RegisterController extends Controller
     {
         $token = $request->token;
 
-        $providerUser = Socialite::driver($provider)->userFromToken($token);
+        $providerUser = Socialite::driver($provider);
 
-        return view('auth.social_register', [
-            'provider' => $provider,
-            'email' => $providerUser->getEmail(),
-            'token' => $token,
-        ]);
+        //google
+        if ($provider === 'google') {
+            $providerUser = $providerUser->userFromToken($token);
+
+            return view('auth.social_register', [
+                'provider' => $provider,
+                'email' => $providerUser->getEmail(),
+                'token' => $providerUser->token,
+            ]);
+
+        //twitter
+        } elseif ($provider === 'twitter') {
+            $tokenSecret = $request->tokenSecret;
+            $providerUser = $providerUser->userFromTokenAndSecret($token, $tokenSecret);
+
+            return view('auth.social_register', [
+                'provider' => $provider,
+                'twitter_id' => $providerUser->getId(),
+                'token' => $providerUser->token,
+                'tokenSecret' => $providerUser->tokenSecret,
+            ]);
+        }
     }
 
     public function registerProviderUser(Request $request, string $provider)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
-            'token' => ['required', 'string'],
-        ]);
+        //google
+        if($provider === 'google') {
+            $request->validate([
+                'name' => ['required', 'string', 'min:3', 'max:15', 'unique:users'],
+                'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+                'token' => ['required', 'string'],
+            ]);
+
+        //twitter
+        } elseif($provider === 'twitter') {
+            $request->validate([
+                'name' => ['required', 'string', 'min:3', 'max:15', 'unique:users'],
+                'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+                'token' => ['required', 'string'],
+                'tokenSecret' => ['required', 'string'],
+            ]);
+        }
 
         $token = $request->token;
 
-        $providerUser = Socialite::driver($provider)->userFromToken($token);
+        $providerUser = Socialite::driver($provider);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $providerUser->getEmail(),
-            'password' => null,
-        ]);
+        //google
+        if ($provider === 'google') {
+            $providerUser = $providerUser->userFromToken($token);
+
+        //twitter
+        } elseif ($provider === 'twitter') {
+            $tokenSecret = $request->tokenSecret;
+            $providerUser = $providerUser->userFromTokenAndSecret($token, $tokenSecret);
+        }
+
+        //google
+        if ($provider === 'google') {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $providerUser->getEmail(),
+                'password' => null,
+            ]);
+
+        //twitter
+        } elseif ($provider === 'twitter') {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'twitter_id' => $providerUser->getId(),
+                'password' => null,
+            ]);
+        }
 
         $this->guard()->login($user, true);
 

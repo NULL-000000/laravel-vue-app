@@ -16,7 +16,10 @@
                 <form method="POST"
                     action="{{ route('register.{provider}', ['provider' => $provider]) }}">
                     @csrf
-                    <input type="hidden" name="token" value="{{ $token }}">
+                    <input type="hidden" name='token' value="{{ $token }}">
+                        @if ( $provider === 'twitter')
+                            <input type="hidden" name='tokenSecret' value="{{ $tokenSecret }}">
+                        @endif
                     <div class="md-form">
                         <label for="name">ユーザー名</label>
                         <input class="form-control" type="text" id="name" name="name" required>
@@ -24,7 +27,11 @@
                     </div>
                     <div class="md-form">
                         <label for="email">メールアドレス</label>
-                        <input class="form-control" type="text" id="email" name="email" value="{{ $email }}" disabled>
+                        @if ( $provider === 'google' )
+                            <input class="form-control" type="text" id="email" name="email" value="{{ $email }}" disabled>
+                        @elseif ( $provider === 'twitter' )
+                            <input class="form-control" type="text" id="email" name="email" required>
+                        @endif
                     </div>
                     <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
                 </form>
