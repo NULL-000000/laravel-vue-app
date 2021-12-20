@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Article', 'likes')->withTimestamps();
     }
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     public function isFollowedBy(?User $user): bool
     {
         return $user
