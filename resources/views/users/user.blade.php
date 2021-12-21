@@ -19,6 +19,9 @@
           {{ $user->name }}
         </a>
       </h2>
+      <div class="ml-auto">
+        <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
+      </div>
     </div>
     <div class="card-body">
       <div class="card-text">
