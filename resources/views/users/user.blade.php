@@ -2,7 +2,8 @@
     <div class="card-body">
       <div class="d-flex flex-row">
         <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
-          <i class="fas fa-user-circle fa-3x"></i>
+            {{-- <img src="{{ $user->image }}" id="img" class="img-fuild rounded-circle" width="80" height="80"> --}}
+            <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60">
         </a>
         @if( Auth::id() !== $user->id )
           <follow-button
