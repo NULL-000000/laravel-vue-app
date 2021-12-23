@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -32,15 +35,23 @@ class UserController extends Controller
         {
 
             $user = User::where('name', $name)->first();
-            $allRequest = $request->all();
+            $all_request = $request->all();
 
-            $profileImage = $request->file('image');
-            // dd($profileImage);
-            if ($profileImage) {
-                $allRequest['image'] = $this->saveProfileImage($profileImage, $user->id);
+            if (isset($all_request['image'])) {
+                $profile_image = $request->file('image');
+                $upload_info = Storage::disk('s3')->putFile('image', $profile_image, 'public');
+                $all_request['image'] = Storage::disk('s3')->url($upload_info);
             }
 
-            $user->fill($allRequest)->save();
+            $user->fill($all_request)->save();
+
+            // $profileImage = $request->file('image');
+            // // dd($profileImage);
+            // if ($profileImage) {
+            //     $allRequest['image'] = $this->saveProfileImage($profileImage, $user->id);
+            // }
+
+            // $user->fill($allRequest)->save();
             return redirect()->route('users.show', ["name" => $user->name]);
         }
 
