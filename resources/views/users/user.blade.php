@@ -19,6 +19,11 @@
           {{ $user->name }}
         </a>
       </h2>
+      @if( Auth::id() === $user->id )
+      <div class="ml-auto">
+        <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
+      </div>
+      @endif
     </div>
     <div class="card-body">
       <div class="card-text">

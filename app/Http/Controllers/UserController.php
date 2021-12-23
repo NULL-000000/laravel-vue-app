@@ -19,6 +19,31 @@ class UserController extends Controller
         ]);
     }
 
+        //プロフィール編集画面
+        public function edit(string $name)
+        {
+            $user = User::where('name', $name)->first();
+
+            return view('users.edit', ['user' => $user]);
+        }
+
+        //プロフィール編集処理
+        public function update(Request $request, string $name)
+        {
+
+            $user = User::where('name', $name)->first();
+            $allRequest = $request->all();
+
+            $profileImage = $request->file('image');
+            // dd($profileImage);
+            if ($profileImage) {
+                $allRequest['image'] = $this->saveProfileImage($profileImage, $user->id);
+            }
+
+            $user->fill($allRequest)->save();
+            return redirect()->route('users.show', ["name" => $user->name]);
+        }
+
     public function likes(string $name)
     {
         $user = User::where('name', $name)->first()
