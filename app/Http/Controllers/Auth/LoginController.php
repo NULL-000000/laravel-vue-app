@@ -48,10 +48,7 @@ class LoginController extends Controller
 
     public function handleProviderCallback(Request $request, string $provider)
     {
-        // $providerUser = Socialite::driver($provider)->stateless()->user();
         $providerUser = Socialite::driver($provider)->user();
-
-        // $user = User::where('email', $providerUser->getEmail())->first();
 
         if($provider === 'google') {
             $user = User::where('email', $providerUser->getEmail())->first();
@@ -64,12 +61,6 @@ class LoginController extends Controller
             return $this->sendLoginResponse($request);
         }
 
-        // return redirect()->route('register.{provider}', [
-        //     'provider' => $provider,
-        //     'email' => $providerUser->getEmail(),
-        //     'token' => $providerUser->token,
-        // ]);
-
         if($provider === 'google') {
             return redirect()->route('register.{provider}', [
                 'provider' => $provider,
@@ -79,7 +70,6 @@ class LoginController extends Controller
         } elseif($provider === 'twitter') {
             return redirect()->route('register.{provider}', [
                 'provider' => $provider,
-                // 'email' => $providerUser->getEmail(),
                 'twitter_id' => $providerUser->getId(),
                 'token' => $providerUser->token,
                 'tokenSecret' => $providerUser->tokenSecret,
