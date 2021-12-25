@@ -33,7 +33,6 @@ class UserController extends Controller
         //プロフィール編集処理
         public function update(Request $request, string $name)
         {
-
             $user = User::where('name', $name)->first();
             $all_request = $request->all();
 
@@ -45,13 +44,6 @@ class UserController extends Controller
 
             $user->fill($all_request)->save();
 
-            // $profileImage = $request->file('image');
-            // // dd($profileImage);
-            // if ($profileImage) {
-            //     $allRequest['image'] = $this->saveProfileImage($profileImage, $user->id);
-            // }
-
-            // $user->fill($allRequest)->save();
             return redirect()->route('users.show', ["name" => $user->name]);
         }
 
