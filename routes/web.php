@@ -50,6 +50,10 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
     //プロフィール編集処理
     Route::patch('/{name}/update', 'UserController@update')->name('update');
+    //ユーザーアカウント退会画面表示
+    Route::get('/{name}/resign', 'UserController@resign')->name('resign');
+    //ユーザーアカウント退会処理
+    Route::post('/{name}/delete_data', 'UserController@deleteData')->name('delete_data');
     Route::get('/{name}/likes', 'UserController@likes')->name('likes');
     Route::get('/{name}/followings', 'UserController@followings')->name('followings');
     Route::get('/{name}/followers', 'UserController@followers')->name('followers');
