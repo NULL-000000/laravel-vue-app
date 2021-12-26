@@ -3,6 +3,12 @@
 //認証系のルーティングを追加
 Auth::routes();
 
+//フッターのルーティングを追加
+// Route::get('/', 'HomeController@home')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
+Route::get('/terms', 'HomeController@terms')->name('terms');
+
 //SNSアカウントログイン用
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
