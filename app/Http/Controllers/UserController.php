@@ -22,30 +22,30 @@ class UserController extends Controller
         ]);
     }
 
-        //プロフィール編集画面
-        public function edit(string $name)
-        {
-            $user = User::where('name', $name)->first();
+    //プロフィール編集画面
+    public function edit(string $name)
+    {
+        $user = User::where('name', $name)->first();
 
-            return view('users.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user]);
+    }
+
+    //プロフィール編集処理
+    public function update(Request $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+        $all_request = $request->all();
+
+        if (isset($all_request['image'])) {
+            $profile_image = $request->file('image');
+            $upload_info = Storage::disk('s3')->putFile('image', $profile_image, 'public');
+            $all_request['image'] = Storage::disk('s3')->url($upload_info);
         }
 
-        //プロフィール編集処理
-        public function update(Request $request, string $name)
-        {
-            $user = User::where('name', $name)->first();
-            $all_request = $request->all();
+        $user->fill($all_request)->save();
 
-            if (isset($all_request['image'])) {
-                $profile_image = $request->file('image');
-                $upload_info = Storage::disk('s3')->putFile('image', $profile_image, 'public');
-                $all_request['image'] = Storage::disk('s3')->url($upload_info);
-            }
-
-            $user->fill($all_request)->save();
-
-            return redirect()->route('users.show', ["name" => $user->name]);
-        }
+        return redirect()->route('users.show', ["name" => $user->name]);
+    }
 
     public function likes(string $name)
     {
@@ -113,5 +113,29 @@ class UserController extends Controller
         $request->user()->followings()->detach($user);
 
         return ['name' => $name];
+    }
+
+    //ユーザーアカウント退会画面表示
+    public function resign(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.resign', ['user' => $user]);
+    }
+
+    //ユーザーアカウント削除する
+    public function deleteData(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->delete();
+
+        return $this->resigned($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    //ユーザーアカウント退会完了画面表示
+    protected function resigned()
+    {
+        return  view('users.resigned');
     }
 }

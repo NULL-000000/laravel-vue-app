@@ -30,6 +30,9 @@
       <div class="ml-auto">
         <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
       </div>
+      <div class="ml-auto">
+        <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
+      </div>
       @endif
     </div>
     <div class="card-body">
