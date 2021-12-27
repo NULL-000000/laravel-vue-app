@@ -44,6 +44,9 @@
                                 <button type="submit" class="btn btn-block cyan darken-3 text-white col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-5 mb-5 waves-effect">
                                     更新する
                                 </button>
+                                <div class="mx-auto">
+                                    <a class='btn btn-amber col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.password.edit', ['name' => $user->name]) }}">パスワード変更はこちら</a>
+                                </div>
                             </form>
                         </div>
                 </div>

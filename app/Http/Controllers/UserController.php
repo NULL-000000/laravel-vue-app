@@ -47,6 +47,40 @@ class UserController extends Controller
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
+    //パスワード編集画面
+    public function editPassword(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.password_edit', ['user' => $user]);
+    }
+
+    //パスワード編集処理
+    public function updatePassword(Request $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        //現在のパスワードが合っているかチェック
+        if(!(Hash::check($request->current_password, $user->password)))
+        {
+            return redirect()->back()
+                ->withInput()->withErrors(['current_password' => '現在のパスワードが違います']);
+        }
+
+        //現在のパスワードと新しいパスワードが違うかチェック
+        if($request->current_password === $request->password)
+        {
+            return redirect()->back()
+                ->withInput()->withErrors(['password' => '現在のパスワードと新しいパスワードが変わっていません']);
+        }
+
+        // $this->passwordValidator($request->all())->validate();
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('users.show', ["name" => $user->name]);
+    }
+
     public function likes(string $name)
     {
         $user = User::where('name', $name)->first()

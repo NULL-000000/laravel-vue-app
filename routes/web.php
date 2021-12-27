@@ -50,6 +50,10 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
     //プロフィール編集処理
     Route::patch('/{name}/update', 'UserController@update')->name('update');
+    //パスワード編集画面
+    Route::get('/{name}/password/edit', 'UserController@editPassword')->name('password.edit')->middleware('auth');
+    //パスワード編集処理
+    Route::patch('/{name}/password/update', 'UserController@updatePassword')->name('password.update')->middleware('auth');
     //ユーザーアカウント退会画面表示
     Route::get('/{name}/resign', 'UserController@resign')->name('resign');
     //ユーザーアカウント退会処理
