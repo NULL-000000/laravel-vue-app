@@ -47,10 +47,37 @@ class UserController extends Controller
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
+    //パスワード設定画面
+    public function createPassword(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.password_create', ['user' => $user]);
+    }
+
+    public function storePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.edit', ["name" => $user->name])->with('status', 'パスワードを設定しました。');
+    }
+
     //パスワード編集画面
     public function editPassword(string $name)
     {
         $user = User::where('name', $name)->first();
+
+        if ($user->password === null) {
+            return
+                redirect()->route('users.password.create', ["name" => $user->name])
+                ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
+        }
 
         return view('users.password_edit', ['user' => $user]);
     }
