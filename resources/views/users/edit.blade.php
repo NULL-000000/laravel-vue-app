@@ -7,6 +7,13 @@
     <div class="row">
         <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-11 mx-auto">
             <div class="card mt-5">
+
+                @if (session('status'))
+                <div class="card-text alert alert-success">
+                    {{ session('status') }}
+                </div>
+                @endif
+
                 <div class="card-body text-center">
                     <h2 class='h4 card-title text-center mt-5 mb-1'><span class="bg cyan darken-3 text-white py-3 px-4 rounded-pill">プロフィール編集</span></h2>
                     <p class="mt-4">Profile Edit</p>
