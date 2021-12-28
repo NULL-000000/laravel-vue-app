@@ -52,6 +52,9 @@
                                     更新する
                                 </button>
                                 <div class="mx-auto">
+                                    <a class='btn btn-amber col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.email.edit', ['name' => $user->name]) }}">メールアドレス変更はこちら</a>
+                                </div>
+                                <div class="mx-auto">
                                     <a class='btn btn-amber col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.password.edit', ['name' => $user->name]) }}">パスワード変更はこちら</a>
                                 </div>
                             </form>

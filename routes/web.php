@@ -50,12 +50,14 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
     //プロフィール編集処理
     Route::patch('/{name}/update', 'UserController@update')->name('update');
-
+    //メールアドレス編集画面
+    Route::get('/{name}/email/edit', 'UserController@editEmail')->name('email.edit');
+    //メールアドレス編集処理
+    Route::post('/{name}/email/update', 'UserController@updateEmail')->name('email.update');
     //パスワード設定画面
     Route::get('/{name}/password/create', 'UserController@createPassword')->name('password.create')->middleware('auth');
     //パスワード設定処理
     Route::post('/{name}/password/store', 'UserController@storePassword')->name('password.store');
-
     //パスワード編集画面
     Route::get('/{name}/password/edit', 'UserController@editPassword')->name('password.edit')->middleware('auth');
     //パスワード編集処理
