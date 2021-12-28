@@ -47,6 +47,35 @@ class UserController extends Controller
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
+    //メールアドレス編集画面表示
+    public function editEmail(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if ($user->password === null) {
+            return
+                redirect()->route('users.password.create', ["name" => $user->name])
+                ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
+        }
+
+        return view('users.email_edit', ['user' => $user]);
+    }
+
+    //メールアドレス編集処理
+    public function updateEmail(Request $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if ($user->email !== $request->email) {
+            $user->email_verified_at = null;
+            $user->email = $request->email;
+        }
+
+        $user->save();
+
+        return redirect()->route('users.edit', ["name" => $user->name])->with('status', 'メールアドレスを変更しました。');
+    }
+
     //パスワード設定画面
     public function createPassword(string $name)
     {
