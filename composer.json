@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/socialite": "^4.3",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "sendgrid/sendgrid": "^7.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
