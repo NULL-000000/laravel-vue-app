@@ -9,6 +9,13 @@ Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
+//入力ページ
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+//確認ページ
+Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
+//送信完了ページ
+Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
+
 //SNSアカウントログイン用
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
