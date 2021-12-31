@@ -19,51 +19,53 @@
                     <p class="mt-4">Profile Edit</p>
                 </div>
 
-                @include('error_card_list')
 
                 <div class="mt-2">
-                        <div class="card-body align-items-center text-center mt-2 mb-3">
-                            <form action="{{ route('users.update', ['name' => $user->name]) }}" method="POST" enctype="multipart/form-data">
-                                @method('PATCH')
-                                @csrf
-                                {{-- 編集フォーム --}}
-                                <label for="image">
-                                    @if ($user->image)
-                                    <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60"
-                                        style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
-                                    @else
-                                    <p class="d-flex align-items-center mb-0">
-                                        <i class="far fa-user-circle fa-5x text-secondary"></i>
-                                        <span class="small text-muted ml-1">(未設定)</span>
-                                    </p>
-                                    @endif
-                                    <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
-                                </label>
-                                <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
-                                    <label for="name">ユーザー名</label>
-                                    <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name }}">
-                                    <small>3〜15文字で入力してください</small>
-                                </div>
-                                <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
-                                    <label for="email">メールアドレス</label>
-                                    <input type="text" class="form-control" id="email" name="email" required value="{{ $user->email }}">
-                                </div>
-                                <button type="submit" class="btn btn-block cyan darken-3 text-white col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-5 mb-5 waves-effect">
-                                    更新する
-                                </button>
-                                <div class="mx-auto">
-                                    <a class='btn btn-amber col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.email.edit', ['name' => $user->name]) }}">メールアドレス変更はこちら</a>
-                                </div>
-                                <div class="mx-auto">
-                                    <a class='btn btn-amber col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.password.edit', ['name' => $user->name]) }}">パスワード変更はこちら</a>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="card-body align-items-center text-center mt-2 mb-3">
+
+                        @include('error_card_list')
+
+                        <form action="{{ route('users.update', ['name' => $user->name]) }}" method="POST" enctype="multipart/form-data">
+                            @method('PATCH')
+                            @csrf
+                            {{-- 編集フォーム --}}
+                            <label for="image">
+                                @if ($user->image)
+                                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60"
+                                    style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
+                                @else
+                                <p class="d-flex align-items-center mb-0">
+                                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                                    <span class="small text-muted ml-1">(未設定)</span>
+                                </p>
+                                @endif
+                                <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
+                            </label>
+                            <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
+                                <label for="name">ユーザー名</label>
+                                <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name }}">
+                                <small>3〜15文字で入力してください</small>
+                            </div>
+                            {{-- <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
+                                <label for="email">メールアドレス</label>
+                                <input type="text" class="form-control" id="email" name="email" required value="{{ $user->email }}">
+                            </div> --}}
+                            <button type="submit" class="btn btn-block cyan darken-3 text-white col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-5 mb-5 waves-effect">
+                                更新する
+                            </button>
+                            <div class="mx-auto">
+                                <a class='btn btn-amber col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.email.edit', ['name' => $user->name]) }}">メールアドレス変更はこちら</a>
+                            </div>
+                            <div class="mx-auto">
+                                <a class='btn btn-amber col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-3 mb-5 waves-effect waves-effect' href="{{ route('users.password.edit', ['name' => $user->name]) }}">パスワード変更はこちら</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {{-- @include('footer') --}}
+    @include('footer')
 @endsection
 
 <script>

@@ -42,6 +42,10 @@ class UserController extends Controller
             $all_request['image'] = Storage::disk('s3')->url($upload_info);
         }
 
+        Validator::make($request->all(), [
+            'name' => 'required|string|unique:users|min:3|max:15',
+        ])->validate();
+
         $user->fill($all_request)->save();
 
         return redirect()->route('users.show', ["name" => $user->name]);
@@ -70,6 +74,10 @@ class UserController extends Controller
             $user->email_verified_at = null;
             $user->email = $request->email;
         }
+
+        Validator::make($request->all(), [
+            'email' => 'required|string|unique:users|max:255',
+        ])->validate();
 
         $user->save();
 
