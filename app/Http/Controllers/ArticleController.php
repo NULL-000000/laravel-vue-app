@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use App\User;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -16,10 +18,16 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at')
-            ->load(['user', 'likes', 'tags']);
+        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags']);
+        $sort = "新しい順";
 
-        return view('articles.index', ['articles' => $articles]);
+        $data = [
+            'articles' => $articles,
+            'sort' => $sort,
+        ];
+
+        // return view('articles.index', ['articles' => $articles]);
+        return view('articles.index', $data);
     }
 
     public function create()
@@ -107,4 +115,40 @@ class ArticleController extends Controller
             'countLikes' => $article->count_likes,
         ];
     }
+
+    //記事一覧ページでの並び替え機能
+    public function sort(string $sort_type)
+    {
+        $user = User::where('id', Auth::id())->first();
+        $Article = new Article;
+        // $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user','prefecture', 'companyType', 'phase', 'likes']);
+        $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes']);
+        $articles = $all_articles_by_sort->paginate(3);
+        $articles_count = $all_articles_by_sort->count();
+
+        //検索用のラジオボタン用のデータ
+        // $radio_data = $this->getDataOfRadio();
+
+        switch($sort_type) {
+            case 'desc':
+                $sort = '新しい順';
+                break;
+            case 'asc':
+                $sort = '古い順';
+                break;
+            case 'like_count':
+                $sort = 'いいね数順';
+                break;
+        }
+
+        $data = [
+            'articles' => $articles,
+            'user' => $user,
+            'sortType' => $sort_type,
+            'sort' => $sort,
+            'articles_count' => $articles_count,
+        ];
+        return view('articles.index', $data);
+    }
+
 }

@@ -45,4 +45,17 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
+
+    //記事一覧ページで並び替え処理
+    public function sortByselectedSortType($sort_type)
+    {
+        if ($sort_type === 'desc') {
+            return $this->orderBy('created_at', 'desc');
+        } elseif ($sort_type === 'asc') {
+            return $this->orderBy('created_at', 'asc');
+        } elseif ($sort_type === 'like_count') {
+            return $this->withCount('likes')->orderBy('likes_count', 'desc');
+        }
+    }
+
 }
