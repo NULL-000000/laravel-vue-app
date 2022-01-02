@@ -9,7 +9,11 @@
         :autocomplete-items='@json($allTagNames ?? [])'
     >
     </article-tags-input>
-  </div>
+</div>
+<div class="form-group">
+    <label>日付と時刻</label>
+    <input type="datetime-local" name="period" class="form-control" required value="{{ $article->period ?? old('period') }}">
+</div>
 <div class="form-group">
   <label></label>
   <textarea name="body" required class="form-control" rows="16" placeholder="本文">{{ $article->body ?? old('body') }}</textarea>

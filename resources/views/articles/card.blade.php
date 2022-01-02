@@ -72,6 +72,9 @@
       <div class="card-text">
         {{ $article->body }}
       </div>
+      <div class="font-weight-lighter">
+        {{ $article->period }}
+      </div>
     </div>
 
     <div class="card-body pt-0 pb-2 pl-3">
