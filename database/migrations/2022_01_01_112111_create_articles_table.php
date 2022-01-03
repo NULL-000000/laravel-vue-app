@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->dateTime('period');
+            $table->dateTime('period')->nullable();
             $table->text('body');
             $table->timestamps();
         });
