@@ -14,6 +14,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('login') }}">ログイン</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('login.guest') }}">ゲストログイン</a>
+        </li>
         @endguest
 
         @auth

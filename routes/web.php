@@ -3,6 +3,9 @@
 //認証系のルーティングを追加
 Auth::routes();
 
+//ゲストユーザーログイン
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
 //フッターのルーティングを追加
 // Route::get('/', 'HomeController@home')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
