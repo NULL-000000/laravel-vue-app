@@ -41,6 +41,10 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
 });
 
+//達成チェック
+Route::get('/achievements/{article}/edit', 'AchievementController@edit')->name('achievement.edit');
+Route::patch('/achievements/{article}/update', 'AchievementController@update')->name('achievement.update');
+
 //コメント投稿処理
 Route::post('/articles/{comment_id}/comments','CommentsController@store');
 

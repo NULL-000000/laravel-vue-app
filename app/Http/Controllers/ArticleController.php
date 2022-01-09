@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\User;
+use App\Achievement;
+use App\Declaration;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +20,16 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags']);
+        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $sort = "新しい順";
+
+        // $declaration = Declaration::all();
+        // $declaration = "宣言中";
 
         $data = [
             'articles' => $articles,
             'sort' => $sort,
+            // 'declaration' => $declaration,
         ];
 
         // return view('articles.index', ['articles' => $articles]);
@@ -46,6 +52,16 @@ class ArticleController extends Controller
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
         $article->save();
+
+        $declaration = new Declaration();
+        $declaration->article_id = $article->id;
+        $declaration->declaration = "declaration";
+        $declaration->save();
+
+        $achievement = new Achievement();
+        $achievement->article_id = $article->id;
+        $achievement->achievement = "unspecified";
+        $achievement->save();
 
         $request->tags->each(function ($tagName) use ($article) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);

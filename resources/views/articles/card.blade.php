@@ -1,13 +1,15 @@
-<div class="card mt-3">
+<div class="card mt-3 cloudy-knoxville-gradient">
     <div class="card-body d-flex flex-row">
-        <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
-            @if ($article->user->image)
-                <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/>
-            @else
-                <i class="far fa-user-circle fa-5x text-secondary"></i>
-            @endif
-        </a>
-        <div>
+        <div class="col-2 text-center">
+            <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+                @if ($article->user->image)
+                    <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/>
+                @else
+                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                @endif
+            </a>
+        </div>
+        <div class="col-5">
             <div class="font-weight-bold">
                 <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
                     {{ $article->user->name }}
@@ -15,6 +17,40 @@
             </div>
             <div class="font-weight-lighter">{{ $article->created_at->format('Y/m/d H:i') }}</div>
         </div>
+
+        @if ($article->achievement->achievement == "unspecified")
+        <div class="col-2 rounded winter-neva-gradient d-flex align-items-center justify-content-center p-1">
+            <div class="text-white text-center">
+                <p class="small m-0">未達成</p>
+            </div>
+        </div>
+        @elseif ($article->achievement->achievement == "success")
+        <div class="col-2 rounded sunny-morning-gradient d-flex align-items-center justify-content-center p-1">
+            <div class="text-white text-center">
+                <p class="small m-0">達成！</p>
+            </div>
+        </div>
+        @elseif ($article->achievement->achievement == "failure")
+        <div class="col-2 rounded winter-neva-gradient d-flex align-items-center justify-content-center p-1">
+            <div class="text-white text-center">
+                <p class="small m-0">失敗。。。</p>
+            </div>
+        </div>
+        @endif
+
+        @if ($article->declaration->declaration == "declaration")
+        <div class="col-2 rounded peach-gradient d-flex align-items-center justify-content-center p-1">
+            <div class="text-white text-center">
+                <p class="small m-0">宣言中</p>
+            </div>
+        </div>
+        @elseif ($article->declaration->declaration == "end")
+        <div class="col-2 rounded heavy-rain-gradient d-flex align-items-center justify-content-center p-1">
+            <div class="text-white text-center">
+                <p class="small m-0">宣言終了</p>
+            </div>
+        </div>
+        @endif
 
     @if( Auth::id() === $article->user_id )
       <!-- dropdown -->
@@ -102,6 +138,39 @@
             </div>
         @endif
     @endforeach
+
+    @if ($article->achievement->achievement == "unspecified")
+        <div class="card-body pt-0">
+            <div class="card-text">
+                <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
+                    <button type="submit" name="action" value="success" class="btn peach-gradient btn-block">達成！</button>
+                    <button type="submit" name="action" value="failure" class="btn blue-gradient btn-block mt-3">失敗。。。</button>
+                </form>
+            </div>
+        </div>
+    @elseif ($article->achievement->achievement == "success")
+    <div class="card-body pt-0">
+        <p class="small m-0">学び</p>
+        <div class="card-text">
+            {{ $article->achievement->study }}
+        </div>
+        <p class="small m-0">意気込み</p>
+        <div class="card-text">
+            {{ $article->achievement->enthusiasm }}
+        </div>
+    </div>
+    @elseif ($article->achievement->achievement == "failure")
+    <div class="card-body pt-0">
+        <p class="small m-0">原因</p>
+        <div class="card-text">
+            {{ $article->achievement->cause }}
+        </div>
+        <p class="small m-0">対策</p>
+        <div class="card-text">
+            {{ $article->achievement->solution }}
+        </div>
+    </div>
+    @endif
 
     <div class="card-body line-height">
         <div id="comment-article-{{ $article->id }}">
