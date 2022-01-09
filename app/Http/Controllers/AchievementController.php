@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\Declaration;
-use App\Http\Requests\ArticleRequest;
+use App\Achievement;
+// use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AchievementController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Article::class, 'article');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,20 +65,13 @@ class AchievementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Request $request, Article $article)
     {
-        $tagNames = $article->tags->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
-
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $achievement = $request->input('action');
 
         return view('achievement.edit', [
             'article' => $article,
-            'tagNames' => $tagNames,
-            'allTagNames' => $allTagNames,
+            'achievement' => $achievement,
         ]);
     }
 
@@ -82,20 +82,18 @@ class AchievementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, Article $article)
+    public function update(Request $request, Article $article)
     {
-        $article->fill($request->all())->save();
-        $article->tags()->detach();
-        $request->tags->each(function ($tagName) use ($article) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $article->tags()->attach($tag);
-        });
+        $achievement = Achievement::where('article_id', $article->id)->first();
+        $achievement->article_id = $article->id;
+        $achievement->achievement = $request->input('achievement');
+        $achievement->study = $request->input('study');
+        $achievement->enthusiasm = $request->input('enthusiasm');
+        $achievement->cause = $request->input('cause');
+        $achievement->solution = $request->input('solution');
+        $achievement->save();
 
-        // $user = User::where('name', $name)->first();
         $declaration = Declaration::where('article_id', $article->id)->first();
-
-
-        // $declaration = new Declaration();
         $declaration->article_id = $article->id;
         $declaration->declaration = "end";
         $declaration->save();

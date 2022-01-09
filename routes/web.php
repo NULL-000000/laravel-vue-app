@@ -43,7 +43,7 @@ Route::prefix('articles')->name('articles.')->group(function () {
 
 //達成チェック
 Route::get('/achievements/{article}/edit', 'AchievementController@edit')->name('achievement.edit');
-Route::patch('/achievements/{article}', 'AchievementController@update')->name('achievement.update');
+Route::patch('/achievements/{article}/update', 'AchievementController@update')->name('achievement.update');
 
 //コメント投稿処理
 Route::post('/articles/{comment_id}/comments','CommentsController@store');

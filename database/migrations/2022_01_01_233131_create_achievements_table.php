@@ -18,6 +18,10 @@ class CreateAchievementsTable extends Migration
             $table->bigInteger('article_id')->unsigned();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->string('achievement');
+            $table->string('study')->nullable();
+            $table->string('enthusiasm')->nullable();
+            $table->string('cause')->nullable();
+            $table->string('solution')->nullable();
             $table->timestamps();
         });
     }

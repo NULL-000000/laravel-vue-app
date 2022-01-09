@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '達成チェック')
+@section('title', '記事更新')
 
 @include('nav')
 
@@ -14,6 +14,7 @@
             <div class="card-text">
               <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
                 @method('PATCH')
+                @include('achievement.card')
                 @include('achievement.form')
                 <button type="submit" class="btn blue-gradient btn-block">更新する</button>
               </form>
