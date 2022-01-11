@@ -23,13 +23,10 @@ class ArticleController extends Controller
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $sort = "新しい順";
 
-        // $declaration = Declaration::all();
-        // $declaration = "宣言中";
 
         $data = [
             'articles' => $articles,
             'sort' => $sort,
-            // 'declaration' => $declaration,
         ];
 
         // return view('articles.index', ['articles' => $articles]);

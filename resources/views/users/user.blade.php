@@ -26,17 +26,19 @@
           {{ $user->name }}
         </a>
       </h2>
-      @if (Auth::id() == 1)
-      <div class="card-title mt-3">
-          <p class="text-danger">※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</p>
-      </div>
-      @elseif( Auth::id() === $user->id && Auth::id() !== 1)
-      <div class="ml-auto">
-        <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
-      </div>
-      <div class="ml-auto">
-        <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
-      </div>
+      @if (Auth::id() === $user->id)
+        @if (Auth::id() === 1)
+        <div class="card-title mt-3">
+            <p class="text-danger">※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</p>
+        </div>
+        @elseif(Auth::id() !== 1)
+        <div class="ml-auto">
+            <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
+        </div>
+        <div class="ml-auto">
+            <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
+        </div>
+        @endif
       @endif
     </div>
     <div class="card-body">

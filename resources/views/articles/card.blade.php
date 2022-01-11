@@ -139,37 +139,39 @@
         @endif
     @endforeach
 
-    @if ($article->achievement->achievement == "unspecified")
-        <div class="card-body pt-0">
-            <div class="card-text">
-                <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
-                    <button type="submit" name="action" value="success" class="btn peach-gradient btn-block">達成！</button>
-                    <button type="submit" name="action" value="failure" class="btn blue-gradient btn-block mt-3">失敗。。。</button>
-                </form>
+    @if( Auth::id() === $article->user_id )
+        @if ($article->achievement->achievement == "unspecified")
+            <div class="card-body pt-0">
+                <div class="card-text">
+                    <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
+                        <button type="submit" name="action" value="success" class="btn peach-gradient btn-block">達成！</button>
+                        <button type="submit" name="action" value="failure" class="btn blue-gradient btn-block mt-3">失敗。。。</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    @elseif ($article->achievement->achievement == "success")
-    <div class="card-body pt-0">
-        <p class="small m-0">学び</p>
-        <div class="card-text">
-            {{ $article->achievement->study }}
-        </div>
-        <p class="small m-0">意気込み</p>
-        <div class="card-text">
-            {{ $article->achievement->enthusiasm }}
-        </div>
-    </div>
-    @elseif ($article->achievement->achievement == "failure")
-    <div class="card-body pt-0">
-        <p class="small m-0">原因</p>
-        <div class="card-text">
-            {{ $article->achievement->cause }}
-        </div>
-        <p class="small m-0">対策</p>
-        <div class="card-text">
-            {{ $article->achievement->solution }}
-        </div>
-    </div>
+        @elseif ($article->achievement->achievement == "success")
+            <div class="card-body pt-0">
+                <p class="small m-0">学び</p>
+                <div class="card-text">
+                    {{ $article->achievement->study }}
+                </div>
+                <p class="small m-0">意気込み</p>
+                <div class="card-text">
+                    {{ $article->achievement->enthusiasm }}
+                </div>
+            </div>
+        @elseif ($article->achievement->achievement == "failure")
+            <div class="card-body pt-0">
+                <p class="small m-0">原因</p>
+                <div class="card-text">
+                    {{ $article->achievement->cause }}
+                </div>
+                <p class="small m-0">対策</p>
+                <div class="card-text">
+                    {{ $article->achievement->solution }}
+                </div>
+            </div>
+        @endif
     @endif
 
     <div class="card-body line-height">
