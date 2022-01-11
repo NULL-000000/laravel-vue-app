@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use App\Mail\ContactSendmail;
-
 
 class ContactController extends Controller
 {
@@ -13,16 +13,9 @@ class ContactController extends Controller
         return view('contact.index');
     }
 
-    public function confirm(Request $request)
+    // public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
-        //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
-        $request->validate([
-            'name'  => 'required|string|max:15',
-            'email' => 'required|string|max:255',
-            'title' => 'nullable|string',
-            'body'  => 'required|string|max:1000',
-        ]);
-
         //フォームから受け取ったすべてのinputの値を取得
         $inputs = $request->all();
 
@@ -32,28 +25,8 @@ class ContactController extends Controller
         ]);
     }
 
-    // public function post(ContactRequest $request)
-    // {
-
-    //     $input = $request->only($this->formItems);
-
-    //     //セッションに書き込む
-    //     $request->session()->put("form_input", $input);
-
-    //     return redirect()->route('contact.confirm');
-    // }
-
-
-    public function send(Request $request)
+    public function send(ContactRequest $request)
     {
-        //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
-        $request->validate([
-            'name'  => 'required|string|max:15',
-            'email' => 'required|string|max:255',
-            'title' => 'nullable|string',
-            'body'  => 'required|string|max:1000',
-        ]);
-
         //フォームから受け取ったactionの値を取得
         $action = $request->input('action');
 
@@ -68,7 +41,6 @@ class ContactController extends Controller
 
         } else {
             //入力されたメールアドレスにメールを送信
-            // \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
             \Mail::to('to.do.sengen@gmail.com')->send(new ContactSendmail($inputs));
 
             //再送信を防ぐためにトークンを再発行

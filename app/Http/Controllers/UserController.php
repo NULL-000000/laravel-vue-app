@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\EmailRequest;
+use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -32,7 +34,7 @@ class UserController extends Controller
     }
 
     //プロフィール編集処理
-    public function update(Request $request, string $name)
+    public function update(UserRequest $request, string $name)
     {
         $user = User::where('name', $name)->first();
         $all_request = $request->all();
@@ -42,10 +44,6 @@ class UserController extends Controller
             $upload_info = Storage::disk('s3')->putFile('image', $profile_image, 'public');
             $all_request['image'] = Storage::disk('s3')->url($upload_info);
         }
-
-        Validator::make($request->all(), [
-            'name' => 'required|string|unique:users|min:3|max:15',
-        ])->validate();
 
         $user->fill($all_request)->save();
 
@@ -67,7 +65,7 @@ class UserController extends Controller
     }
 
     //メールアドレス編集処理
-    public function updateEmail(Request $request, string $name)
+    public function updateEmail(EmailRequest $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
@@ -75,10 +73,6 @@ class UserController extends Controller
             $user->email_verified_at = null;
             $user->email = $request->email;
         }
-
-        Validator::make($request->all(), [
-            'email' => 'required|string|unique:users|max:255',
-        ])->validate();
 
         $user->save();
 
@@ -93,12 +87,9 @@ class UserController extends Controller
         return view('users.password_create', ['user' => $user]);
     }
 
-    public function storePassword(Request $request)
+    //パスワード設定処理
+    public function storePassword(PasswordRequest $request)
     {
-        $request->validate([
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
         $user = User::find($request->id);
         $user->password = Hash::make($request->password);
         $user->save();
@@ -121,7 +112,7 @@ class UserController extends Controller
     }
 
     //パスワード編集処理
-    public function updatePassword(Request $request, string $name)
+    public function updatePassword(PasswordRequest $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
@@ -139,11 +130,9 @@ class UserController extends Controller
                 ->withInput()->withErrors(['password' => '現在のパスワードと新しいパスワードが変わっていません']);
         }
 
-        // $this->passwordValidator($request->all())->validate();
-
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect()->route('users.show', ["name" => $user->name]);
+        return redirect()->route('users.edit', ["name" => $user->name])->with('status', 'パスワードを変更しました。');
     }
 
     public function likes(string $name)

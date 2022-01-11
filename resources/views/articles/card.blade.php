@@ -175,6 +175,9 @@
     @endif
 
     <div class="card-body line-height">
+
+        @include('error_card_list')
+
         <div id="comment-article-{{ $article->id }}">
             @include('articles.comment_list')
         </div>

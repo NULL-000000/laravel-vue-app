@@ -23,6 +23,8 @@
             <input type="text" name="enthusiasm" class="form-control" value="">
         </div>
         <input type="hidden" name="achievement" value="success">
+        <input type="hidden" name="cause" value="unspecified">
+        <input type="hidden" name="solution" value="unspecified">
     </div>
     @elseif ($achievement == 'failure')
     <div class="card-body pt-0">
@@ -36,6 +38,8 @@
             <input type="text" name="solution" class="form-control" value="">
         </div>
         <input type="hidden" name="achievement" value="failure">
+        <input type="hidden" name="study" value="unspecified">
+        <input type="hidden" name="enthusiasm" value="unspecified">
     </div>
     @endif
 </div>

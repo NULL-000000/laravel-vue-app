@@ -6,6 +6,7 @@ use App\Article;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 
 class CommentsController extends Controller
 {
@@ -15,12 +16,13 @@ class CommentsController extends Controller
         $this->middleware('auth');
     }
 
-   public function store(Request $request)
+//    public function store(Request $request)
+   public function store(CommentRequest $request)
    {
        $comment = new Comment();
-       $comment->comment = $request->comment;
-       $comment->article_id = $request->article_id;
        $comment->user_id = Auth::user()->id;
+       $comment->article_id = $request->article_id;
+       $comment->comment = $request->comment;
        $comment->save();
 
        return redirect('/');
