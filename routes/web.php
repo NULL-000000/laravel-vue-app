@@ -45,8 +45,8 @@ Route::prefix('articles')->name('articles.')->group(function () {
 });
 
 //達成チェック
-Route::get('/achievements/{article}/edit', 'AchievementController@edit')->name('achievement.edit');
-Route::patch('/achievements/{article}/update', 'AchievementController@update')->name('achievement.update');
+Route::get('/achievements/{article}/edit', 'AchievementController@edit')->name('achievement.edit')->middleware('auth');
+Route::patch('/achievements/{article}/update', 'AchievementController@update')->name('achievement.update')->middleware('auth');
 
 //コメント投稿処理
 Route::post('/articles/{comment_id}/comments','CommentsController@store');
@@ -61,25 +61,25 @@ Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', 'UserController@show')->name('show');
     //プロフィール編集画面
-    Route::get('/{name}/edit', 'UserController@edit')->name('edit');
+    Route::get('/{name}/edit', 'UserController@edit')->name('edit')->middleware('auth');
     //プロフィール編集処理
-    Route::patch('/{name}/update', 'UserController@update')->name('update');
+    Route::patch('/{name}/update', 'UserController@update')->name('update')->middleware('auth');
     //メールアドレス編集画面
-    Route::get('/{name}/email/edit', 'UserController@editEmail')->name('email.edit');
+    Route::get('/{name}/email/edit', 'UserController@editEmail')->name('email.edit')->middleware('auth');
     //メールアドレス編集処理
-    Route::post('/{name}/email/update', 'UserController@updateEmail')->name('email.update');
+    Route::post('/{name}/email/update', 'UserController@updateEmail')->name('email.update')->middleware('auth');
     //パスワード設定画面
     Route::get('/{name}/password/create', 'UserController@createPassword')->name('password.create')->middleware('auth');
     //パスワード設定処理
-    Route::post('/{name}/password/store', 'UserController@storePassword')->name('password.store');
+    Route::post('/{name}/password/store', 'UserController@storePassword')->name('password.store')->middleware('auth');
     //パスワード編集画面
     Route::get('/{name}/password/edit', 'UserController@editPassword')->name('password.edit')->middleware('auth');
     //パスワード編集処理
     Route::patch('/{name}/password/update', 'UserController@updatePassword')->name('password.update')->middleware('auth');
     //ユーザーアカウント退会画面表示
-    Route::get('/{name}/resign', 'UserController@resign')->name('resign');
+    Route::get('/{name}/resign', 'UserController@resign')->name('resign')->middleware('auth');
     //ユーザーアカウント退会処理
-    Route::post('/{name}/delete_data', 'UserController@deleteData')->name('delete_data');
+    Route::post('/{name}/delete_data', 'UserController@deleteData')->name('delete_data')->middleware('auth');
     Route::get('/{name}/likes', 'UserController@likes')->name('likes');
     Route::get('/{name}/followings', 'UserController@followings')->name('followings');
     Route::get('/{name}/followers', 'UserController@followers')->name('followers');
