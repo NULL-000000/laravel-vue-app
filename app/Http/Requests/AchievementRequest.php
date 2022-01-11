@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class AchievementRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'study' => 'required|string|max:255',
+            'enthusiasm' => 'required|string|max:255',
+            'cause' => 'required|string|max:255',
+            'solution' => 'required|string|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'study' => '成果・学び',
+            'enthusiasm' => '次回の意気込み',
+            'cause' => '失敗した原因',
+            'solution' => '次回の対策',
+        ];
+    }
+}
