@@ -3,9 +3,10 @@
         <div class="col-2 text-center">
             <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
                 @if ($article->user->image)
-                    <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/>
+                    {{-- <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/> --}}
+                    <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect p-0" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/>
                 @else
-                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                    <i class="far fa-user-circle fa-5x text-light"></i>
                 @endif
             </a>
         </div>

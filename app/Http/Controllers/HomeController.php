@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\PictureBook;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -11,7 +13,13 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return view('articles.about');
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('articles.about', $data);
     }
 
 
@@ -20,7 +28,13 @@ class HomeController extends Controller
      */
     public function privacy()
     {
-        return view('articles.privacy');
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('articles.privacy', $data);
     }
 
     /**
@@ -28,6 +42,12 @@ class HomeController extends Controller
      */
     public function terms()
     {
-        return view('articles.terms');
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('articles.terms', $data);
     }
 }

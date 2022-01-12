@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactSendmail;
@@ -10,7 +12,13 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact.index');
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('contact.index', $data);
     }
 
     // public function confirm(Request $request)
@@ -18,15 +26,23 @@ class ContactController extends Controller
     {
         //フォームから受け取ったすべてのinputの値を取得
         $inputs = $request->all();
+        $user = User::where('id', Auth::id())->first();
 
         //入力内容確認ページのviewに変数を渡して表示
         return view('contact.confirm', [
             'inputs' => $inputs,
+            'user' => $user,
         ]);
     }
 
     public function send(ContactRequest $request)
     {
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'user' => $user,
+        ];
+
         //フォームから受け取ったactionの値を取得
         $action = $request->input('action');
 
@@ -47,8 +63,7 @@ class ContactController extends Controller
             $request->session()->regenerateToken();
 
             //送信完了ページのviewを表示
-            return view('contact.thanks');
-
+            return view('contact.thanks', $data);
         }
     }
 
