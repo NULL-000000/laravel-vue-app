@@ -22,11 +22,13 @@ class ArticleController extends Controller
     {
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $sort = "新しい順";
+        $allTagNames = Tag::all();
 
 
         $data = [
             'articles' => $articles,
             'sort' => $sort,
+            'allTagNames' => $allTagNames,
         ];
 
         // return view('articles.index', ['articles' => $articles]);
@@ -138,6 +140,7 @@ class ArticleController extends Controller
         $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes']);
         $articles = $all_articles_by_sort->paginate(3);
         $articles_count = $all_articles_by_sort->count();
+        $allTagNames = Tag::all();
 
         //検索用のラジオボタン用のデータ
         // $radio_data = $this->getDataOfRadio();
@@ -160,6 +163,7 @@ class ArticleController extends Controller
             'sortType' => $sort_type,
             'sort' => $sort,
             'articles_count' => $articles_count,
+            'allTagNames' => $allTagNames,
         ];
         return view('articles.index', $data);
     }
