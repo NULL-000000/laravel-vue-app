@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use App\User;
 use App\Declaration;
 use App\Achievement;
 use App\Http\Requests\AchievementRequest;
@@ -68,10 +69,12 @@ class AchievementController extends Controller
     public function edit(Request $request, Article $article)
     {
         $achievement = $request->input('action');
+        $user = User::where('id', Auth::id())->first();
 
         return view('achievement.edit', [
             'article' => $article,
             'achievement' => $achievement,
+            'user' => $user,
         ]);
     }
 

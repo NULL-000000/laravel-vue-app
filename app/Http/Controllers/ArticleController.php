@@ -21,17 +21,17 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
+        $user = User::where('id', Auth::id())->first();
         $sort = "新しい順";
         $allTagNames = Tag::all();
 
-
         $data = [
             'articles' => $articles,
+            'user' => $user,
             'sort' => $sort,
             'allTagNames' => $allTagNames,
         ];
 
-        // return view('articles.index', ['articles' => $articles]);
         return view('articles.index', $data);
     }
 
@@ -41,8 +41,11 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
+        $user = User::where('id', Auth::id())->first();
+
         return view('articles.create', [
             'allTagNames' => $allTagNames,
+            'user' => $user,
         ]);
     }
 
@@ -80,10 +83,13 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
+        $user = User::where('id', Auth::id())->first();
+
         return view('articles.edit', [
             'article' => $article,
             'tagNames' => $tagNames,
             'allTagNames' => $allTagNames,
+            'user' => $user,
         ]);
     }
 
@@ -107,7 +113,15 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', ['article' => $article]);
+        $user = User::where('id', Auth::id())->first();
+
+        $data = [
+            'article' => $article,
+            'user' => $user,
+        ];
+
+        // return view('articles.show', ['article' => $article]);
+        return view('articles.show', $data);
     }
 
     public function like(Request $request, Article $article)

@@ -30,16 +30,19 @@
                             @csrf
                             {{-- 編集フォーム --}}
                             <label for="image">
-                                @if ($user->image)
-                                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60"
-                                    style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
-                                @else
-                                <p class="d-flex align-items-center mb-0">
-                                    <i class="far fa-user-circle fa-5x text-secondary"></i>
-                                    <span class="small text-muted ml-1">(未設定)</span>
-                                </p>
+                                {{-- <label for="image"> --}}
+                                    {{-- <img src="{{ $user->image }}" id="img" class="img-fuild rounded-circle" width="80" height="80"> --}}
+                                    {{-- <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none"> --}}
+                                {{-- </label> --}}
+
+                                @if ($user->image !== null)
+                                    <img src="{{ $user->image }}" id="img" class="img-fuild rounded-circle btn btn-outline-dark waves-effect p-0" width="100" height="100">
+                                @elseif ($user->image === null)
+                                    <img id="img" class="far rounded-circle btn btn-outline-dark waves-effect p-0" width="100" height="100";>
+                                    <small>未設定</small>
                                 @endif
                                 <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
+
                             </label>
                             <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
                                 <label for="name">ユーザー名</label>

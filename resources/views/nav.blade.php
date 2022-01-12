@@ -28,9 +28,12 @@
         @auth
         <!-- Dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle"></i>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @if ($user->image)
+                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0" width="21" height="21" style="background-position:center; border-radius:50%; object-fit:cover;"/>
+            @else
+                <i class="far fa-user-circle text-light"></i>
+            @endif
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
             <button class="dropdown-item" type="button"
