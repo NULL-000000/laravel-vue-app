@@ -3,7 +3,6 @@
         <div class="col-2 text-center">
             <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
                 @if ($article->user->image)
-                    {{-- <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/> --}}
                     <img src="{{ $article->user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect p-0" width="60" height="60" style="width:90px; height:90px; background-position:center; border-radius:50%; object-fit:cover;"/>
                 @else
                     <i class="far fa-user-circle fa-5x text-light"></i>
@@ -114,18 +113,6 @@
       </div>
     </div>
 
-    <div class="card-body pt-0 pb-2 pl-3">
-        <div class="card-text">
-            <article-like
-                :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
-                :initial-count-likes='@json($article->count_likes)'
-                :authorized='@json(Auth::check())'
-                endpoint="{{ route('articles.like', ['article' => $article]) }}"
-            >
-            </article-like>
-        </div>
-    </div>
-
     @foreach($article->tags as $tag)
         @if($loop->first)
             <div class="card-body pt-0 pb-4 pl-3">
@@ -179,19 +166,27 @@
 
         @include('error_card_list')
 
-        <div id="comment-article-{{ $article->id }}">
-            @include('articles.comment_list')
-        </div>
         <a class="light-color post-time no-text-decoration" href="/articles/{{ $article->id }}">{{ $article->created_at }}</a>
+
         <hr>
-        <div class="row actions" id="comment-form-article-{{ $article->id }}">
-            <form class="w-100" id="new_comment" action="/articles/{{ $article->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post">
-                <input name="utf8" type="hidden" value="&#x2713;" />
-                {{csrf_field()}}
-                <input value="{{ $article->id }}" type="hidden" name="article_id" />
-                <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
-                <input class="form-control comment-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="comment" />
-            </form>
+        <div class="py-1 d-flex justify-content-end">
+            <!-- コメントアイコン -->
+            <div class="mr-3 d-flex align-items-center">
+                <a class="in-link p-1" href="{{ route('articles.show', ['article' => $article]) }}">
+                    <i class="far fa-comment fa-fw fa-lg"></i>
+                </a>
+                <p class="mb-0">{{ count($article->comments) }}</p>
+            </div>
+            <!-- いいねアイコン -->
+            <div class="d-flex align-items-center">
+                <article-like
+                    :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
+                    :initial-count-likes='@json($article->count_likes)'
+                    :authorized='@json(Auth::check())'
+                    endpoint="{{ route('articles.like', ['article' => $article]) }}"
+                >
+                </article-like>
+            </div>
         </div>
     </div>
 
