@@ -49,7 +49,7 @@ Route::get('/achievements/{article}/edit', 'AchievementController@edit')->name('
 Route::patch('/achievements/{article}/update', 'AchievementController@update')->name('achievement.update')->middleware('auth');
 
 //コメント投稿処理
-Route::post('/articles/{comment_id}/comments','CommentsController@store');
+Route::post('/comments','CommentsController@store')->name('comments.store');
 
 //コメント取消処理
 Route::get('/comments/{comment_id}', 'CommentsController@destroy');

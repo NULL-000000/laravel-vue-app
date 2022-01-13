@@ -16,22 +16,22 @@ class CommentsController extends Controller
         $this->middleware('auth');
     }
 
-//    public function store(Request $request)
    public function store(CommentRequest $request)
    {
-       $comment = new Comment();
-       $comment->user_id = Auth::user()->id;
-       $comment->article_id = $request->article_id;
-       $comment->comment = $request->comment;
-       $comment->save();
+        $comment = new Comment();
+        $comment->user_id = Auth::user()->id;
+        $comment->article_id = $request->article_id;
+        $comment->comment = $request->comment;
+        $comment->save();
 
-       return redirect('/');
+        return back();
    }
 
     public function destroy(Request $request)
     {
         $comment = Comment::find($request->comment_id);
         $comment->delete();
-        return redirect('/');
+
+        return back();
     }
 }
