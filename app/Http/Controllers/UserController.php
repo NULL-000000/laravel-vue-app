@@ -15,12 +15,13 @@ class UserController extends Controller
 {
     public function show(string $name)
     {
-        $user = User::where('name', $name)->first()
-            ->load(['articles.user', 'articles.likes', 'articles.tags']);
+        $user = User::where('name', $name)->first()->load(['articles.user', 'articles.likes', 'articles.tags']);
+        $navuser = User::where('id', Auth::id())->first();
         $articles = $user->articles->sortByDesc('created_at');
 
         return view('users.show', [
             'user' => $user,
+            'navuser' => $navuser,
             'articles' => $articles,
         ]);
     }
