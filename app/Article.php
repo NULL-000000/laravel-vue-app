@@ -67,6 +67,8 @@ class Article extends Model
             return $this->orderBy('created_at', 'asc');
         } elseif ($sort_type === 'like_count') {
             return $this->withCount('likes')->orderBy('likes_count', 'desc');
+        } elseif ($sort_type === 'comment_count') {
+            return $this->withCount('comments')->orderBy('comments_count', 'desc');
         }
     }
 

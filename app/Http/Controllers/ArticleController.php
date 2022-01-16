@@ -151,7 +151,7 @@ class ArticleController extends Controller
         $user = User::where('id', Auth::id())->first();
         $Article = new Article;
         // $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user','prefecture', 'companyType', 'phase', 'likes']);
-        $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes']);
+        $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes', 'comments']);
         $articles = $all_articles_by_sort->paginate(3);
         $articles_count = $all_articles_by_sort->count();
         $allTagNames = Tag::all();
@@ -168,6 +168,9 @@ class ArticleController extends Controller
                 break;
             case 'like_count':
                 $sort = 'いいね数順';
+                break;
+            case 'comment_count':
+                $sort = 'コメント数順';
                 break;
         }
 
