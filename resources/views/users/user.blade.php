@@ -25,6 +25,9 @@
           {{ $user->name }}
         </a>
       </h2>
+      <div class="card-text">
+        {{ $user->introduction}}
+      </div>
       @if (Auth::id() === $user->id)
         @if (Auth::id() === 1)
         <div class="card-title mt-3">

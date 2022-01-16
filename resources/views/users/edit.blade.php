@@ -49,10 +49,15 @@
                                 <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name }}">
                                 <small>3〜15文字で入力してください</small>
                             </div>
-                            {{-- <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
+                            <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
                                 <label for="email">メールアドレス</label>
                                 <input type="text" class="form-control" id="email" name="email" required value="{{ $user->email }}">
-                            </div> --}}
+                            </div>
+                            <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
+                                <label for="introduction">自己紹介</label><br>
+                                <textarea class="form-control p-2" name="introduction" rows="4" required placeholder="コメントを入力してください。">{{ $user->introduction }}</textarea>
+                                <small>250文字以内で入力してください</small>
+                            </div>
                             <button type="submit" class="btn btn-block cyan darken-3 text-white col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto mt-5 mb-5 waves-effect">
                                 更新する
                             </button>
