@@ -26,5 +26,6 @@
     <a class='btn btn-block grey text-white waves-effect rounded-pill' href="{{ route('articles.sort', ['sort_type' => 'desc']) }}">新しい順<i class="fas fa-sort-amount-down ml-2"></i></a>
     <a class='btn btn-block grey text-white waves-effect rounded-pill mt-3' href="{{ route('articles.sort', ['sort_type' => 'asc']) }}">古い順<i class="fas fa-sort-amount-up ml-2"></i></a>
     <a class='btn btn-block grey text-white waves-effect rounded-pill mt-3' href="{{ route('articles.sort', ['sort_type' => 'like_count']) }}">いいね数順<i class="fas fa-heart ml-2"></i></a>
+    <a class='btn btn-block grey text-white waves-effect rounded-pill mt-3' href="{{ route('articles.sort', ['sort_type' => 'comment_count']) }}">コメント数順<i class="fas fa-heart ml-2"></i></a>
 </div>
 {{-- 記事一覧並び替え --}}
