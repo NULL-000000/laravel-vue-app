@@ -76,9 +76,6 @@
     @endforeach
 
     <div class="card-body line-height">
-        <div id="comment-article-{{ $article->id }}">
-            @include('articles.comment_list')
-        </div>
         {{ $article->created_at }}
     </div>
 
