@@ -23,12 +23,14 @@ class ArticleController extends Controller
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $user = User::where('id', Auth::id())->first();
         $sort = "新しい順";
+        $sort_type = "create_at_desc";
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
             'user' => $user,
             'sort' => $sort,
+            'sort_type' => $sort_type,
             'allTagNames' => $allTagNames,
         ];
 
@@ -150,34 +152,38 @@ class ArticleController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
         $Article = new Article;
-        // $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user','prefecture', 'companyType', 'phase', 'likes']);
         $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes', 'comments']);
         $articles = $all_articles_by_sort->paginate(3);
         $articles_count = $all_articles_by_sort->count();
         $allTagNames = Tag::all();
 
-        //検索用のラジオボタン用のデータ
-        // $radio_data = $this->getDataOfRadio();
+        $sort = '新しい順';
 
         switch($sort_type) {
-            case 'desc':
+            case 'create_at_desc':
                 $sort = '新しい順';
                 break;
-            case 'asc':
+            case 'create_at_asc':
                 $sort = '古い順';
                 break;
-            case 'like_count':
-                $sort = 'いいね数順';
-                break;
-            case 'comment_count':
-                $sort = 'コメント数順';
-                break;
+            // case 'like_count_desc':
+            //     $sort = 'いいね数順';
+            //     break;
+            // case 'like_count_asc':
+            //     $sort = 'いいね数順';
+            //     break;
+            // case 'comment_count_desc':
+            //     $sort = 'コメント数順';
+            //     break;
+            // case 'comment_count_asc':
+            //     $sort = 'コメント数順';
+            //     break;
         }
 
         $data = [
             'articles' => $articles,
             'user' => $user,
-            'sortType' => $sort_type,
+            'sort_type' => $sort_type,
             'sort' => $sort,
             'articles_count' => $articles_count,
             'allTagNames' => $allTagNames,

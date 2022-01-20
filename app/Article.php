@@ -61,14 +61,18 @@ class Article extends Model
     //記事一覧ページで並び替え処理
     public function sortByselectedSortType($sort_type)
     {
-        if ($sort_type === 'desc') {
+        if ($sort_type === 'create_at_desc') {
             return $this->orderBy('created_at', 'desc');
-        } elseif ($sort_type === 'asc') {
+        } elseif ($sort_type === 'create_at_asc') {
             return $this->orderBy('created_at', 'asc');
-        } elseif ($sort_type === 'like_count') {
+        } elseif ($sort_type === 'like_count_desc') {
             return $this->withCount('likes')->orderBy('likes_count', 'desc');
-        } elseif ($sort_type === 'comment_count') {
+        } elseif ($sort_type === 'like_count_asc') {
+            return $this->withCount('likes')->orderBy('likes_count', 'asc');
+        } elseif ($sort_type === 'comment_count_desc') {
             return $this->withCount('comments')->orderBy('comments_count', 'desc');
+        } elseif ($sort_type === 'comment_count_asc') {
+            return $this->withCount('comments')->orderBy('comments_count', 'asc');
         }
     }
 
