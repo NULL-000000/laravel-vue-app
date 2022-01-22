@@ -60,12 +60,15 @@ class Article extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
-    public function search($status, $sort_type)
+    public function search($query_text, $status, $sort_type)
     {
         //サービスコンテナ
         $query = app()->make(Article::class);
 
         //キーワード検索
+        if ($query_text !== null) {
+            $query = $query->where('title', 'like', "%$query_text%");
+        }
 
         //カテゴリ検索
         if ($status !== null && $status !== 'all') {
