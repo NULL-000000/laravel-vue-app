@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Article extends Model
 {
     protected $fillable = [
+        'status',
         'title',
         'period',
         'body',
@@ -58,22 +60,39 @@ class Article extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
-    //記事一覧ページで並び替え処理
-    public function sortByselectedSortType($sort_type)
+    public function search($status, $sort_type)
     {
-        if ($sort_type === 'create_at_desc') {
-            return $this->orderBy('created_at', 'desc');
-        } elseif ($sort_type === 'create_at_asc') {
-            return $this->orderBy('created_at', 'asc');
-        } elseif ($sort_type === 'like_count_desc') {
-            return $this->withCount('likes')->orderBy('likes_count', 'desc');
-        } elseif ($sort_type === 'like_count_asc') {
-            return $this->withCount('likes')->orderBy('likes_count', 'asc');
-        } elseif ($sort_type === 'comment_count_desc') {
-            return $this->withCount('comments')->orderBy('comments_count', 'desc');
-        } elseif ($sort_type === 'comment_count_asc') {
-            return $this->withCount('comments')->orderBy('comments_count', 'asc');
+        //サービスコンテナ
+        $query = app()->make(Article::class);
+
+        //キーワード検索
+
+        //カテゴリ検索
+        if ($status !== null && $status !== 'all') {
+            $query = $query->where('status', $status);
         }
+
+        //並び替え機能
+        if ($sort_type === 'create_at_desc') {
+            $query = $query->orderBy('created_at', 'desc');
+        }
+        if ($sort_type === 'create_at_asc') {
+            $query = $query->orderBy('created_at', 'asc');
+        }
+        if ($sort_type === 'like_count_desc') {
+            $query = $query->withCount('likes')->orderBy('likes_count', 'desc');
+        }
+        if ($sort_type === 'like_count_asc') {
+            $query = $query->withCount('likes')->orderBy('likes_count', 'asc');
+        }
+        if ($sort_type === 'comment_count_desc') {
+            $query = $query->withCount('comments')->orderBy('comments_count', 'desc');
+        }
+        if ($sort_type === 'comment_count_asc') {
+            $query = $query->withCount('comments')->orderBy('comments_count', 'asc');
+        }
+
+        return $query;
     }
 
 }

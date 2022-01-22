@@ -55,6 +55,7 @@ class ArticleController extends Controller
     {
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
+        $article->status = "declaration";
         $article->save();
 
         $declaration = new Declaration();
@@ -148,47 +149,21 @@ class ArticleController extends Controller
     }
 
     //記事一覧ページでの並び替え機能
-    public function sort(string $sort_type)
+    public function sort(Request $request, string $sort_type)
+    // public function sort(Request $request)
     {
+        $status = $request->input('status');
+        $articles = app()->make(Article::class)->search($status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
+
         $user = User::where('id', Auth::id())->first();
-        $Article = new Article;
-        $all_articles_by_sort = $Article->sortByselectedSortType($sort_type)->with(['user', 'likes', 'comments']);
-        $articles = $all_articles_by_sort->paginate(3);
-        $articles_count = $all_articles_by_sort->count();
         $allTagNames = Tag::all();
-
-        $sort = '新しい順';
-
-        switch($sort_type) {
-            case 'create_at_desc':
-                $sort = '新しい順';
-                break;
-            case 'create_at_asc':
-                $sort = '古い順';
-                break;
-            // case 'like_count_desc':
-            //     $sort = 'いいね数順';
-            //     break;
-            // case 'like_count_asc':
-            //     $sort = 'いいね数順';
-            //     break;
-            // case 'comment_count_desc':
-            //     $sort = 'コメント数順';
-            //     break;
-            // case 'comment_count_asc':
-            //     $sort = 'コメント数順';
-            //     break;
-        }
 
         $data = [
             'articles' => $articles,
-            'user' => $user,
             'sort_type' => $sort_type,
-            'sort' => $sort,
-            'articles_count' => $articles_count,
+            'user' => $user,
             'allTagNames' => $allTagNames,
         ];
         return view('articles.index', $data);
     }
-
 }
