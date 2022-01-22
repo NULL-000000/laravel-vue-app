@@ -22,14 +22,14 @@ class ArticleController extends Controller
     {
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $user = User::where('id', Auth::id())->first();
-        $sort = "新しい順";
+        $query_text = null;
         $sort_type = "create_at_desc";
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
             'user' => $user,
-            'sort' => $sort,
+            'query_text' => $query_text,
             'sort_type' => $sort_type,
             'allTagNames' => $allTagNames,
         ];
@@ -152,14 +152,16 @@ class ArticleController extends Controller
     public function sort(Request $request, string $sort_type)
     // public function sort(Request $request)
     {
+        $query_text = $request->input('query_text');
         $status = $request->input('status');
-        $articles = app()->make(Article::class)->search($status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
+        $articles = app()->make(Article::class)->search($query_text, $status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
 
         $user = User::where('id', Auth::id())->first();
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
+            'query_text' => $query_text,
             'sort_type' => $sort_type,
             'user' => $user,
             'allTagNames' => $allTagNames,

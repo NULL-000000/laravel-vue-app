@@ -15,6 +15,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="query_text">Title</label>
+                                <input type="text" name="query_text" value="{{ $query_text }}" class="form-control" placeholder="キーワードを入力">
+                                {{-- {!! Form::label('queryText', 'Title') !!}
+                                {!! Form::text('queryText', '', ['class' => 'form-control', 'placeholder' => 'キーワードを入力']) !!} --}}
+                            </div>
                             <div class="form-group col-sm-4">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control custom-select">
