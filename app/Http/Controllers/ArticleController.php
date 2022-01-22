@@ -23,6 +23,7 @@ class ArticleController extends Controller
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $user = User::where('id', Auth::id())->first();
         $query_text = null;
+        $status = "all";
         $sort_type = "create_at_desc";
         $allTagNames = Tag::all();
 
@@ -30,6 +31,7 @@ class ArticleController extends Controller
             'articles' => $articles,
             'user' => $user,
             'query_text' => $query_text,
+            'status' => $status,
             'sort_type' => $sort_type,
             'allTagNames' => $allTagNames,
         ];
@@ -149,11 +151,11 @@ class ArticleController extends Controller
     }
 
     //記事一覧ページでの並び替え機能
-    public function sort(Request $request, string $sort_type)
-    // public function sort(Request $request)
+    public function sort(Request $request)
     {
         $query_text = $request->input('query_text');
         $status = $request->input('status');
+        $sort_type = $request->input('sort_type');
         $articles = app()->make(Article::class)->search($query_text, $status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
 
         $user = User::where('id', Auth::id())->first();
@@ -162,6 +164,7 @@ class ArticleController extends Controller
         $data = [
             'articles' => $articles,
             'query_text' => $query_text,
+            'status' => $status,
             'sort_type' => $sort_type,
             'user' => $user,
             'allTagNames' => $allTagNames,

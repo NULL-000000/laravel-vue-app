@@ -90,7 +90,7 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 //並び替え
-Route::get('/{sort_type}', 'ArticleController@sort')->name('articles.sort');
+Route::get('/sort', 'ArticleController@sort')->name('articles.sort');
 
 if (app()->environment('production')) {
     URL::forceScheme('https');
