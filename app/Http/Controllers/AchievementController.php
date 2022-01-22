@@ -102,6 +102,9 @@ class AchievementController extends Controller
         $declaration->declaration = "end";
         $declaration->save();
 
+        $article->status = $request->input('achievement');
+        $article->save();
+
         return redirect()->route('articles.index');
     }
 
