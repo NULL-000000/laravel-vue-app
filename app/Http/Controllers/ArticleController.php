@@ -22,17 +22,17 @@ class ArticleController extends Controller
     {
         $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
         $user = User::where('id', Auth::id())->first();
-        $query_text = null;
+        $keyword = null;
         $status = "all";
-        $sort_type = "create_at_desc";
+        $sort = "create_at_desc";
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
             'user' => $user,
-            'query_text' => $query_text,
+            'keyword' => $keyword,
             'status' => $status,
-            'sort_type' => $sort_type,
+            'sort' => $sort,
             'allTagNames' => $allTagNames,
         ];
 
@@ -150,25 +150,32 @@ class ArticleController extends Controller
         ];
     }
 
-    //記事一覧ページでの並び替え機能
-    public function sort(Request $request)
+    public function search(Request $request)
     {
-        $query_text = $request->input('query_text');
+        //キーワード（配列）
+        $keywords = $request->input('keyword');
+        //キーワード（文字列）
+        $keyword = collect($keywords)->implode(' ');
+        //カテゴリ
         $status = $request->input('status');
-        $sort_type = $request->input('sort_type');
-        $articles = app()->make(Article::class)->search($query_text, $status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
+        //ソート
+        $sort = $request->input('sort');
+
+        //ソート・検索
+        $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);
 
         $user = User::where('id', Auth::id())->first();
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
-            'query_text' => $query_text,
+            'keyword' => $keyword,
             'status' => $status,
-            'sort_type' => $sort_type,
+            'sort' => $sort,
             'user' => $user,
             'allTagNames' => $allTagNames,
         ];
-        return view('articles.index', $data);
+        
+        return view('articles.search', $data);
     }
 }
