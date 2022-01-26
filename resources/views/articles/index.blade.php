@@ -10,7 +10,6 @@
             @include('sidenav')
         </div>
         <div class='col-lg-7 col-md-5 col-sm-6 col-xs-6 mt-5 mr-auto ml-5'>
-
             <div class="container">
                 <ul class="nav nav-tabs nav-justified mt-3">
                     @foreach (config('consts.articles.status_type') as $status_type)
