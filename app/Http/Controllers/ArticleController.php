@@ -18,21 +18,19 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
+        $status = $request->input('status') ?? 'all';
         $user = User::where('id', Auth::id())->first();
-        $keyword = null;
-        $status = "all";
-        $sort = "create_at_desc";
         $allTagNames = Tag::all();
+
+        //カテゴリ検索
+        $articles = app()->make(Article::class)->category($status)->paginate(10);
 
         $data = [
             'articles' => $articles,
             'user' => $user,
-            'keyword' => $keyword,
             'status' => $status,
-            'sort' => $sort,
             'allTagNames' => $allTagNames,
         ];
 
@@ -157,9 +155,9 @@ class ArticleController extends Controller
         //キーワード（文字列）
         $keyword = collect($keywords)->implode(' ');
         //カテゴリ
-        $status = $request->input('status');
+        $status = $request->input('status') ?? 'all';
         //ソート
-        $sort = $request->input('sort');
+        $sort = $request->input('sort') ?? 'create_at_desc';
 
         //ソート・検索
         $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);
@@ -175,7 +173,7 @@ class ArticleController extends Controller
             'user' => $user,
             'allTagNames' => $allTagNames,
         ];
-        
+
         return view('articles.search', $data);
     }
 }

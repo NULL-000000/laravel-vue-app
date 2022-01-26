@@ -60,6 +60,19 @@ class Article extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
+    public function category($status)
+    {
+        //サービスコンテナ
+        $query = app()->make(Article::class)->orderBy('created_at', 'desc');
+
+        //カテゴリ検索
+        if ($status !== null && $status !== 'all') {
+            $query = $query->where('status', $status);
+        }
+
+        return $query;
+    }
+
     public function searchForArticlesBy($keywords, $status, $sort)
     {
         //サービスコンテナ
