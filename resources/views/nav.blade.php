@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark blue-gradient">
 
-    <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>memo</a>
+    <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
 
     <ul class="navbar-nav ml-auto">
 
@@ -21,7 +21,11 @@
 
         @auth
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+            {{-- <a class="nav-link" href="{{ route('articles.search', ['sort='.$sort, 'keyword='.$keyword, 'status='.$status]) }}"><i class="fas fa-search mr-1"></i>検索</a> --}}
+            <a class="nav-link" href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿</a>
         </li>
         @endauth
 

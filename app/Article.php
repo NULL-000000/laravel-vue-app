@@ -60,14 +60,29 @@ class Article extends Model
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
-    public function search($query_text, $status, $sort_type)
+    public function category($status)
+    {
+        //サービスコンテナ
+        $query = app()->make(Article::class)->orderBy('created_at', 'desc');
+
+        //カテゴリ検索
+        if ($status !== null && $status !== 'all') {
+            $query = $query->where('status', $status);
+        }
+
+        return $query;
+    }
+
+    public function searchForArticlesBy($keywords, $status, $sort)
     {
         //サービスコンテナ
         $query = app()->make(Article::class);
 
         //キーワード検索
-        if ($query_text !== null) {
-            $query = $query->where('title', 'like', "%$query_text%");
+        if(!empty($keywords)) {
+            foreach ($keywords as $keyword) {
+                $query = $query->where('title','like','%'.$keyword.'%');
+            }
         }
 
         //カテゴリ検索
@@ -76,23 +91,17 @@ class Article extends Model
         }
 
         //並び替え機能
-        if ($sort_type === 'create_at_desc') {
+        if ($sort === 'create_at_desc') {
             $query = $query->orderBy('created_at', 'desc');
         }
-        if ($sort_type === 'create_at_asc') {
+        if ($sort === 'create_at_asc') {
             $query = $query->orderBy('created_at', 'asc');
         }
-        if ($sort_type === 'like_count_desc') {
+        if ($sort === 'like_count_desc') {
             $query = $query->withCount('likes')->orderBy('likes_count', 'desc');
         }
-        if ($sort_type === 'like_count_asc') {
-            $query = $query->withCount('likes')->orderBy('likes_count', 'asc');
-        }
-        if ($sort_type === 'comment_count_desc') {
+        if ($sort === 'comment_count_desc') {
             $query = $query->withCount('comments')->orderBy('comments_count', 'desc');
-        }
-        if ($sort_type === 'comment_count_asc') {
-            $query = $query->withCount('comments')->orderBy('comments_count', 'asc');
         }
 
         return $query;

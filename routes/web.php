@@ -89,8 +89,8 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-//並び替え
-Route::get('/sort', 'ArticleController@sort')->name('articles.sort');
+//検索画面
+Route::get('/search', 'ArticleController@search')->name('articles.search')->middleware('keyword');
 
 if (app()->environment('production')) {
     URL::forceScheme('https');

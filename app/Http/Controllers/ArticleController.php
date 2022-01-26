@@ -18,21 +18,19 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'achievement', 'declaration']);
+        $status = $request->input('status') ?? 'all';
         $user = User::where('id', Auth::id())->first();
-        $query_text = null;
-        $status = "all";
-        $sort_type = "create_at_desc";
         $allTagNames = Tag::all();
+
+        //カテゴリ検索
+        $articles = app()->make(Article::class)->category($status)->paginate(10);
 
         $data = [
             'articles' => $articles,
             'user' => $user,
-            'query_text' => $query_text,
             'status' => $status,
-            'sort_type' => $sort_type,
             'allTagNames' => $allTagNames,
         ];
 
@@ -150,25 +148,32 @@ class ArticleController extends Controller
         ];
     }
 
-    //記事一覧ページでの並び替え機能
-    public function sort(Request $request)
+    public function search(Request $request)
     {
-        $query_text = $request->input('query_text');
-        $status = $request->input('status');
-        $sort_type = $request->input('sort_type');
-        $articles = app()->make(Article::class)->search($query_text, $status, $sort_type)->with(['user', 'likes', 'comments'])->paginate(10);
+        //キーワード（配列）
+        $keywords = $request->input('keyword');
+        //キーワード（文字列）
+        $keyword = collect($keywords)->implode(' ');
+        //カテゴリ
+        $status = $request->input('status') ?? 'all';
+        //ソート
+        $sort = $request->input('sort') ?? 'create_at_desc';
+
+        //ソート・検索
+        $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);
 
         $user = User::where('id', Auth::id())->first();
         $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
-            'query_text' => $query_text,
+            'keyword' => $keyword,
             'status' => $status,
-            'sort_type' => $sort_type,
+            'sort' => $sort,
             'user' => $user,
             'allTagNames' => $allTagNames,
         ];
-        return view('articles.index', $data);
+
+        return view('articles.search', $data);
     }
 }
