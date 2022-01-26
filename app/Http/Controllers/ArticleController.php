@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $allTagNames = Tag::all();
 
         //カテゴリ検索
-        $articles = app()->make(Article::class)->category($status)->paginate(10);
+        $articles = app()->make(Article::class)->category($status)->paginate(2);
 
         $data = [
             'articles' => $articles,
