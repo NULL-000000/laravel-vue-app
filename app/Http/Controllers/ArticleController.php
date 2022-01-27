@@ -22,7 +22,7 @@ class ArticleController extends Controller
     {
         $status = $request->input('status') ?? 'all';
         $user = User::where('id', Auth::id())->first();
-        $allTagNames = Tag::all();
+        $tags_ranking = Tag::withCount('articles')->orderBy('articles_count', 'desc')->limit(5)->get();
 
         //カテゴリ検索
         $articles = app()->make(Article::class)->category($status)->paginate(2);
@@ -31,7 +31,7 @@ class ArticleController extends Controller
             'articles' => $articles,
             'user' => $user,
             'status' => $status,
-            'allTagNames' => $allTagNames,
+            'tags_ranking' => $tags_ranking,
         ];
 
         return view('articles.index', $data);
@@ -163,7 +163,6 @@ class ArticleController extends Controller
         $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);
 
         $user = User::where('id', Auth::id())->first();
-        $allTagNames = Tag::all();
 
         $data = [
             'articles' => $articles,
@@ -171,7 +170,6 @@ class ArticleController extends Controller
             'status' => $status,
             'sort' => $sort,
             'user' => $user,
-            'allTagNames' => $allTagNames,
         ];
 
         return view('articles.search', $data);

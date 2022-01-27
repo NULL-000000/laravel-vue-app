@@ -3,12 +3,15 @@
     <div class="card mb-4 sidebar-content">
         <div class="card-header text-center">
             <i class="fas fa-tags mr-2">
-            </i>メインタグ
+            </i>タグ・ランキング
         </div>
         <div class="card-body main-tag-list py-3 mx-auto">
-            @foreach ($allTagNames as $tag)
+            @foreach ($tags_ranking as $tag)
                 <a href="{{ route('tags.show', ['name' => $tag->name]) }}">
-                    <p>{{ $tag->hashtag }}</p>
+                    <div class="m-3">
+                        {{ $tag->hashtag }}
+                        <span>{{ $tag->articles_count }}</span>
+                    </div>
                 </a>
             @endforeach
         </div>
