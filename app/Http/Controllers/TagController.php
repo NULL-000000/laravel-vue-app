@@ -14,12 +14,17 @@ class TagController extends Controller
         $tag = Tag::where('name', $name)->first();
         $tag->articles = $tag->articles->sortByDesc('created_at');
         $user = User::where('id', Auth::id())->first();
-        $allTagNames = Tag::all();
+
+        //タグランキング
+        $tags_ranking = app()->make(Tag::class)->tagsRanking();
+        //達成ランキング
+        $users_ranking = app()->make(User::class)->usersRanking();
 
         $data = [
             'tag' => $tag,
             'user' => $user,
-            'allTagNames' => $allTagNames,
+            'tags_ranking' => $tags_ranking,
+            'users_ranking' => $users_ranking,
         ];
 
         return view('tags.show', $data);

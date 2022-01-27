@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -92,5 +93,14 @@ class User extends Authenticatable
     public function getCountFollowingsAttribute(): int
     {
         return $this->followings->count();
+    }
+
+    public function usersRanking()
+    {
+        $query = User::withCount(['articles' => function (Builder $query) {
+            $query->where('status', 'success');
+        }])->orderBy('articles_count', 'desc')->limit(5)->get();
+
+        return $query;
     }
 }

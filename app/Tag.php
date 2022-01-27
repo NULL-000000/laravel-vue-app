@@ -20,4 +20,11 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Article')->withTimestamps();
     }
+
+    public function tagsRanking()
+    {
+        $query = Tag::withCount('articles')->orderBy('articles_count', 'desc')->limit(5)->get();
+
+        return $query;
+    }
 }
