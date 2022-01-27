@@ -21,27 +21,9 @@ class Tag extends Model
         return $this->belongsToMany('App\Article')->withTimestamps();
     }
 
-    public function tagRanking()
+    public function tagsRanking()
     {
-        //サービスコンテナ
-        // $query = app()->make(Tag::class)->orderBy('created_at', 'desc');
-        // $query = app()->make(Tag::class)->orderBy('created_at', 'desc');
-
-        $query = Tag::withCount('article')->orderBy('article_count', 'desc')->get();
-
-
-        // $users = DB::table('users')
-        //    ->where('name', '=', 'John')
-        //    ->where(function ($query) {
-        //        $query->where('votes', '>', 100)
-        //              ->orWhere('title', '=', 'Admin');
-        //    })
-        //    ->get();
-
-        //カテゴリ検索
-        // if ($status !== null && $status !== 'all') {
-            // $query = $query->where('status', $status);
-        // }
+        $query = Tag::withCount('articles')->orderBy('articles_count', 'desc')->limit(5)->get();
 
         return $query;
     }
