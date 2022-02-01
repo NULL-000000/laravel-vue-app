@@ -1,59 +1,120 @@
-<nav class="navbar navbar-expand navbar-dark blue-gradient">
+{{-- <!-- Header Start -->
+<header class="site-header">
+    <div class="wrapper site-header__wrapper">
+        <div class="site-header__start">
+            <a href="/" class="brand"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+        </div>
+        <div class="site-header__end">
+            <nav class="nav">
 
-    <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+                @guest
+                <button class="nav__toggle" aria-expanded="false" type="button">
+                    menu
+                </button>
+                @endguest
 
-    <ul class="navbar-nav ml-auto">
+                @auth
+                <a class="nav__toggle" aria-expanded="false" type="button">
+                    @if ($user->image)
+                        <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0" width="35" height="35" style="background-position:center; border-radius:50%; object-fit:cover;"/>
+                    @else
+                        <i class="far fa-user-circle text-light"></i>
+                    @endif
+                </a>
+                @endauth
 
-        @guest
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
-        </li>
-        @endguest
+                <ul class="nav__wrapper">
+                    @guest
+                    <li class="nav__item"><a href="{{ route('register') }}">ユーザー登録</a></li>
+                    <li class="nav__item"><a href="{{ route('login') }}">ログイン</a></li>
+                    @endguest
 
-        @guest
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('login.guest') }}">ゲストログイン</a>
-        </li>
-        @endguest
+                    @auth
+                    <li class="nav__item"><a href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a></li>
+                    <li class="nav__item"><a href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿</a></li>
+                    @endauth
 
-        @auth
-        <li class="nav-item">
-            {{-- <a class="nav-link" href="{{ route('articles.search', ['sort='.$sort, 'keyword='.$keyword, 'status='.$status]) }}"><i class="fas fa-search mr-1"></i>検索</a> --}}
-            <a class="nav-link" href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿</a>
-        </li>
-        @endauth
+                    @auth
+                    <!-- Dropdown -->
+                    <li class="nav__item dropdown">
+                        <a class="nav__link dropdown-toggle p-3" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if ($user->image)
+                                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0" width="35" height="35" style="background-position:center; border-radius:50%; object-fit:cover;"/>
+                            @else
+                                <i class="far fa-user-circle text-light"></i>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <button class="dropdown-item" type="button"
+                            onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">
+                            マイページ
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" type="button"
+                            onclick="location.href='{{ route('articles.create') }}'">
+                            新規投稿
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button form="logout-button" class="dropdown-item" type="submit">
+                            ログアウト
+                            </button>
+                        </div>
+                    </li>
+                    <form id="logout-button" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    </form>
+                    <!-- Dropdown -->
+                    @endauth
+                </ul>
 
-        @auth
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            @if ($user->image)
-                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0" width="21" height="21" style="background-position:center; border-radius:50%; object-fit:cover;"/>
-            @else
-                <i class="far fa-user-circle text-light"></i>
-            @endif
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-            <button class="dropdown-item" type="button"
-              onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">
-              マイページ
+                @guest
+                <ul class="nav__drop">
+                    <li class="nav__item"><a href="{{ route('register') }}">ユーザー登録</a></li>
+                    <li class="nav__item"><a href="{{ route('login') }}">ログイン</a></li>
+                </ul>
+                @endguest
+
+                @auth
+                <ul class="nav__drop">
+                    <li class="nav__item"><a href="{{ route('users.show', ['name' => Auth::user()->name]) }}">マイページ</a></li>
+                    <li class="nav__item"><a href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a></li>
+                    <li class="nav__item"><a href="{{ route('articles.create') }}">新規投稿</a></li>
+                    <!-- ログアウト要修正 -->
+                    <li class="nav__item"><a href="{{ route('logout') }}">ログアウト</a></li>
+                </ul>
+                @endauth
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header End --> --}}
+
+<!-- Header Start -->
+<header class="site-header">
+    <div class="wrapper site-header__wrapper">
+        <a href="/" class="brand"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+        <nav class="nav">
+            <button class="nav__toggle" aria-expanded="false" type="button">
+                menu
             </button>
-            <div class="dropdown-divider"></div>
-            <button form="logout-button" class="dropdown-item" type="submit">
-              ログアウト
-            </button>
-          </div>
-        </li>
-        <form id="logout-button" method="POST" action="{{ route('logout') }}">
-            @csrf
-        </form>
-        <!-- Dropdown -->
-        @endauth
-    </ul>
-  </nav>
+            {{-- 理想のメニューUI --}}
+            <ul class="nav__wrapper">
+                <li class="nav__item"><a href="#">Home</a></li>
+                <li class="nav__item"><a href="#">About</a></li>
+                <li class="nav__item"><a href="#">Services</a></li>
+                <li class="nav__item"><a href="#">Hire us</a></li>
+                <li class="nav__item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <button type="button" class="menu-btn" v-on:click="open=!open">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    <div class="menu" v-bind:class="{'is-active' : open }">
+        <div class="menu__item">TOP</div>
+        <div class="menu__item">ABOUT</div>
+        <div class="menu__item">BLOG</div>
+        <div class="menu__item">CONTACT</div>
+    </div>
+</header>
+<!-- Header End -->
