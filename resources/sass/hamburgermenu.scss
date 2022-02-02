@@ -8,20 +8,46 @@ $small: 600px;
 * メニュー開閉ボタン
 *----------------------------*/
 
+// .nav__toggle {
+//     display: none;
+
+//     @media (max-width: ($small - 1)) {
+//       display: block;
+//       position: absolute;
+//       right: 1rem;
+//       top: 1rem;
+//     }
+//   }
+
+.menu__wrapper {
+    @media (min-width: $small) {
+      display: none;
+    }
+
+    @media (max-width: ($small - 1)) {
+      display: flex;
+    }
+}
+
 .menu-btn{
     display: none;
     @media (max-width: ($small - 1)) {
-        position: fixed;
+        display: block;
+        position: absolute;
         top: 20px;
         right: 20px;
         z-index: 3;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #333;
+        border: none;
+        background: #263238;
         color: #fff;
+        // right: 1rem;
+        // top: 1rem;
+        // position: fixed;
+        // width: 40px;
+        // height: 40px;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
     }
 }
 
@@ -34,18 +60,25 @@ $small: 600px;
     top: 100%;
     right: 0;
     left: 0;
-    z-index: -1;
+    z-index: 1;
     background-color: #37474F;
     visibility: visible;
     opacity: 1;
     /* アニメーション前のメニューの状態 */
-    transform: translateY(-100%);
+    transform: translateY(-150%);
     transition: all .3s linear;
     /* アニメーション後のメニューの状態 */
     &.is-active {
         transform: translateY(0);
     }
-    .menu__item{
+    .menu__item a{
+        text-align: center;
+        color: honeydew;
+        display: block;
+        padding: 1.5rem 1rem;
+        margin: auto;
+    }
+    .menu__item form button{
         text-align: center;
         color: honeydew;
         display: block;

@@ -3,6 +3,9 @@
 @section('title', 'ユーザー登録')
 
 @section('content')
+
+@include('nav')
+
   <div class="container">
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
@@ -42,7 +45,7 @@
                 </div>
                 <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
               </form>
-              
+
               <div class="mt-0">
                 <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
               </div>
@@ -53,4 +56,7 @@
       </div>
     </div>
   </div>
+
+@include('footer')
+
 @endsection
