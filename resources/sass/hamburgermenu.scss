@@ -1,0 +1,56 @@
+/*----------------------------
+* 変数
+*----------------------------*/
+
+$small: 600px;
+
+/*----------------------------
+* メニュー開閉ボタン
+*----------------------------*/
+
+.menu-btn{
+    display: none;
+    @media (max-width: ($small - 1)) {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #333;
+        color: #fff;
+    }
+}
+
+/*----------------------------
+* メニュー本体
+*----------------------------*/
+
+.menu{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #37474F;
+    visibility: visible;
+    opacity: 1;
+    /* アニメーション前のメニューの状態 */
+    transform: translateY(-100%);
+    transition: all .3s linear;
+    /* アニメーション後のメニューの状態 */
+    &.is-active {
+        transform: translateY(0);
+    }
+    .menu__item{
+        text-align: center;
+        color: honeydew;
+        display: block;
+        padding: 1.5rem 1rem;
+        margin: auto;
+    }
+}
+

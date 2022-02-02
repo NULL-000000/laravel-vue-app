@@ -1,16 +1,19 @@
-<footer class="footer mt-auto py-4">
+<footer>
     <div class="container">
-        <!-- <span class="text-muted">Place sticky footer content here.</span> -->
-        <span class="d-flex justify-content-center flex-wrap small">
-            {{-- <a href="{{ route('home') }}" class="btn btn-sm text-teal1"><b>ホーム</b></a> --}}
-            <a href="/" class="btn btn-sm text-teal1"><b>ホーム</b></a>
-            <a href="{{ route('about') }}" class="btn btn-sm text-teal1"><b>TO DO SENGENとは</b></a>
-            <a href="{{ route('terms') }}" class="btn btn-sm text-teal1"><b>利用規約</b></a>
-            <a href="{{ route('privacy') }}" class="btn btn-sm text-teal1"><b>プライバシーポリシー</b></a>
-            <a href="{{ route('contact.index') }}" class="btn btn-sm text-teal1"><b>お問い合わせ</b></a>
-        </span>
-        <span class="d-flex justify-content-center flex-wrap text-muted small">
-            <address class="small">Copyright &copy; 2021 ***** ***** All Rights Reserved.</address>
-        </span>
+        <nav class="footB">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('terms') }}">利用規約</a></li>
+                <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
+                <li><a href="{{ route('contact.index') }}">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="footA">
+            <a class="title" href="/"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+        </div>
+        <div class="footC">
+            <p class="title">Copyright &copy; 2022 ***** ***** All Rights Reserved.</p>
+        </div>
     </div>
 </footer>
