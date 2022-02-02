@@ -94,27 +94,126 @@
     <div class="wrapper site-header__wrapper">
         <a href="/" class="brand"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
         <nav class="nav">
-            <button class="nav__toggle" aria-expanded="false" type="button">
+            {{-- <button class="nav__toggle" aria-expanded="false" type="button">
                 menu
-            </button>
+            </button> --}}
             {{-- 理想のメニューUI --}}
-            <ul class="nav__wrapper">
-                <li class="nav__item"><a href="#">Home</a></li>
+            {{-- <ul class="nav__wrapper"> --}}
+                {{-- <li class="nav__item"><a href="#">Home</a></li>
                 <li class="nav__item"><a href="#">About</a></li>
                 <li class="nav__item"><a href="#">Services</a></li>
                 <li class="nav__item"><a href="#">Hire us</a></li>
-                <li class="nav__item"><a href="#">Contact</a></li>
+                <li class="nav__item"><a href="#">Contact</a></li> --}}
+                <ul class="nav__wrapper">
+                    @guest
+                    <li class="nav__item"><a href="/">ホーム</a></li>
+                    <li class="nav__item"><a href="{{ route('register') }}">ユーザー登録</a></li>
+                    <li class="nav__item"><a href="{{ route('login') }}">ログイン</a></li>
+                    <li class="nav__item"><a href="{{ route('login.guest') }}">ゲストログイン</a></li>
+                    @endguest
+
+                    @auth
+                    <li class="nav__item">
+                        <!-- 検索フォーム -->
+                        <form  method="GET" action="{{ route('articles.search') }}" class="d-none d-md-flex input-group w-auto mx-auto search">
+                            <input
+                                autocomplete="off"
+                                {{-- type="search" --}}
+                                type="text"
+                                class="form-control rounded"
+                                placeholder='検索...'
+                                name="keyword"
+                                {{-- value="@if (isset($keyword)) {{ $keyword }} @endif" --}}
+                                {{-- value="@if (!empty($keyword)) {{ $keyword }} @endif" --}}
+
+                                />
+                            <button type="submit" class="input-group-text border-0"><i class="fas fa-search"></i></button>
+                        </form>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿</a>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav__item dropdown">
+                        <a class="nav__link dropdown-toggle p-3" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if ($user->image)
+                                <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0" width="35" height="35" style="background-position:center; border-radius:50%; object-fit:cover;"/>
+                            @else
+                                <i class="far fa-user-circle text-light"></i>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <button class="dropdown-item" type="button"
+                            onclick="location.href='{{ route('users.show', ['name' => Auth::user()->name]) }}'">
+                            マイページ
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" type="button"
+                            onclick="location.href='{{ route('articles.create') }}'">
+                            新規投稿
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button form="logout-button" class="dropdown-item" type="submit">
+                            ログアウト
+                            </button>
+                        </div>
+                    </li>
+                    <form id="logout-button" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    </form>
+                    <!-- Dropdown -->
+                    @endauth
+                </ul>
+            {{-- </ul> --}}
+
+            <ul class="menu__wrapper">
+                {{-- @auth --}}
+                <li class="nav__item">
+                    <button type="button" class="menu-btn" v-on:click="open=!open">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                </li>
+                {{-- @endauth --}}
             </ul>
+
+            @guest
+            <div class="menu" v-bind:class="{'is-active' : open }">
+                <div class="menu__item">
+                    <a href="/"><i class="fas fa-pen mr-1"></i>ホーム</a>
+                </div>
+                <div class="menu__item">
+                    <a href="{{ route('register') }}">ユーザー登録</a>
+                </div>
+                <div class="menu__item">
+                    <a href="{{ route('login') }}">ログイン</a>
+                </div>
+                <div class="menu__item">
+                    <a href="{{ route('login.guest') }}">ゲストログイン</a>
+                </div>
+            </div>
+            @endguest
+
+            @auth
+            <div class="menu" v-bind:class="{'is-active' : open }">
+                <div class="menu__item">
+                    <a href="{{ route('users.show', ['name' => Auth::user()->name]) }}"><i class="fas fa-pen mr-1"></i>マイページ</a>
+                </div>
+                <div class="menu__item">
+                    <a href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a>
+                </div>
+                <div class="menu__item">
+                    <a href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿</a>
+                </div>
+                <div class="menu__item">
+                    <form name="logout" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="javascript:logout.submit()"><i class="fas fa-pen mr-1"></i>ログアウト</a>
+                    </form>
+                </div>
+            </div>
+            @endauth
+
         </nav>
-    </div>
-    <button type="button" class="menu-btn" v-on:click="open=!open">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-    </button>
-    <div class="menu" v-bind:class="{'is-active' : open }">
-        <div class="menu__item">TOP</div>
-        <div class="menu__item">ABOUT</div>
-        <div class="menu__item">BLOG</div>
-        <div class="menu__item">CONTACT</div>
     </div>
 </header>
 <!-- Header End -->
