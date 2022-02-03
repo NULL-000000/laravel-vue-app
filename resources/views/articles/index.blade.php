@@ -5,7 +5,38 @@
 @section('content')
     @include('nav')
 
-    <div class="row">
+    <div class="grid">
+        <aside>
+            <div class="ranking"><i class="fas fa-tags mr-2"></i>タグランキング</div>
+            <div class="f-container">
+                @foreach ($tags_ranking as $tag)
+                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}">
+                        <div class="f-item">
+                            {{ $tag->hashtag }}
+                            <span>{{ $tag->articles_count }}</span>件
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+            <div class="ranking"><i class="fas fa-tags mr-2"></i>達成ランキング</div>
+            <div class="f-container">
+                @foreach ($users_ranking as $user)
+                    <a href="{{ route('users.show', ['name' => $user->name]) }}">
+                        <div class="f-item">
+                            {{ $user->name }}
+                            <span>{{ $user->articles_count }}</span>件
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </aside>
+        <main>center</main>
+    </div>
+
+    {{-- <header>header</header> --}}
+    {{-- <footer>footer</footer> --}}
+
+    {{-- <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-6 col-xs-6 mt-5 pl-5">
             @include('sidenav')
         </div>
@@ -15,7 +46,6 @@
                     @foreach (config('consts.articles.status_type') as $status_type)
                         <li class="nav-item">
                             <a class="nav-link text-muted {{ $status === $status_type['status_value'] ? 'active dusty-grass-gradient' : '' }}"
-                                {{-- href="{{ route('articles.index', ['sort='.$sort, 'keyword='.$keyword, 'status='.$status_type['status_value']]) }}"> --}}
                                 href="{{ route('articles.index', ['status='.$status_type['status_value']]) }}">
                                 {{ $status_type['status_text'] }}
                             </a>
@@ -32,7 +62,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @include('footer')
 @endsection
