@@ -29,7 +29,7 @@ class ArticleController extends Controller
         $users_ranking = app()->make(User::class)->usersRanking();
 
         //カテゴリ検索
-        $articles = app()->make(Article::class)->category($status)->paginate(2);
+        $articles = app()->make(Article::class)->category($status)->paginate(8);
 
         $data = [
             'articles' => $articles,

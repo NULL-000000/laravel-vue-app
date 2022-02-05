@@ -99,7 +99,7 @@ class User extends Authenticatable
     {
         $query = User::withCount(['articles' => function (Builder $query) {
             $query->where('status', 'success');
-        }])->orderBy('articles_count', 'desc')->limit(5)->get();
+        }])->orderBy('articles_count', 'desc')->limit(10)->get();
 
         return $query;
     }

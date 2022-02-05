@@ -23,7 +23,7 @@ class Tag extends Model
 
     public function tagsRanking()
     {
-        $query = Tag::withCount('articles')->orderBy('articles_count', 'desc')->limit(5)->get();
+        $query = Tag::withCount('articles')->orderBy('articles_count', 'desc')->limit(10)->get();
 
         return $query;
     }

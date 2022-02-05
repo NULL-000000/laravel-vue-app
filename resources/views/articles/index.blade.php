@@ -7,30 +7,44 @@
 
     <div class="grid">
         <aside>
-            <div class="ranking"><i class="fas fa-tags mr-2"></i>タグランキング</div>
-            <div class="f-container">
-                @foreach ($tags_ranking as $tag)
-                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}">
-                        <div class="f-item">
-                            {{ $tag->hashtag }}
-                            <span>{{ $tag->articles_count }}</span>件
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-            <div class="ranking"><i class="fas fa-tags mr-2"></i>達成ランキング</div>
-            <div class="f-container">
-                @foreach ($users_ranking as $user)
-                    <a href="{{ route('users.show', ['name' => $user->name]) }}">
-                        <div class="f-item">
-                            {{ $user->name }}
-                            <span>{{ $user->articles_count }}</span>件
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+            @include('sidenav')
         </aside>
-        <main>center</main>
+        <main>
+            <div class="main-container">
+                <div class="main-item">
+                    <ul class="nav nav-tabs nav-justified">
+                        @foreach (config('consts.articles.status_type') as $status_type)
+                            <li class="nav-item">
+                                <a class="nav-link text-muted {{ $status === $status_type['status_value'] ? 'active dusty-grass-gradient' : '' }}"
+                                    href="{{ route('articles.index', ['status='.$status_type['status_value']]) }}">
+                                    {{ $status_type['status_text'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="card-item">
+                    {{-- @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard')
+                    @include('articles.maincard') --}}
+
+                    <div class="wrap">
+                        @foreach ($articles as $article)
+                            <div class="item">
+                              @include('articles.maincard')
+                            </div>
+                              {{-- @include('articles.card') --}}
+                        @endforeach
+                        {{ $articles->appends(request()->all())->links() }}
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     {{-- <header>header</header> --}}
