@@ -8,17 +8,6 @@ $small: 600px;
 * メニュー開閉ボタン
 *----------------------------*/
 
-// .nav__toggle {
-//     display: none;
-
-//     @media (max-width: ($small - 1)) {
-//       display: block;
-//       position: absolute;
-//       right: 1rem;
-//       top: 1rem;
-//     }
-//   }
-
 .menu__wrapper {
     @media (min-width: $small) {
       display: none;
@@ -72,13 +61,6 @@ $small: 600px;
         transform: translateY(0);
     }
     .menu__item a{
-        text-align: center;
-        color: honeydew;
-        display: block;
-        padding: 1.5rem 1rem;
-        margin: auto;
-    }
-    .menu__item form button{
         text-align: center;
         color: honeydew;
         display: block;
