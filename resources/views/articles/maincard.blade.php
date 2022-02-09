@@ -116,13 +116,16 @@
                 <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
                     @csrf
                     <input type="hidden" name="action" value="success">
-                    <span class="successbtn"></span>
-                    <input class="btn btn-outline-success waves-effect success" type="submit" value="Success">
+                    <button class="modal-check-btn success">
+                        <span class="modal-check-text">達成</span>
+                    </button>
                 </form>
                 <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
                     @csrf
                     <input type="hidden" name="action" value="failure">
-                    <input class="btn btn-outline-primary waves-effect failure" type="submit" value="Error">
+                    <button class="modal-check-btn failure">
+                        <span class="modal-check-text">失敗</span>
+                    </button>
                 </form>
             </div>
         </div>
