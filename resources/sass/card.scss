@@ -78,14 +78,18 @@ $color_grey_dark: #a2a2a2;
                             font-family: "Font Awesome 5 Free";
                             font-weight: 900;
                             font-size: 1.1rem;
-                            margin-left: -10px;
+                            margin-left: -15px;
                             opacity: 0;
                             vertical-align: middle;
                             transition: margin 0.2s, opacity 0.2s;
                         }
-                        &:hover:after {
-                            margin-left: 5px;
-                            opacity: 1;
+                    }
+                    &:hover {
+                        .check-text {
+                            &:after {
+                                margin-left: 5px;
+                                opacity: 1;
+                            }
                         }
                     }
                 }
