@@ -2,293 +2,214 @@
 
 * {
     box-sizing: border-box;
-  }
+}
 
-  $color_white: #fff;
-  $color_prime: #5ad67d;
-  $color_grey: #e2e2e2;
-  $color_grey_dark: #a2a2a2;
+$color_white: #fff;
+$color_prime: #5ad67d;
+$color_grey: #e2e2e2;
+$color_grey_dark: #a2a2a2;
 
-  .blog-card {
+.blog-card {
     display: flex;
-    flex-direction: column;
-    // flex-direction: row;
-    // flex-wrap: wrap;
-    // margin: 1rem auto;
-    box-shadow: 0 3px 7px -1px rgba(#2E2E2E, .1);
-    // margin-bottom: 1.6%;
+    // flex-direction: column;
+    flex-direction: row;
+    box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
     background: $color_white;
     line-height: 1.4;
     font-family: sans-serif;
     border-radius: 5px;
     overflow: hidden;
-    z-index: -2;
-    a {
-      color: inherit;
-      &:hover {
-        color: $color_prime;
-      }
-    }
-    &:hover {
-      box-shadow: 2px 5px 9px -1px rgba(#2E2E2E, .5);
-      .photo {
-        transform: scale(1.3) rotate(3deg);
-      }
-    }
+    text-align: left;
+    height: 150px;
     .meta {
-      position: relative;
-      z-index: 0;
-      height: 200px;
-    }
-    .photo {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform .2s;
-    }
-    .details,
-    .details ul {
-      margin: auto;
-      padding: 0;
-      list-style: none;
-    }
-
-    .details {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -100%;
-      margin: auto;
-      transition: left .2s;
-      background: rgba(#000, .6);
-      color: $color_white;
-      padding: 10px;
-      width: 100%;
-      font-size: .9rem;
-      a {
-        text-decoration: dotted underline;
-      }
-      ul li {
-        display: inline-block;
-      }
-      .card-check {
-          text-align: center;
-          padding: 30px 0;
-          .check-btn {
-            width: 120px;
-            opacity: 0.95;
-            border: 1px solid $color_white;
-            border-radius: 2px;
-            text-decoration: none;
+        position: relative;
+        flex-basis: 25%;
+        height: 200px;
+        .photo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.2s;
+        }
+        .details {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -100%;
+            margin: auto;
+            transition: left 0.2s;
+            background: rgba(#000, 0.6);
             color: $color_white;
-            font-size: 1rem;
-            padding: .2rem .6rem;
-            transition: .2s;
-            .check-text {
-                &:after {
-                    content: "\f058";
-                    font-family: 'Font Awesome 5 Free';
-                    font-weight: 900;
-                    font-size: 1.1rem;
-                    margin-left: -10px;
-                    opacity: 0;
-                    vertical-align: middle;
-                    transition: margin .2s, opacity .2s;
-                }
-                &:hover:after {
-                    margin-left: 5px;
-                    opacity: 1;
+            padding: 10px;
+            width: 100%;
+            font-size: 0.9rem;
+            ul {
+                padding: 0;
+                li {
+                    display: inline-block;
+                    a {
+                        text-decoration: dotted underline;
+                        color: $color_white;
+                        &:hover {
+                            color: $color_prime;
+                        }
+                    }
                 }
             }
-          }
-      }
+            .card-check {
+                text-align: center;
+                padding: 30px 0;
+                .check-btn {
+                    width: 120px;
+                    opacity: 0.95;
+                    border: 1px solid $color_white;
+                    border-radius: 3px;
+                    color: $color_white;
+                    font-size: 1rem;
+                    padding: 0.2rem 0;
+                    transition: 0.2s;
+                    .check-text {
+                        &:after {
+                            content: "\f058";
+                            font-family: "Font Awesome 5 Free";
+                            font-weight: 900;
+                            font-size: 1.1rem;
+                            margin-left: -10px;
+                            opacity: 0;
+                            vertical-align: middle;
+                            transition: margin 0.2s, opacity 0.2s;
+                        }
+                        &:hover:after {
+                            margin-left: 5px;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
+        .photo {
+            transform: scale(1.3) rotate(3deg);
+        }
+        .details {
+            left: 0%;
+        }
     }
     .description {
         padding: 1rem;
         background: $color_white;
         position: relative;
         z-index: 0;
-        width: 300px;
-        h1,
-        h2 {
-            font-family: Poppins, sans-serif;
-        }
+        flex-basis: 75%;
+        width: 0px;
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0%;
+            padding: 0;
             height: 32px;
             background-color: $color_white;
             border-bottom: 0;
+            .card-period {
+                font-size: 0.9rem;
+                font-weight: 300;
+                text-transform: uppercase;
+                color: $color_grey_dark;
+                margin: 0;
+            }
+            .card-ribbon {
+                display: inline-block;
+                position: relative;
+                height: 2rem;
+                line-height: 2rem;
+                text-align: center;
+                font-size: 0.9rem;
+                color: $color_white;
+                box-sizing: border-box;
+                width: 150px;
+                a {
+                    padding: 0 1rem;
+                    border-top: dashed 1px $color_white;
+                    border-bottom: dashed 1px $color_white;
+                }
+                &::after {
+                    position: absolute;
+                    content: "";
+                    z-index: 1;
+                    top: 0;
+                    right: 0;
+                    width: 0px;
+                    height: 0px;
+                    border-width: 2rem 1rem 2rem 0px;
+                    border-color: transparent $color_white transparent transparent;
+                    border-style: solid;
+                }
+            }
         }
         .card-title {
             line-height: 1;
             margin: 0;
             font-size: 1.5rem;
             position: relative;
-            padding: .8rem .2rem;
-            // width: 100%;
-            // max-width: 500px;
+            padding: 0.8rem 0.2rem;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            a {
+                color: #000;
+                &:hover {
+                    color: $color_prime;
+                }
+            }
             &:after {
-                content: '';
+                content: "";
                 position: absolute;
                 left: 0;
                 bottom: 0;
                 width: 100%;
                 height: 5px;
-                background: repeating-linear-gradient(-30deg, $color_grey, $color_grey 1px, $color_white 1px, $color_white 4px);
+                background: repeating-linear-gradient(
+                    -30deg,
+                    $color_grey,
+                    $color_grey 1px,
+                    $color_white 1px,
+                    $color_white 4px
+                );
             }
         }
-        h5 {
-            font-size: .8rem;
-            font-weight: 300;
-            text-transform: uppercase;
-            color: $color_grey_dark;
-            margin-top: 5px;
-        }
         .card-footer {
-            padding: 0%;
+            padding: 0;
             border: none;
             background-color: $color_white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: .9rem;
+            font-size: 0.9rem;
             position: relative;
-            margin: .5rem 0 0;
-        }
-        .read-more {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-        }
-    }
-    p {
-        font-size: .9rem;
-        position: relative;
-        margin: 0;
-        // padding: 0;
-        // max-width: 500px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-    &:hover {
-        .details {
-            left: 0%;
+            margin-top: 0.5rem;
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    display: inline-block;
+                    a {
+                        text-decoration: dotted underline;
+                        color: #000;
+                        &:hover {
+                            color: $color_prime;
+                        }
+                    }
+                }
+            }
         }
     }
-    .card-tags,
-    .card-tags ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      align-items: center;
+    @media (max-width: 639px) {
+        height: 120px;
     }
-
-    .card-tags {
-    //   position: absolute;
-    //   top: 0;
-    //   bottom: 0;
-    //   margin: auto;
-    //   padding: 10px;
-    //   width: 100%;
-      align-items: center;
-      font-size: .9rem;
-      a {
-        text-decoration: dotted underline;
-      }
-      li {
-        display: inline-block;
-      }
-    //   .card-comment {
-    //       display: flex;
-    //       padding: 1px;
-    //       margin-right: 1px;
-    //   }
-    }
-
-
-    // @media (min-width: 640px) {
-      flex-direction: row;
-      text-align: left;
-    //   max-width: 500px;
-    //   max-height: 250px;
-    //   width: 450px;
-      height: 150px;
-      .meta {
-        flex-basis: 25%;
-        height: auto;
-      }
-      .description {
-        flex-basis: 75%;
-        width: 0px;
-        &:before {
-          transform: skewX(-3deg);
-          content: "";
-          background: $color_white;
-        //   width: 30px;
-          position: absolute;
-          left: -10px;
-          top: 0;
-          bottom: 0;
-          z-index: -1;
-        }
-      }
-      &.alt {
-        flex-direction: row-reverse;
-        .description {
-          &:before {
-            left: inherit;
-            right: -10px;
-            transform: skew(3deg)
-          }
-        }
-        .details {
-          padding-left: 25px;
-        }
-      }
-    // }
-        @media (max-width: 639px) {
-            height: 160px;
-        }
-  }
-
-.ribbon5 {
-    display: inline-block;
-    position: relative;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    font-size: .9rem;/*文字サイズ*/
-    // background: #7f9dfb;/*背景色*/
-    color: #FFF;/*文字色*/
-    box-sizing: border-box;
-    width: 150px;
-  }
-  .ribbon5 a {
-    padding: 0 1rem;
-    border-top: dashed 1px #FFF;
-    border-bottom: dashed 1px #FFF;
-  }
-
-  .ribbon5:after {
-    position: absolute;
-    content: '';
-    z-index: 1;
-    top: 0;
-    right: 0;
-    width: 0px;
-    height: 0px;
-    border-width: 2rem 1rem 2rem 0px;
-    border-color: transparent #fff transparent transparent;
-    border-style: solid;
-  }
+}
