@@ -83,52 +83,13 @@
                     </div>
                 </li>
                 <li>
+                    <!-- いいねアイコン -->
                     <article-like :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
                         :initial-count-likes='@json($article->count_likes)' :authorized='@json(Auth::check())'
                         endpoint="{{ route('articles.like', ['article' => $article]) }}">
                     </article-like>
                 </li>
             </ul>
-            {{-- <div class="read-more">
-            </div> --}}
         </div>
     </div>
 </div>
-
-<!-- modal -->
-<div id="modal-delete-{{ $article->id }}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">SENGEN Check!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {{ $article->id }}
-                {{-- <hr> --}}
-            </div>
-            <div class="modal-footer" style="justify-content: center;">
-                {{-- {{ $article->id }} --}}
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button> --}}
-                <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
-                    @csrf
-                    <input type="hidden" name="action" value="success">
-                    <button class="modal-check-btn success">
-                        <span class="modal-check-text">達成</span>
-                    </button>
-                </form>
-                <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
-                    @csrf
-                    <input type="hidden" name="action" value="failure">
-                    <button class="modal-check-btn failure">
-                        <span class="modal-check-text">失敗</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- modal -->
