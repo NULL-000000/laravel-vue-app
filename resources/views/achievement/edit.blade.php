@@ -11,12 +11,17 @@
             <div class="col-12">
                 <div class="card mt-3">
                     <div class="card-body pt-0">
+
                         @include('error_card_list')
+
                         <div class="card-text">
                             <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
                                 @method('PATCH')
+
                                 @include('achievement.card')
+
                                 @include('achievement.form')
+
                                 <button type="submit" class="btn blue-gradient btn-block">更新する</button>
                             </form>
                         </div>

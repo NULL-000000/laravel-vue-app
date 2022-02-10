@@ -3,6 +3,7 @@
 @section('title', $tag->hashtag)
 
 @section('content')
+
     @include('nav')
 
     <div class="row">
@@ -23,7 +24,7 @@
             <div class="container mt-4">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        @foreach($tag->articles as $article)
+                        @foreach ($tag->articles as $article)
                             @include('articles.card')
                         @endforeach
                     </div>
@@ -33,4 +34,5 @@
     </div>
 
     @include('footer')
+
 @endsection

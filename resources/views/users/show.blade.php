@@ -4,16 +4,21 @@
 
 @section('content')
 
-@include('nav')
+    @include('nav')
 
-  <div class="container">
-    @include('users.user')
-    @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
-    @foreach($articles as $article)
-        @include('articles.card')
-    @endforeach
-  </div>
+    <div class="container">
 
-@include('footer')
+        @include('users.user')
+
+        @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
+
+        @foreach ($articles as $article)
+
+            @include('articles.card')
+
+        @endforeach
+    </div>
+
+    @include('footer')
 
 @endsection
