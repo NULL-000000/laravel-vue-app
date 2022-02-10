@@ -8,7 +8,9 @@
 
     <div class="grid">
         <aside>
+
             @include('sidenav')
+
         </aside>
         <main>
             <div class="main-container">
@@ -28,8 +30,11 @@
                     <div class="wrap">
                         @foreach ($articles as $article)
                             <div class="item">
+
                                 @include('articles.maincard')
+
                                 @include('articles.modal')
+
                             </div>
                             {{-- @include('articles.card') --}}
                         @endforeach
