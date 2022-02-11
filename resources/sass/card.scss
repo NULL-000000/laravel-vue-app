@@ -41,7 +41,7 @@ $color_grey_dark: #a2a2a2;
             position: absolute;
             top: 0;
             bottom: 0;
-            left: -100%;
+            left: -150%;
             margin: auto;
             transition: left 0.2s;
             background: rgba(#000, 0.6);
@@ -129,6 +129,12 @@ $color_grey_dark: #a2a2a2;
                 color: $color_grey_dark;
                 margin: 0;
             }
+            .author {
+                display: none;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
             .card-ribbon {
                 display: inline-block;
                 position: relative;
@@ -207,6 +213,7 @@ $color_grey_dark: #a2a2a2;
             }
         }
         .card-footer {
+            height: 20px;
             padding: 0;
             border: none;
             background-color: $color_white;
@@ -233,91 +240,45 @@ $color_grey_dark: #a2a2a2;
                     }
                 }
             }
+            .card-tags {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
         }
     }
     @media (max-width: 639px) {
-        // display: flex;
-        // flex-direction: column;
-        // flex-direction: row;
-        // box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
-        // background: $color_white;
-        // line-height: 1.4;
-        // font-family: sans-serif;
-        // border-radius: 5px;
-        // overflow: hidden;
-        // text-align: left;
-        height: 100px;
+        height: 90px;
         .meta {
             position: relative;
             flex-basis: 30%;
             height: auto;
-            // .photo {
-            //     position: absolute;
-            //     top: 0;
-            //     right: 0;
-            //     bottom: 0;
-            //     left: 0;
-            //     background-size: cover;
-            //     background-position: center;
-            //     transition: transform 0.2s;
-            // }
             .details {
-                // position: absolute;
-                // top: 0;
-                // bottom: 0;
-                // left: -100%;
-                // margin: auto;
-                // transition: left 0.2s;
-                // background: rgba(#000, 0.6);
-                // color: $color_white;
-                padding: 2px;
-                // width: 100%;
-                font-size: 0.6rem;
-                // ul {
-                //     padding: 0;
-                //     li {
-                //         display: inline-block;
-                //         a {
-                //             text-decoration: dotted underline;
-                //             color: $color_white;
-                //             &:hover {
-                //                 color: $color_prime;
-                //             }
-                //         }
-                //     }
-                // }
+                .author {
+                    display: none;
+                }
+                .date {
+                    display: none;
+                }
                 .card-check {
-                    // text-align: center;
-                    padding: 15px 0;
+                    padding: 24px 0;
+                    margin: auto 0;
                     .check-btn {
-                        width: 80px;
-                        // opacity: 0.95;
-                        // border: 1px solid $color_white;
-                        // border-radius: 3px;
-                        // color: $color_white;
-                        font-size: 0.8rem;
-                        // padding: 0.2rem 0;
-                        // transition: 0.2s;
-                        // .check-text {
-                        //     &:after {
-                        //         content: "\f058";
-                        //         font-family: "Font Awesome 5 Free";
-                        //         font-weight: 900;
-                        //         font-size: 1.1rem;
-                        //         margin-left: -15px;
-                        //         opacity: 0;
-                        //         vertical-align: middle;
-                        //         transition: margin 0.2s, opacity 0.2s;
-                        //     }
-                        // }
-                        // &:hover {
-                        //     .check-text {
-                        //         &:after {
-                        //             margin-left: 5px;
-                        //             opacity: 1;
-                        //         }
-                        //     }
-                        // }
+                        width: 60px;
+                        font-size: 0.6rem;
+                        padding: 0.1rem 0;
+                        .check-text {
+                            &:after {
+                                font-size: 0.7rem;
+                            }
+                        }
+                        &:hover {
+                            .check-text {
+                                &:after {
+                                    margin-left: 0px;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -339,124 +300,54 @@ $color_grey_dark: #a2a2a2;
             flex-basis: 70%;
             width: 0px;
             .card-header {
-                // display: flex;
-                // justify-content: space-between;
-                // align-items: center;
-                // padding: 0;
                 height: 16px;
-                // background-color: $color_white;
-                // border-bottom: 0;
+                font-size: 0.6rem;
                 .card-period {
-                    font-size: 0.5rem;
-                    // font-weight: 300;
-                    // text-transform: uppercase;
-                    // color: $color_grey_dark;
-                    // margin: 0;
+                    display: none;
+                }
+                .author {
+                    display: block;
+                    a {
+                        text-decoration: dotted underline;
+                        color: #000;
+                        &:hover {
+                            color: $color_prime;
+                        }
+                    }
                 }
                 .card-ribbon {
-                    // display: inline-block;
-                    // position: relative;
-                    height: 1.5rem;
-                    line-height: 1.5rem;
-                    // text-align: center;
+                    height: 1rem;
+                    line-height: 1rem;
                     font-size: 0.6rem;
-                    // color: $color_white;
-                    // box-sizing: border-box;
                     width: 100px;
-                    // &::after {
-                    //     position: absolute;
-                    //     content: "";
-                    //     z-index: 1;
-                    //     top: 0;
-                    //     right: 0;
-                    //     width: 0px;
-                    //     height: 0px;
-                    //     border-width: 2rem 1rem 2rem 0px;
-                    //     border-color: transparent $color_white transparent transparent;
-                    //     border-style: solid;
-                    // }
                 }
                 .declaration {
-                    display: none;
-                    // background-color: $color_prime;
                     a {
                         padding: 0 0.3rem;
                     }
                 }
                 .success {
-                    // background-color: $color_success;
                     a {
                         padding: 0 1rem;
                     }
                 }
                 .failure {
-                    // background-color: $color_failure;
                     a {
                         padding: 0 1rem;
                     }
                 }
-                // a {
-                //     border-top: dashed 1px $color_white;
-                //     border-bottom: dashed 1px $color_white;
-                // }
             }
             .card-title {
-                // line-height: 1;
-                // margin: 0;
                 font-size: 1rem;
-                // position: relative;
-                // padding: 0.8rem 0.2rem;
-                // white-space: nowrap;
-                // text-overflow: ellipsis;
-                // overflow: hidden;
-                // a {
-                //     color: #000;
-                //     &:hover {
-                //         color: $color_prime;
-                //     }
-                // }
-                // &:after {
-                //     content: "";
-                //     position: absolute;
-                //     left: 0;
-                //     bottom: 0;
-                //     width: 100%;
-                //     height: 5px;
-                //     background: repeating-linear-gradient(
-                //         -30deg,
-                //         $color_grey,
-                //         $color_grey 1px,
-                //         $color_white 1px,
-                //         $color_white 4px
-                //     );
-                // }
+                padding: 0.6rem 0.2rem;
             }
             .card-footer {
-                // padding: 0;
-                // border: none;
-                // background-color: $color_white;
-                // display: flex;
-                // justify-content: space-between;
-                // align-items: center;
                 font-size: 0.6rem;
-                // position: relative;
                 margin-top: 0.3rem;
                 ul {
-                    // margin: 0;
-                    // padding: 0;
                     .comment-icon {
-                        margin-right: 0px;
+                        margin-right: .5rem;
                     }
-                    // li {
-                    //     display: inline-block;
-                    //     a {
-                    //         text-decoration: dotted underline;
-                    //         color: #000;
-                    //         &:hover {
-                    //             color: $color_prime;
-                    //         }
-                    //     }
-                    // }
                 }
                 .btn {
                     font-size: 0.6rem;

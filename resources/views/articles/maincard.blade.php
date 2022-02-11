@@ -1,14 +1,12 @@
 <div class="blog-card">
     <div class="meta">
-        <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
-            @if ($article->user->image)
-                <div class="photo" style="background-image: url({{ $article->user->image }})"></div>
-            @else
-                <div class="photo"
-                    style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)">
-                </div>
-            @endif
-        </a>
+        @if ($article->user->image)
+            <div class="photo" style="background-image: url({{ $article->user->image }})"></div>
+        @else
+            <div class="photo"
+                style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)">
+            </div>
+        @endif
         <ul class="details">
             <li class="author">
                 <ul>
@@ -42,6 +40,11 @@
     <div class="description">
         <div class="card-header">
             <div class="card-period">{{ $article->period }}までに達成</div>
+            <div class="author">
+                <a href="{{ route('users.show', ['name' => $article->user->name]) }}">
+                    {{ $article->user->name }}
+                </a>
+            </div>
             @if ($article->status === 'declaration')
                 <div class="card-ribbon declaration">
                     <a>SENGEN<i class="fas fa-clock ml-1"></i></a>
@@ -62,7 +65,7 @@
             </a>
         </h2>
         <div class="card-footer">
-            <ul>
+            <ul class="card-tags">
                 <li><i class="fas fa-tags"></i></li>
                 @foreach ($article->tags as $tag)
                     <li>
@@ -72,7 +75,7 @@
                     </li>
                 @endforeach
             </ul>
-            <ul>
+            <ul class="d-flex">
                 <li class="comment-icon">
                     <!-- コメントアイコン -->
                     <div class="d-flex align-items-center">
