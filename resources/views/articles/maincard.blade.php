@@ -43,16 +43,16 @@
         <div class="card-header">
             <div class="card-period">{{ $article->period }}までに達成</div>
             @if ($article->status === 'declaration')
-                <div class="card-ribbon default-color">
+                <div class="card-ribbon declaration">
                     <a>SENGEN<i class="fas fa-clock ml-1"></i></a>
                 </div>
             @elseif ($article->status === 'success')
-                <div class="card-ribbon orange">
-                    <a style="padding: 0 2rem">達成<i class="fas fa-check ml-1"></i></a>
+                <div class="card-ribbon success">
+                    <a>達成<i class="fas fa-check ml-1"></i></a>
                 </div>
             @elseif ($article->status === 'failure')
-                <div class="card-ribbon primary-color">
-                    <a style="padding: 0 2rem">失敗<i class="fas fa-times ml-1"></i></a>
+                <div class="card-ribbon failure">
+                    <a>失敗<i class="fas fa-times ml-1"></i></a>
                 </div>
             @endif
         </div>
@@ -73,7 +73,7 @@
                 @endforeach
             </ul>
             <ul>
-                <li class="mr-2">
+                <li class="comment-icon">
                     <!-- コメントアイコン -->
                     <div class="d-flex align-items-center">
                         <a class="in-link p-1 mr-1" href="{{ route('articles.show', ['article' => $article]) }}">
@@ -82,7 +82,7 @@
                         {{ count($article->comments) }}
                     </div>
                 </li>
-                <li>
+                <li class="like-icon">
                     <!-- いいねアイコン -->
                     <article-like :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
                         :initial-count-likes='@json($article->count_likes)' :authorized='@json(Auth::check())'
