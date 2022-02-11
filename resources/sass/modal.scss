@@ -11,9 +11,19 @@
             opacity: 1;
         }
     }
-    // .modal-body {
-
-    // }
+    .modal-body {
+        .blog-card {
+            .meta {
+                .details {
+                    .card-check {
+                        .check-btn {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
     .modal-footer {
         justify-content: center;
         .modal-check-btn {
@@ -68,7 +78,6 @@
         .modal-body {
             .blog-card {
                 display: flex;
-                // flex-direction: column;
                 flex-direction: row;
                 box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
                 background: $color_white;
@@ -92,24 +101,6 @@
                         .card-check {
                             padding: 24px 0;
                             margin: auto 0;
-                            .check-btn {
-                                display: none;
-                                width: 60px;
-                                font-size: 0.6rem;
-                                padding: 0.1rem 0;
-                                .check-text {
-                                    &:after {
-                                        font-size: 0.7rem;
-                                    }
-                                }
-                                &:hover {
-                                    .check-text {
-                                        &:after {
-                                            margin-left: 0px;
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 }
