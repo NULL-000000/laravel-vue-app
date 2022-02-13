@@ -16,8 +16,8 @@
 
                 </div>
                 <div class="mb-3">
-                    <ul class="list-group card mt-3">
-                        <li class="card-header sunny-morning-gradient text-white text-center">コメント</li>
+                    <ul class="list-group card mt-3 list-unstyled">
+                        <li class="card-header default-color text-white text-center">コメント</li>
                         @guest
                             <li class="heavy-rain-gradient list-group-item text-center">
                                 <p class="mb-0">
