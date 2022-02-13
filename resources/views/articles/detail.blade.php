@@ -46,11 +46,6 @@
     <div class="description">
         <div class="card-header">
             <div class="card-period">{{ $article->period }}までに達成</div>
-            <div class="author">
-                <a href="{{ route('users.show', ['name' => $article->user->name]) }}">
-                    {{ $article->user->name }}
-                </a>
-            </div>
             @if ($article->status === 'declaration')
                 <div class="card-ribbon declaration">
                     <a>SENGEN<i class="fas fa-clock ml-1"></i></a>
