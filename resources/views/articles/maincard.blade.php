@@ -27,7 +27,7 @@
             @if (Auth::id() === $article->user_id && $article->status === 'declaration')
                 <div class="card-check">
                     <button class="check-btn default-color" data-toggle="modal"
-                        data-target="#modal-delete-{{ $article->id }}">
+                        data-target="#modal-check-{{ $article->id }}">
                         <span class="check-text">
                             Check!
                         </span>
@@ -79,7 +79,7 @@
                 <li class="comment-icon">
                     <!-- コメントアイコン -->
                     <div class="d-flex align-items-center">
-                        <a class="in-link p-1 mr-1" href="{{ route('articles.show', ['article' => $article]) }}">
+                        <a class="in-link p-0 mr-1" href="{{ route('articles.show', ['article' => $article]) }}">
                             <i class="far fa-comment fa-fw fa-lg"></i>
                         </a>
                         {{ count($article->comments) }}

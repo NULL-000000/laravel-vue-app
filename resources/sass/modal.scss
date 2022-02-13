@@ -178,4 +178,19 @@
             }
         }
     }
+    @media (max-width: 639px) {
+        .modal-delete-body {
+            p {
+                font-size: .6rem;
+            }
+        }
+        .modal-delete-footer {
+            a {
+                font-size: .6rem;
+            }
+            button {
+                font-size: .6rem;
+            }
+        }
+    }
 }

@@ -11,7 +11,8 @@
             <div class="col-md-8">
                 <div class="mb-3">
 
-                    @include('articles.card')
+                    @include('articles.detail')
+                    @include('articles.modal')
 
                 </div>
                 <div class="mb-3">
