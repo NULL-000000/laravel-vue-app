@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center">
     <button
       type="button"
-      class="btn m-1 p-0 shadow-none"
+      class="btn m-0 mr-1 p-0 shadow-none"
     >
       <i class="fas fa-heart fa-fw fa-lg"
         :class="{'red-text':this.isLikedBy, 'animated heartBeat fast':this.gotToLike}"
