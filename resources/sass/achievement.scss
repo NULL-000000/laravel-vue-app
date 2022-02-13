@@ -1,0 +1,160 @@
+.achievement-form {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
+    background: $color_white;
+    line-height: 1.4;
+    font-family: sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: left;
+    // height: 250px;
+    &:hover {
+        box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
+        .photo {
+            transform: scale(1.3) rotate(3deg);
+        }
+        .details {
+            left: 0%;
+        }
+    }
+    .description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // justify-content: flex-start;
+        background: $color_white;
+        position: relative;
+        z-index: 0;
+        flex-basis: 100%;
+        width: 0px;
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            height: 50px;
+            background-color: $color_prime;
+            color: $color_white;
+            border-bottom: 0;
+            .form-title {
+                font-size: 1.2rem;
+                padding: 0 .5rem;
+            }
+        }
+        .form-body {
+            line-height: 1;
+            margin: 0;
+            font-size: 1rem;
+            position: relative;
+            padding: .8rem 1rem;
+        }
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: .8rem 1rem;
+            .form-check-btn {
+                width: 120px;
+                opacity: 1;
+                border-radius: 3px;
+                color: $color_white;
+                font-size: 1rem;
+                padding: 0.2rem 0;
+                transition: 0.2s;
+                .form-check-text {
+                    &:after {
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                        font-size: 1.1rem;
+                        margin-left: -10px;
+                        opacity: 0;
+                        vertical-align: middle;
+                        transition: margin 0.2s, opacity 0.2s;
+                    }
+                }
+                &:hover {
+                    box-shadow: 2px 2px 5px -1px rgba(#2e2e2e, 0.5);
+                    .form-check-text {
+                        &:after {
+                            margin-left: 5px;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .success {
+                border: 1px solid $color_success;
+                background-color: $color_success;
+                .form-check-text {
+                    &:after {
+                        content: "\f00c";
+                    }
+                }
+            }
+            .failure {
+                border: 1px solid $color_failure;
+                background-color: $color_failure;
+                .form-check-text {
+                    &:after {
+                        content: "\f00d";
+                    }
+                }
+            }
+        }
+        // .form-footer {
+        //     height: 60px;
+        //     padding: 1rem;
+        //     border: none;
+        //     background-color: $color_white;
+        //     display: flex;
+        //     justify-content: flex-end;
+        //     align-items: center;
+        //     font-size: 0.9rem;
+        //     position: relative;
+        //     ul {
+        //         margin: 0;
+        //         padding: 0;
+        //         li {
+        //             display: inline-block;
+        //             font-size: 0.8rem;
+        //             color: $color_grey_dark;
+        //         }
+        //     }
+        // }
+    }
+    @media (max-width: 639px) {
+        height: 130px;
+        .description {
+            padding: 0.5rem;
+            background: $color_white;
+            position: relative;
+            z-index: 0;
+            flex-basis: 100%;
+            width: 0px;
+            .form-header {
+                height: 16px;
+                font-size: 0.6rem;
+                .author {
+                    a {
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+            .form-title {
+                padding: 0.5rem 0.2rem;
+                textarea {
+                    font-size: 0.8rem;
+                }
+            }
+            .form-footer {
+                font-size: 0.6rem;
+                margin-top: 0.3rem;
+                ul {
+                    li {
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+}

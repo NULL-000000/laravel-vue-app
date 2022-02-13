@@ -6,7 +6,7 @@
 
     @include('nav')
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="card mt-3">
@@ -18,7 +18,7 @@
                             <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
                                 @method('PATCH')
 
-                                @include('achievement.card')
+                                @include('articles.detail')
 
                                 @include('achievement.form')
 
@@ -29,6 +29,32 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mb-3">
+
+                    @include('articles.detail')
+                    @include('articles.modal')
+                    {{-- @include('articles.maincard') --}}
+
+                </div>
+                <div class="mb-3">
+
+                    @include('achievement.form')
+
+                    {{-- <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
+                        @method('PATCH')
+
+                        <button type="submit" class="btn blue-gradient btn-block">更新する</button>
+                    </form> --}}
+                </div>
+            </div>
+        </div>
     </div>
+
+    @include('footer')
 
 @endsection
