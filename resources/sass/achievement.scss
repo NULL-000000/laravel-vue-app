@@ -38,9 +38,16 @@
             color: $color_white;
             border-bottom: 0;
             .form-title {
-                font-size: 1.2rem;
-                padding: 0 .5rem;
+                padding: 1rem;
+                font-size: 1rem;
+                font-weight: bold;
             }
+        }
+        .success {
+            background-color: $color_success;
+        }
+        .failure {
+            background-color: $color_failure;
         }
         .form-body {
             line-height: 1;
@@ -101,58 +108,13 @@
                 }
             }
         }
-        // .form-footer {
-        //     height: 60px;
-        //     padding: 1rem;
-        //     border: none;
-        //     background-color: $color_white;
-        //     display: flex;
-        //     justify-content: flex-end;
-        //     align-items: center;
-        //     font-size: 0.9rem;
-        //     position: relative;
-        //     ul {
-        //         margin: 0;
-        //         padding: 0;
-        //         li {
-        //             display: inline-block;
-        //             font-size: 0.8rem;
-        //             color: $color_grey_dark;
-        //         }
-        //     }
-        // }
     }
     @media (max-width: 639px) {
-        height: 130px;
         .description {
-            padding: 0.5rem;
-            background: $color_white;
-            position: relative;
-            z-index: 0;
-            flex-basis: 100%;
-            width: 0px;
-            .form-header {
-                height: 16px;
-                font-size: 0.6rem;
-                .author {
-                    a {
-                        font-size: 0.6rem;
-                    }
-                }
-            }
-            .form-title {
-                padding: 0.5rem 0.2rem;
-                textarea {
-                    font-size: 0.8rem;
-                }
-            }
-            .form-footer {
-                font-size: 0.6rem;
-                margin-top: 0.3rem;
-                ul {
-                    li {
-                        font-size: 0.6rem;
-                    }
+            .form-body {
+                font-size: .8rem;
+                input {
+                    font-size: .8rem;
                 }
             }
         }
