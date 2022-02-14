@@ -34,7 +34,7 @@ class AchievementRequest extends FormRequest
     public function attributes()
     {
         return [
-            'study' => '成果・学び',
+            'study' => '学び・反省',
             'enthusiasm' => '次回の意気込み',
             'cause' => '失敗した原因',
             'solution' => '次回の対策',

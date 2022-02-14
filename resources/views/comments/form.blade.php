@@ -18,7 +18,7 @@
                     placeholder="コメントを入力してください。">{{ old('comment') }}</textarea>
             </div>
             <div class="form-footer">
-                <button type="submit" class="btn btn-sm default-color text-white">
+                <button type="submit" class="btn default-color text-white">
                     コメントする
                 </button>
             </div>
