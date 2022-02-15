@@ -9,15 +9,15 @@
     overflow: hidden;
     text-align: left;
     // height: 250px;
-    &:hover {
-        box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
-        .photo {
-            transform: scale(1.3) rotate(3deg);
-        }
-        .details {
-            left: 0%;
-        }
-    }
+    // &:hover {
+    //     box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
+    //     .photo {
+    //         transform: scale(1.3) rotate(3deg);
+    //     }
+    //     .details {
+    //         left: 0%;
+    //     }
+    // }
     .description {
         display: flex;
         flex-direction: column;
@@ -48,6 +48,10 @@
         }
         .failure {
             background-color: $color_failure;
+        }
+        .form-card {
+            @import "detail.scss";
+            padding: 1rem;
         }
         .form-body {
             line-height: 1;
@@ -113,7 +117,12 @@
         .description {
             .form-body {
                 font-size: .8rem;
-                input {
+                .card-text {
+                    ul {
+                        padding-left: 10px;
+                    }
+                }
+                textarea {
                     font-size: .8rem;
                 }
             }

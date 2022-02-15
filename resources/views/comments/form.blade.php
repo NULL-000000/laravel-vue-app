@@ -10,7 +10,7 @@
                     </a>
                 </div>
             </div>
-            <div class="form-title">
+            <div class="form-body">
                 @include('error_card_list')
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
                 <input type="hidden" name="article_id" value="{{ $article->id }}">

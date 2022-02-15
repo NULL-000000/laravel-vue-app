@@ -34,16 +34,16 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="mb-3">
+                {{-- <div class="mb-3">
 
                     @include('articles.detail')
                     @include('articles.modal')
-                    {{-- @include('articles.maincard') --}}
 
-                </div>
+                </div> --}}
                 <div class="mb-3">
 
                     @include('achievement.form')
+                    @include('articles.modal')
 
                     {{-- <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
                         @method('PATCH')

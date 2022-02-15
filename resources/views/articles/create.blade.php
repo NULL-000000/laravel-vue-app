@@ -6,23 +6,13 @@
 
     @include('nav')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card mt-3">
-                    <div class="card-body pt-0">
-
-                        @include('error_card_list')
-
-                        <div class="card-text">
-                            <form method="POST" action="{{ route('articles.store') }}">
-
-                                @include('articles.form')
-
-                                <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
-                            </form>
-                        </div>
-                    </div>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mb-4">
+                    <form method="POST" action="{{ route('articles.store') }}">
+                        @include('articles.form')
+                    </form>
                 </div>
             </div>
         </div>

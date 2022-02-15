@@ -28,7 +28,7 @@
                     @endif
                 </div>
             </div>
-            <div class="card-title">
+            <div class="card-body">
                 {!! nl2br(e($comment->comment)) !!}
             </div>
             <div class="card-footer">

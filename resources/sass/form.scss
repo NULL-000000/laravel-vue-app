@@ -1,0 +1,105 @@
+.articles-form {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
+    background: $color_white;
+    font-family: sans-serif;
+    text-align: left;
+    max-width: 700px;
+    .description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: $color_white;
+        position: relative;
+        z-index: 0;
+        flex-basis: 100%;
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $color_prime;
+            padding: 1rem;
+            border-bottom: 0;
+            .form-title {
+                height: 24px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: $color_white;
+            }
+        }
+        .form-body {
+            line-height: 1;
+            margin: 0;
+            font-size: 0.9rem;
+            position: relative;
+            padding: 1rem;
+        }
+        .form-footer {
+            height: 30px;
+            border: none;
+            background-color: $color_white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0.5rem;
+            .card-check {
+                text-align: center;
+                padding: 30px 0;
+                .check-btn {
+                    width: 260px;
+                    border: 1px solid $color_white;
+                    border-radius: 3px;
+                    color: $color_white;
+                    font-size: 1.2rem;
+                    padding: 0.5rem 0;
+                    transition: 0.2s;
+                    .check-text {
+                        &:after {
+                            content: "\f058";
+                            font-family: "Font Awesome 5 Free";
+                            font-weight: 900;
+                            font-size: 1.1rem;
+                            margin-left: -15px;
+                            opacity: 0;
+                            vertical-align: middle;
+                            transition: margin 0.2s, opacity 0.2s;
+                        }
+                    }
+                    &:hover {
+                        .check-text {
+                            &:after {
+                                margin-left: 5px;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 639px) {
+        .description {
+            .form-header {
+                .form-title {
+                    font-size: 1rem;
+                }
+            }
+            .form-body {
+                font-size: .8rem;
+                input,
+                textarea {
+                    font-size: 0.8rem;
+                }
+            }
+            .form-footer {
+                .card-check {
+                    .check-btn {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

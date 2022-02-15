@@ -28,6 +28,10 @@ class ArticleRequest extends FormRequest
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
             'period' => 'required|date',
             'body' => 'required|max:1000',
+            'study' => 'max:1000',
+            'enthusiasm' => 'max:1000',
+            'cause' => 'max:1000',
+            'solution' => 'max:1000',
         ];
     }
 
@@ -38,6 +42,10 @@ class ArticleRequest extends FormRequest
             'tags' => 'タグ',
             'period' => '日付と時刻',
             'body' => '本文',
+            'study' => '学び・反省',
+            'enthusiasm' => '次回の意気込み',
+            'cause' => '原因',
+            'solution' => '次回の対策',
         ];
     }
 
