@@ -6,7 +6,7 @@
 
     @include('nav')
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="card mt-3">
@@ -18,12 +18,25 @@
                             <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
                                 @method('PATCH')
 
-                                @include('articles.form')
+                                @include('articles.form') --}}
 
-                                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
-                            </form>
+                                {{-- <button type="submit" class="btn blue-gradient btn-block">更新する</button> --}}
+                            {{-- </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mb-4">
+                    <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}">
+                        @method('PATCH')
+                        @include('articles.form')
+                    </form>
                 </div>
             </div>
         </div>
