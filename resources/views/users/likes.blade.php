@@ -8,15 +8,22 @@
 
     <div class="container">
 
-        @include('users.user')
+        {{-- @include('users.user') --}}
+        @include('users.my')
 
-        @include('users.tabs', ['hasArticles' => false, 'hasLikes' => true])
+        <div class="tabs-item mt-3">
+            @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
+        </div>
 
-        @foreach ($articles as $article)
-
-            @include('articles.card')
-
-        @endforeach
+        <div class="mb-5">
+            @foreach ($articles as $article)
+                <div class="mt-3">
+                    @include('articles.maincard')
+                </div>
+            @endforeach
+        </div>
     </div>
+
+    @include('footer')
 
 @endsection

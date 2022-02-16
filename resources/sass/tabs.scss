@@ -1,0 +1,25 @@
+.tabs-item {
+    ul {
+        .nav-item {
+            a {
+                color: $color_grey_dark;
+            }
+            &:hover {
+                background-color: $color_grey;
+                opacity: 0.8;
+            }
+        }
+    }
+}
+@media (max-width: 639px) {
+    .tabs-item {
+        ul {
+            .nav-item {
+                a {
+                    padding: .5rem .2rem;
+                    font-size: .6rem;
+                }
+            }
+        }
+    }
+}
