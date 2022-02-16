@@ -1,0 +1,263 @@
+.user-card {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 3px 7px -1px rgba(#2e2e2e, 0.1);
+    background: $color_white;
+    line-height: 1.4;
+    font-family: sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: left;
+    height: 150px;
+    margin-top: 2rem;
+    .meta {
+        position: relative;
+        flex-basis: 25%;
+        height: 150px;
+        .photo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.2s;
+        }
+        .details {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -150%;
+            margin: auto;
+            transition: left 0.2s;
+            background: rgba(#000, 0.6);
+            color: $color_white;
+            padding: 10px;
+            width: 100%;
+            font-size: 0.9rem;
+            .user-edit {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                padding: 45px 0;
+                .edit-btn {
+                    width: 120px;
+                    opacity: 0.95;
+                    border: 1px solid $color_white;
+                    border-radius: 3px;
+                    background-color: $color_prime;
+                    font-size: 1rem;
+                    padding: 0.2rem 0;
+                    transition: 0.2s;
+                    .edit-text {
+                        color: $color_white;
+                        &:after {
+                            content: "\f044";
+                            font-family: "Font Awesome 5 Free";
+                            font-weight: 900;
+                            font-size: 1.1rem;
+                            margin-left: -15px;
+                            opacity: 0;
+                            vertical-align: middle;
+                            transition: margin 0.2s, opacity 0.2s;
+                        }
+                    }
+                    &:hover {
+                        .edit-text {
+                            &:after {
+                                margin-left: 5px;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
+        .photo {
+            transform: scale(1.3) rotate(3deg);
+        }
+        .details {
+            left: 0%;
+        }
+    }
+    .description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        justify-content: flex-start;
+        padding: 0.5rem;
+        background: $color_white;
+        position: relative;
+        z-index: 0;
+        flex-basis: 75%;
+        width: 0px;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            height: 40px;
+            background-color: $color_white;
+            border-bottom: 0;
+            .author {
+                display: block;
+                a {
+                    font-size: 0.8rem;
+                    color: #000;
+                    &:hover {
+                        color: $color_prime;
+                    }
+                }
+            }
+            .follow {
+                .follow-btn {
+                    padding: .2rem .5rem;
+                    font-size: 1rem;
+                    box-shadow: none;
+                    border: 1px solid $color_failure;
+                    border-radius: 1px;
+                    border-color: $color_failure;
+                }
+            }
+        }
+        .card-body {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            line-height: 1;
+            margin: 0;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.8rem 0.2rem;
+            // white-space: nowrap;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
+            span {
+                font-size: 0.9rem;
+                color: red;
+            }
+            &:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 5px;
+                background: repeating-linear-gradient(
+                    -30deg,
+                    $color_grey,
+                    $color_grey 1px,
+                    $color_white 1px,
+                    $color_white 4px
+                );
+            }
+        }
+        .card-footer {
+            height: 24px;
+            padding: 0;
+            border: none;
+            background-color: $color_white;
+            display: flex;
+            justify-content: space-between;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 0.9rem;
+            position: relative;
+            margin-top: 0.5rem;
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    display: inline-block;
+                    a {
+                        font-size: 0.9rem;
+                        color: #000;
+                        &:hover {
+                            color: $color_prime;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 639px) {
+        height: 120px;
+        .meta {
+            position: relative;
+            flex-basis: 30%;
+            height: auto;
+            .details {
+                .user-edit {
+                    padding: 35px 0;
+                    .edit-btn {
+                        font-size: .8rem;
+                        padding: .2rem 0;
+                        .edit-text {
+                            color: $color_white;
+                            &:after {
+                                font-size: .9rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &:hover {
+            box-shadow: 2px 5px 9px -1px rgba(#2e2e2e, 0.5);
+            .photo {
+                transform: scale(1.3) rotate(3deg);
+            }
+            .details {
+                left: 0%;
+            }
+        }
+        .description {
+            padding: 0.5rem;
+            background: $color_white;
+            position: relative;
+            z-index: 0;
+            flex-basis: 70%;
+            width: 0px;
+            .card-header {
+                height: 24px;
+                font-size: 0.6rem;
+                .author {
+                    a {
+                        font-size: 0.6rem;
+                    }
+                }
+                .follow {
+                    .follow-btn {
+                        padding: .1rem .1;
+                        font-size: .6rem;
+                        box-shadow: none;
+                        border: 1px solid $color_failure;
+                        border-radius: 1px;
+                        border-color: $color_failure;
+                    }
+                }
+            }
+            .card-body {
+                font-size: 0.8rem;
+                span {
+                    padding: 0.6rem 0.2rem;
+                }
+            }
+            .card-footer {
+                font-size: 0.6rem;
+                margin-top: 0.3rem;
+                ul {
+                    li {
+                        a {
+                            font-size: 0.6rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

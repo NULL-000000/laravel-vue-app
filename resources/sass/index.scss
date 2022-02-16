@@ -43,19 +43,6 @@ body {
             text-align: center;
             padding: 1rem;
             background-color: #eee;
-            .main-item {
-                ul {
-                    .nav-item {
-                        a {
-                            color: $color_grey_dark;
-                        }
-                        &:hover {
-                            background-color: $color_grey;
-                            opacity: 0.8;
-                        }
-                    }
-                }
-            }
         }
     }
     // nav {

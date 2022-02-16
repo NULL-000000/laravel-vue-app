@@ -13,16 +13,18 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function show(string $name)
+    public function show(string $name, Request $request)
     {
         $user = User::where('name', $name)->first()->load(['articles.user', 'articles.likes', 'articles.tags']);
         $navuser = User::where('id', Auth::id())->first();
         $articles = $user->articles->sortByDesc('created_at');
+        $tabs_status = $request->input('tabs_status') ?? 'show';
 
         return view('users.show', [
             'user' => $user,
             'navuser' => $navuser,
             'articles' => $articles,
+            'tabs_status' => $tabs_status,
         ]);
     }
 
@@ -136,42 +138,51 @@ class UserController extends Controller
         return redirect()->route('users.edit', ["name" => $user->name])->with('status', 'パスワードを変更しました。');
     }
 
-    public function likes(string $name)
+    public function likes(string $name, Request $request)
     {
         $user = User::where('name', $name)->first()
             ->load(['likes.user', 'likes.likes', 'likes.tags']);
 
         $articles = $user->likes->sortByDesc('created_at');
 
+        $tabs_status = $request->input('tabs_status') ?? 'likes';
+
         return view('users.likes', [
             'user' => $user,
             'articles' => $articles,
+            'tabs_status' => $tabs_status,
         ]);
     }
 
-    public function followings(string $name)
+    public function followings(string $name, Request $request)
     {
         $user = User::where('name', $name)->first()
             ->load('followings.followers');
 
         $followings = $user->followings->sortByDesc('created_at');
 
+        $tabs_status = $request->input('tabs_status') ?? 'followings';
+
         return view('users.followings', [
             'user' => $user,
             'followings' => $followings,
+            'tabs_status' => $tabs_status,
         ]);
     }
 
-    public function followers(string $name)
+    public function followers(string $name, Request $request)
     {
         $user = User::where('name', $name)->first()
             ->load('followers.followers');
 
         $followers = $user->followers->sortByDesc('created_at');
 
+        $tabs_status = $request->input('tabs_status') ?? 'followers';
+
         return view('users.followers', [
             'user' => $user,
             'followers' => $followers,
+            'tabs_status' => $tabs_status,
         ]);
     }
 

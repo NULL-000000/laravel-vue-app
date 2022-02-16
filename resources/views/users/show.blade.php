@@ -10,13 +10,16 @@
 
         @include('users.user')
 
-        @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
-
-        @foreach ($articles as $article)
-
-            @include('articles.card')
-
-        @endforeach
+        <div class="tabs-item mt-3">
+            @include('users.tabs')
+        </div>
+        <div class="mb-5">
+            @foreach ($articles as $article)
+                <div class="mt-3">
+                    @include('articles.card')
+                </div>
+            @endforeach
+        </div>
     </div>
 
     @include('footer')
