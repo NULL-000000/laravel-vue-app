@@ -1,56 +1,73 @@
-<div class="card mt-3">
-    <div class="card-body">
-      <div class="d-flex flex-row">
-        <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
-            @if ($user->image)
-            <img src="{{ $user->image }}" alt="Contact Person" class="img-fuild rounded-circle btn btn-outline-dark waves-effect p-0" width="90" height="90" style="background-position:center; border-radius:50%; object-fit:cover;"/>
-            @else
-            <p class="d-flex align-items-center mb-0">
-                <i class="far fa-user-circle fa-5x text-light"></i>
-            </p>
+{{-- @foreach ($article->comments as $comment) --}}
+<div class="user-card">
+    <div class="meta">
+        @if ($user->image)
+            {{-- @if ($comment->user->image) --}}
+            <div class="photo" style="background-image: url({{ $user->image }})"></div>
+        @else
+            <div class="photo"
+                style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)">
+            </div>
+        @endif
+        <ul class="details">
+            @if (Auth::id() === $user->id && Auth::id() !== 1)
+                <div class="user-edit">
+                    <div class="edit-btn">
+                        <a class="edit-text" href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
+                    </div>
+                </div>
             @endif
-        </a>
-        @if( Auth::id() !== $user->id )
-          <follow-button
-            class="ml-auto"
-            :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
-            :authorized='@json(Auth::check())'
-            endpoint="{{ route('users.follow', ['name' => $user->name]) }}"
-          >
-          </follow-button>
-        @endif
-      </div>
-      <h2 class="h5 card-title m-0">
-        <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
-          {{ $user->name }}
-        </a>
-      </h2>
-      <div class="card-text">
-        {{ $user->introduction}}
-      </div>
-      @if (Auth::id() === $user->id)
-        @if (Auth::id() === 1)
-        <div class="card-title mt-3">
-            <p class="text-danger">※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</p>
-        </div>
-        @elseif(Auth::id() !== 1)
-        <div class="ml-auto">
-            <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
-        </div>
-        <div class="ml-auto">
-            <a class='btn btn-amber rounded-pill waves-effect' href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
-        </div>
-        @endif
-      @endif
+        </ul>
     </div>
-    <div class="card-body">
-      <div class="card-text">
-        <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
-          {{ $user->count_followings }} フォロー
-        </a>
-        <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
-          {{ $user->count_followers }} フォロワー
-        </a>
-      </div>
+    <div class="description">
+        <div class="card-header">
+            <div class="author">
+                <i class="fas fa-user"></i>
+                <a href="{{ route('users.show', ['name' => $user->name]) }}">
+                    {{ $user->name }}
+                </a>
+            </div>
+            <div class="follow">
+                @if (Auth::id() !== $user->id)
+                    <follow-button class="ml-auto"
+                        :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
+                        :authorized='@json(Auth::check())'
+                        endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
+                    </follow-button>
+                @endif
+            </div>
+        </div>
+        <div class="card-body">
+            {{ $user->introduction }}
+            @if (Auth::id() === $user->id)
+                @if (Auth::id() === 1)
+                    <span>※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</span>
+                {{-- @elseif(Auth::id() !== 1)
+                    <div class="ml-auto">
+                        <a class='btn btn-amber rounded-pill waves-effect'
+                            href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
+                    </div>
+                    <div class="ml-auto">
+                        <a class='btn btn-amber rounded-pill waves-effect'
+                            href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
+                    </div> --}}
+                @endif
+            @endif
+        </div>
+        <div class="card-footer">
+            <ul>
+                <li>
+                    <a href="{{ route('users.followings', ['name' => $user->name]) }}">
+                        {{ $user->count_followings }} フォロー
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('users.followers', ['name' => $user->name]) }}">
+                        {{ $user->count_followers }} フォロワー
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
+{{-- @endforeach --}}

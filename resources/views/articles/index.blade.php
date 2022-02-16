@@ -22,12 +22,11 @@
                         @foreach ($articles as $article)
                             <div class="item">
 
-                                @include('articles.maincard')
+                                @include('articles.card')
 
                                 @include('articles.modal')
 
                             </div>
-                            {{-- @include('articles.card') --}}
                         @endforeach
                         {{ $articles->appends(request()->all())->links() }}
                     </div>

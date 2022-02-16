@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @include('articles.maincard')
+                @include('articles.card')
             </div>
             <div class="modal-footer">
                 <form method="GET" action="{{ route('achievement.edit', ['article' => $article]) }}">
@@ -43,7 +43,7 @@
                 </button>
             </div>
             <div class="modal-body modal-delete-body">
-                @include('articles.maincard')
+                @include('articles.card')
                 <p class="m-0 mt-3">この宣言を削除します。よろしいですか？</p>
             </div>
             <form method="POST" action="{{ route('articles.destroy', ['article' => $article]) }}">
