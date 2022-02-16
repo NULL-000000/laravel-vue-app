@@ -11,7 +11,7 @@
         @include('users.user')
 
         <div class="tabs-item mt-3">
-            @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
+            @include('users.tabs', ['hasArticles' => false, 'hasLikes' => true, 'hasFollowings' => false, 'hasFollowers' => false])
         </div>
         <div class="mb-5">
             @foreach ($articles as $article)

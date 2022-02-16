@@ -1,8 +1,6 @@
-{{-- @foreach ($article->comments as $comment) --}}
 <div class="user-card">
     <div class="meta">
         @if ($user->image)
-            {{-- @if ($comment->user->image) --}}
             <div class="photo" style="background-image: url({{ $user->image }})"></div>
         @else
             <div class="photo"
@@ -42,15 +40,6 @@
             @if (Auth::id() === $user->id)
                 @if (Auth::id() === 1)
                     <span>※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</span>
-                {{-- @elseif(Auth::id() !== 1)
-                    <div class="ml-auto">
-                        <a class='btn btn-amber rounded-pill waves-effect'
-                            href="{{ route('users.edit', ['name' => $user->name]) }}">編集</a>
-                    </div>
-                    <div class="ml-auto">
-                        <a class='btn btn-amber rounded-pill waves-effect'
-                            href="{{ route('users.resign', ['name' => $user->name]) }}">退会</a>
-                    </div> --}}
                 @endif
             @endif
         </div>
@@ -70,4 +59,3 @@
         </div>
     </div>
 </div>
-{{-- @endforeach --}}
