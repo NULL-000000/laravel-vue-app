@@ -5,6 +5,19 @@
                 padding: 0.5rem 0px;
                 color: $color_grey_dark;
             }
+            form {
+                button {
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    outline: none;
+                    padding: 0;
+                    appearance: none;
+                    width: 100%;
+                    padding: 0.5rem 0;
+                    color: $color_grey_dark;
+                }
+            }
             &:hover {
                 background-color: $color_grey;
                 opacity: 0.8;
