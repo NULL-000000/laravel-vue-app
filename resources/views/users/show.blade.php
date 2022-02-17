@@ -17,6 +17,7 @@
             @foreach ($articles as $article)
                 <div class="mt-3">
                     @include('articles.card')
+                    @include('articles.modal')
                 </div>
             @endforeach
         </div>
