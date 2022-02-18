@@ -6,7 +6,20 @@
 
     @include('nav')
 
-    <div class="row">
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mb-3">
+
+                    @include('users.profile')
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="row">
         <div class="container col-lg-6 col-md-8 col-sm-10 col-xs-11 mx-auto">
             <div class="card mt-5">
                 @if (session('status'))
@@ -26,7 +39,6 @@
                             enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
-                            {{-- 編集フォーム --}}
                             <label for="image">
                                 @if ($user->image !== null)
                                     <img src="{{ $user->image }}" id="img"
@@ -74,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @include('footer')
 
