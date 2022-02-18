@@ -12,7 +12,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        // justify-content: flex-start;
         background: $color_white;
         position: relative;
         z-index: 0;
@@ -38,14 +37,27 @@
             font-size: 1rem;
             position: relative;
             padding: .8rem 1rem;
-        }
-        .form-footer {
-            display: flex;
-            justify-content: flex-end;
-            padding: .8rem 1rem;
+            .user-image {
+                width: 200px;
+                height: 200px;
+            }
         }
     }
     @media (max-width: 639px) {
-
+        .form-content {
+            .form-body {
+                font-size: .8rem;
+                .user-image {
+                    width: 150px;
+                    height: 150px;
+                }
+                input {
+                    font-size: .8rem;
+                }
+                textarea {
+                    font-size: .8rem;
+                }
+            }
+        }
     }
 }
