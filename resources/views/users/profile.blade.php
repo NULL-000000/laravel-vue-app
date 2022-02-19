@@ -1,4 +1,4 @@
-<div class="edit-form">
+<div class="form-card">
     <div class="form-content">
         @if (session('status'))
             <div class="card-text alert alert-success">
@@ -20,10 +20,11 @@
                             <img src="{{ $user->image }}" id="img"
                                 class="user-image img-fuild rounded-circle btn btn-outline-grey waves-effect p-0">
                         @elseif ($user->image === null)
-                            <img id="img" class="user-image far rounded-circle btn btn-outline-dark waves-effect p-0";>
+                            <img id="img" class="user-image far rounded-circle btn btn-outline-dark waves-effect p-0" ;>
                             <small>未設定</small>
                         @endif
-                        <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
+                        <input type="file" id="image" name="image" onchange="previewImage(this);"
+                            class="d-none">
                     </label>
                 </div>
                 <div class="form-group">
