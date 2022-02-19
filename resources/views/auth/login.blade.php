@@ -10,7 +10,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="mb-3">
-
                     <div class="form-card">
                         <div class="form-content">
                             @if (session('status'))
@@ -70,7 +69,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
