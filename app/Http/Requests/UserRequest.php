@@ -24,9 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|string|unique:users|min:3|max:15',
             'name' => 'required|string|min:3|max:15',
-            'introduction' => 'required|string|max:255',
+            'introduction' => 'nullable|string|max:255',
         ];
     }
 
@@ -34,7 +33,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'ユーザー名',
-            'introduction' => '自己紹介文',
+            'introduction' => 'プロフィール',
         ];
     }
 }

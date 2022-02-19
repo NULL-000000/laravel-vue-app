@@ -4,7 +4,7 @@
             <div class="photo" style="background-image: url({{ $user->image }})"></div>
         @else
             <div class="photo"
-                style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)">
+                style="background-image: url(https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80)">
             </div>
         @endif
         <ul class="details">
