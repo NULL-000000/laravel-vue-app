@@ -20,7 +20,7 @@
                             <img src="{{ $user->image }}" id="img"
                                 class="user-image img-fuild rounded-circle btn btn-outline-grey waves-effect p-0">
                         @elseif ($user->image === null)
-                            <img id="img" class="user-image far rounded-circle btn btn-outline-dark waves-effect p-0" ;>
+                            <img src="https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80" id="img" class="user-image far rounded-circle btn btn-outline-dark waves-effect p-0">
                             <small>未設定</small>
                         @endif
                         <input type="file" id="image" name="image" onchange="previewImage(this);"
