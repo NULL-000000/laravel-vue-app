@@ -6,52 +6,71 @@
 
     @include('nav')
 
-    <div class="container">
-        <div class="row">
-            <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-                <h1 class="text-center"><a class="text-dark" href="/">memo</a></h1>
-                <div class="card mt-3">
-                    <div class="card-body text-center">
-                        <h2 class="h3 card-title text-center mt-2">ログイン</h2>
-                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
-                            class="btn btn-block btn-danger mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto">
-                            <i class="fab fa-google mr-1"></i>Googleでログイン
-                        </a>
-                        <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}"
-                            class="btn btn-block btn-info mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12 mx-auto">
-                            <i class="fab fa-twitter mr-1"></i>Twitterでログイン
-                        </a>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mb-3">
 
-                        @include('error_card_list')
-
-                        <div class="card-text">
-                            <form method="POST" action="{{ route('login') }}">
-                                @csrf
-                                <div class="md-form">
-                                    <label for="email">メールアドレス</label>
-                                    <input class="form-control" type="text" id="email" name="email" required
-                                        value="{{ old('email') }}">
+                    <div class="form-card">
+                        <div class="form-content">
+                            @if (session('status'))
+                                <div class="card-text alert alert-success">
+                                    {{ session('status') }}
                                 </div>
-                                <div class="md-form">
-                                    <label for="password">パスワード</label>
-                                    <input class="form-control" type="password" id="password" name="password" required>
-                                </div>
-                                <input type="hidden" name="remember" id="remember" value="on">
-                                <div class="text-left">
-                                    <a href="{{ route('password.request') }}" class="card-text">パスワードを忘れた方</a>
-                                </div>
-                                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ログイン</button>
-                            </form>
-                            <button class="btn btn-block btn-success mt-2 mb-2">
-                                <a href="{{ route('login.guest') }}" class="text-white">
-                                    ゲストログイン
+                            @endif
+                            <div class="form-header">
+                                <div class="form-title">Login<i class="fas fa-edit ml-2"></i></div>
+                            </div>
+                            <div class="form-body pt-0 mt-3">
+                                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
+                                    class="btn btn-block btn-danger">
+                                    <i class="fab fa-google mr-1"></i>
+                                    <b>Googleでログイン</b>
                                 </a>
-                            </button>
-                            <div class="mt-0">
-                                <a href="{{ route('register') }}" class="card-text">ユーザー登録はこちら</a>
+                            </div>
+                            <div class="form-body pt-0">
+                                <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}"
+                                    class="btn btn-block btn-info">
+                                    <i class="fab fa-twitter mr-1"></i>
+                                    <b>Twitterでログイン</b>
+                                </a>
+                            </div>
+                            <div class="form-body">
+                                @include('error_card_list')
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="email">メールアドレス</label>
+                                        <input class="form-control" type="text" id="email" name="email" required
+                                            value="{{ old('email') }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">パスワード</label>
+                                        <input class="form-control" type="password" id="password" name="password"
+                                            required>
+                                        <input type="hidden" name="remember" id="remember" value="on">
+                                    </div>
+                                    <div class="text-left">
+                                        <a href="{{ route('password.request') }}" class="text-muted">パスワードを忘れた方</a>
+                                    </div>
+                                    <button class="btn btn-block btn-default text-white mt-2 mb-2" type="submit">
+                                        <b>ログイン</b>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="form-body pt-0">
+                                <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-teal1">
+                                    <b>ゲストログイン</b>
+                                </a>
+                            </div>
+                            <div class="form-body pt-0">
+                                <a href="{{ route('register') }}" class="btn btn-block btn-outline-teal1">
+                                    <b>ユーザー登録はこちら</b>
+                                </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
