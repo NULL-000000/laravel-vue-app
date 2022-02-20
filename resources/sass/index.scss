@@ -34,10 +34,10 @@ body {
     //     grid-area: header;
     //     background-color: #2E2E2E;
     // }
-    background-color: #eee;
+    background-color: $color_grey;
     main {
         grid-area: center;
-        background-color: #eee;
+        background-color: $color_grey;
         padding: 2rem 1rem;
         .tags-title {
             font-size: 1.4rem;
@@ -49,13 +49,13 @@ body {
             flex-direction: column;
             text-align: center;
             padding: 1rem 0;
-            background-color: #eee;
+            background-color: $color_grey;
         }
     }
     aside {
         padding: 2rem 1rem;
         grid-area: left;
-        background-color: #eeeeee;
+        background-color: $color_grey;
         .ranking-title {
             font-size: 1.4rem;
             text-align: left;

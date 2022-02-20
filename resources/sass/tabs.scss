@@ -1,13 +1,14 @@
 .tabs-item {
     ul {
         .nav-item {
+            transition: 0s;
             a {
                 padding: 0.5rem 0px;
                 color: $color_grey_dark;
+                border: none;
             }
             form {
                 button {
-                    background-color: transparent;
                     border: none;
                     cursor: pointer;
                     outline: none;
@@ -19,7 +20,16 @@
                 }
             }
             &:hover {
-                background-color: $color_grey;
+                a {
+                    color: $color_white;
+                }
+                form {
+                    button {
+                        color: $color_white;
+                        background-color: $color_grey_dark;
+                    }
+                }
+                background-color: $color_grey_dark;
                 opacity: 0.8;
             }
         }

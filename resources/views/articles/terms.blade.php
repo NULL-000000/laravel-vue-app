@@ -10,7 +10,7 @@
         <div>
             <div class="container" style="max-width: 900px;">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb small pl-0 mb-0">
+                    <ol class="breadcrumb small pl-0 mb-0" style="background-color: #eceff1;">
                         <li class="breadcrumb-item">
                             <a href="/">TO DO SENGEN</a>
                         </li>
