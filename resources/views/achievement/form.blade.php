@@ -6,7 +6,7 @@
                     SENGEN 達成<i class="fas fa-check ml-1"></i>
                 </div>
             </div>
-            <div class="form-card">
+            <div class="form-card achivement-detail">
                 @include('articles.detail')
             </div>
             <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">

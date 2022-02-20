@@ -65,5 +65,14 @@
                 <b>パスワード</b>
             </a>
         </div>
+        <div class="form-body pt-0">
+            <p class="card-title border-top d-flex justify-content-center flex-wrap pt-4">
+                <span>退会する方はこちら</span>
+            </p>
+            <a href="{{ route('users.resign', ['name' => $user->name]) }}"
+                class="btn btn-block btn-outline-mocha">
+                <b>退会</b>
+            </a>
+        </div>
     </div>
 </div>

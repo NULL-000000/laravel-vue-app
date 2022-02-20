@@ -6,18 +6,19 @@
 
     @include('nav')
 
+    <main>
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mb-3">
 
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="mb-3">
+                        @include('users.profile')
 
-                    @include('users.profile')
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     @include('footer')
 

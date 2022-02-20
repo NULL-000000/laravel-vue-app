@@ -10,9 +10,9 @@
         <div>
             <div class="container" style="max-width: 900px;">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-white small pl-0 mb-0">
+                    <ol class="breadcrumb small pl-0 mb-0">
                         <li class="breadcrumb-item">
-                            <a href="/" class="text-teal1">TO DO SENGEN</a>
+                            <a href="/">TO DO SENGEN</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             利用規約

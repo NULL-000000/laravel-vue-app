@@ -6,54 +6,20 @@
 
     @include('nav')
 
-    {{-- <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card mt-3">
-                    <div class="card-body pt-0">
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 p-0">
+                    <div class="mb-3">
 
-                        @include('error_card_list')
+                        @include('achievement.form')
+                        @include('articles.modal')
 
-                        <div class="card-text">
-                            <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
-                                @method('PATCH')
-
-                                @include('articles.detail')
-
-                                @include('achievement.form')
-
-                                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
-
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                {{-- <div class="mb-3">
-
-                    @include('articles.detail')
-                    @include('articles.modal')
-
-                </div> --}}
-                <div class="mb-3">
-
-                    @include('achievement.form')
-                    @include('articles.modal')
-
-                    {{-- <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">
-                        @method('PATCH')
-
-                        <button type="submit" class="btn blue-gradient btn-block">更新する</button>
-                    </form> --}}
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 
     @include('footer')
 

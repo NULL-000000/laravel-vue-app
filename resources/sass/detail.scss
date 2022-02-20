@@ -22,13 +22,16 @@ $color_grey_dark: #a2a2a2;
     border-radius: 5px;
     overflow: hidden;
     text-align: left;
+    // margin-top: 3rem;
     // height: 800px;
     // min-height: 600px;
+    margin: auto;
     .meta {
         position: relative;
         // flex-basis: 40%;
         height: 400px;
         .photo {
+            height: 400px;
             position: absolute;
             top: 0;
             right: 0;
@@ -272,6 +275,9 @@ $color_grey_dark: #a2a2a2;
         .meta {
             position: relative;
             height: 200px;
+            .photo {
+                height: 200px;
+            }
             .details {
                 .card-check {
                     padding: 50px 0;

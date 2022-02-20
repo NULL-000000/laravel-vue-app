@@ -3,7 +3,7 @@
         <nav class="footB">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="{{ route('about') }}">About</a></li>
+                {{-- <li><a href="{{ route('about') }}">About</a></li> --}}
                 <li><a href="{{ route('terms') }}">利用規約</a></li>
                 <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
                 <li><a href="{{ route('contact.index') }}">Contact</a></li>
