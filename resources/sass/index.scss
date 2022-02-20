@@ -18,12 +18,13 @@ body {
 
                 // "... ...... ...... ...... ...... ...... ..."
                 // "... header header header header header ..." 100px
+
                 "... ...... ...... ...... ..."
                 "... left   ...... center ..." 1fr
                 "... ...... ...... ...... ..."
                 // "... footer footer footer ..." 300px
                 // "... ...... ...... ...... ..."
-                / auto 1fr auto 4fr auto;
+                / auto 1fr auto 3fr auto;
         }
     }
 }
@@ -38,7 +39,7 @@ body {
         grid-area: center;
         background-color: #eee;
         .main-container {
-            display:flex;
+            display: flex;
             flex-direction: column;
             text-align: center;
             padding: 1rem;
@@ -50,19 +51,91 @@ body {
     //     background-color: #3E4551;
     // }
     aside {
-        padding: 2rem 4rem;
+        // padding: 2rem 4rem;
+        padding: 2rem 1rem;
         .ranking {
             font-size: 20px;
             text-align: left;
-            padding-top: 1rem;
+            padding: 1rem 0;
         }
+
+        .user_ranking {
+            counter-reset: rank;
+            list-style: none;
+            padding: 0%;
+            max-width: 300px;
+            margin: auto;
+            .ranking-item {
+                display: flex;
+                justify-content: space-around;
+                padding: 0.5rem 0;
+                a {
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 0%;
+                        width: 200px;
+                        color: black;
+                        span {
+                            justify-content: space-between;
+                        }
+                    }
+                }
+                &:hover {
+                    color: $color_white;
+                    background-color: $color_grey_dark;
+                    opacity: 0.8;
+                    a {
+                        li {
+                            span {
+                                color: $color_white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // .user_ranking li::before {
+        .ranking-item::before {
+            counter-increment: rank;
+            content: counter(rank) "位";
+            padding-right: 10px;
+            width: 50px;
+        }
+        // .user_ranking li:nth-child(-n + 3)::before {
+        .ranking-item:nth-child(-n + 3)::before {
+            /* 王冠のスタイル */
+            font-family: "Font Awesome 5 Free";
+            content: "\f521";
+            font-weight: 900;
+            // position: absolute;
+            // top: -45px; /* 王冠の位置（縦軸） */
+            // left: 0px; /* 王冠の位置（横軸） */
+            // font-size: 80px; /* 王冠の大きさ */
+        }
+        // .user_ranking li:nth-child(1)::before {
+        .ranking-item:nth-child(1)::before {
+            /* 1位（王冠）のスタイル */
+            color: #e6c300;
+        }
+        // .user_ranking li:nth-child(2)::before {
+        .ranking-item:nth-child(2)::before {
+            /* 2位（王冠）のスタイル */
+            color: #a9a9a9;
+        }
+        // .user_ranking li:nth-child(3)::before {
+        .ranking-item:nth-child(3)::before {
+            /* 3位（王冠）のスタイル */
+            color: #815a2b;
+        }
+
         .f-container {
-            display:flex;
+            display: flex;
             flex-direction: column;
             text-align: center;
             // padding: 1rem;
             .f-item {
-                padding: .5rem;
+                padding: 0.5rem;
                 color: #424242;
                 &:hover {
                     color: #eee;
@@ -76,7 +149,7 @@ body {
     }
     // footer {
     //     grid-area: footer;
-        // background-color: #3F729B;
+    // background-color: #3F729B;
     // }
 }
 
@@ -91,10 +164,11 @@ body {
             .grid {
                 grid-template:
                     // "header" 150px
+
                     "center" 2fr
-                    "left  " 1fr
-                    // "right "
-                    // "footer" 300px;
+                    "left  " 1fr;
+                // "right "
+                // "footer" 300px;
             }
         }
     }
@@ -121,14 +195,17 @@ body {
 // }
 @media (max-width: 639px) {
     .content {
+        .grid {
+            max-height: 2000px;
+        }
         main {
             .main-container {
                 .main-item {
                     ul {
                         .nav-item {
                             a {
-                                padding: .5rem .2rem;
-                                font-size: .6rem;
+                                padding: 0.5rem 0.2rem;
+                                font-size: 0.6rem;
                             }
                         }
                     }
