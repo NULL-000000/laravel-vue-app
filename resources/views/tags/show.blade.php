@@ -6,31 +6,25 @@
 
     @include('nav')
 
-    <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6 mt-5 pl-5">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto mt-5">
-                <div class="card mb-4 sidebar-content">
-                    <div class="card-body py-3">
-                        <h2 class="h4 card-title m-0">{{ $tag->hashtag }}</h2>
-                        <div class="card-text text-right">
-                            {{ $tag->articles->count() }}件
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="grid">
+        <aside>
             @include('sidenav')
-        </div>
-        <div class='col-lg-7 col-md-5 col-sm-6 col-xs-6 mt-5'>
-            <div class="container mt-4">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
+        </aside>
+        <main>
+            <div class="tags-title"><i class="fas fa-tags mr-2"></i>{{ $tag->hashtag }}{{ $tag->articles->count() }}件</div>
+            <div class="main-container">
+                <div class="card-item">
+                    <div class="wrap">
                         @foreach ($tag->articles as $article)
-                            @include('articles.card')
+                            <div class="item">
+                                @include('articles.card')
+                                @include('articles.modal')
+                            </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
     @include('footer')
