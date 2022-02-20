@@ -48,7 +48,7 @@ body {
             display: flex;
             flex-direction: column;
             text-align: center;
-            padding: 1rem;
+            padding: 1rem 0;
             background-color: #eee;
         }
     }
@@ -155,6 +155,7 @@ body {
             max-height: 2000px;
         }
         main {
+            padding: 1rem .5rem;
             .tags-title {
                 font-size: 1rem;
             }
