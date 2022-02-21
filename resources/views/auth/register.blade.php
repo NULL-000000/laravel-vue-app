@@ -11,13 +11,13 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 p-0">
                     <div class="mb-3">
+                        @if (session('status'))
+                            <div class="card-text alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <div class="form-card">
                             <div class="form-content">
-                                @if (session('status'))
-                                    <div class="card-text alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
                                 <div class="form-header">
                                     <div class="form-title">アカウント登録<i class="fas fa-edit ml-2"></i></div>
                                 </div>

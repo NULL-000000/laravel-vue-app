@@ -9,7 +9,7 @@
     <main>
         <div class="container p-0">
             <div class="row justify-content-center">
-                <div class="col-md-8 p-0">
+                <div class="col-md-8">
                     <div class="mb-3">
 
                         @include('achievement.form')

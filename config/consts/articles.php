@@ -27,11 +27,11 @@ return [
 
     'sort_type' => [
         0 => [
-            'sort_value' => 'create_at_desc',
+            'sort_value' => 'update_at_desc',
             'sort_text' => '新着順',
         ],
         1 => [
-            'sort_value' => 'create_at_asc',
+            'sort_value' => 'update_at_asc',
             'sort_text' => '古い順',
         ],
         2 => [

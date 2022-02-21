@@ -33,7 +33,8 @@
                             aria-haspopup="true" aria-expanded="false">
                             @if (empty($navuser))
                                 {{-- $navuserが存在しない場合は$user->image --}}
-                                @if ($user->image)
+                                {{-- @if ($user->image) --}}
+                                @if (!empty($user->image))
                                     <img src="{{ $user->image }}" alt="Contact Person"
                                         class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
                                         width="35" height="35"
@@ -47,7 +48,8 @@
                                 @endif
                             @elseif (!empty($navuser))
                                 {{-- $navuserが存在する場合は$navuser->image --}}
-                                @if ($navuser->image)
+                                {{-- @if ($navuser->image) --}}
+                                @if (!empty($navuser->image))
                                     <img src="{{ $navuser->image }}" alt="Contact Person"
                                         class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
                                         width="35" height="35"

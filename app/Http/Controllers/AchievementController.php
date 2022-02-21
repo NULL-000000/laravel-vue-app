@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\User;
-use App\Declaration;
 use App\Achievement;
 use App\Http\Requests\AchievementRequest;
 use Illuminate\Http\Request;
@@ -96,11 +95,6 @@ class AchievementController extends Controller
         $achievement->cause = $request->input('cause');
         $achievement->solution = $request->input('solution');
         $achievement->save();
-
-        $declaration = Declaration::where('article_id', $article->id)->first();
-        $declaration->article_id = $article->id;
-        $declaration->declaration = "end";
-        $declaration->save();
 
         $article->status = $request->input('achievement');
         $article->save();

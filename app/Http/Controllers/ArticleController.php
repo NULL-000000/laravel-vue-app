@@ -6,7 +6,6 @@ use App\Article;
 use App\Tag;
 use App\User;
 use App\Achievement;
-use App\Declaration;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,11 +61,6 @@ class ArticleController extends Controller
         $article->user_id = $request->user()->id;
         $article->status = "declaration";
         $article->save();
-
-        $declaration = new Declaration();
-        $declaration->article_id = $article->id;
-        $declaration->declaration = "declaration";
-        $declaration->save();
 
         $achievement = new Achievement();
         $achievement->article_id = $article->id;
@@ -169,7 +163,7 @@ class ArticleController extends Controller
         //カテゴリ
         $status = $request->input('status') ?? 'all';
         //ソート
-        $sort = $request->input('sort') ?? 'create_at_desc';
+        $sort = $request->input('sort') ?? 'update_at_desc';
 
         //ソート・検索
         $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);

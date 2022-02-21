@@ -38,11 +38,6 @@ class Article extends Model
         return $this->hasOne('App\Achievement');
     }
 
-    public function declaration(): HasOne
-    {
-        return $this->hasOne('App\Declaration');
-    }
-
     public function isLikedBy(?User $user): bool
     {
         return $user
@@ -63,7 +58,7 @@ class Article extends Model
     public function category($status)
     {
         //サービスコンテナ
-        $query = app()->make(Article::class)->orderBy('created_at', 'desc');
+        $query = app()->make(Article::class)->orderBy('updated_at', 'desc');
 
         //カテゴリ検索
         if ($status !== null && $status !== 'all') {
@@ -79,9 +74,9 @@ class Article extends Model
         $query = app()->make(Article::class);
 
         //キーワード検索
-        if(!empty($keywords)) {
+        if (!empty($keywords)) {
             foreach ($keywords as $keyword) {
-                $query = $query->where('title','like','%'.$keyword.'%');
+                $query = $query->where('title', 'like', '%' . $keyword . '%')->orwhere('body', 'like', '%' . $keyword . '%');
             }
         }
 
@@ -91,11 +86,11 @@ class Article extends Model
         }
 
         //並び替え機能
-        if ($sort === 'create_at_desc') {
-            $query = $query->orderBy('created_at', 'desc');
+        if ($sort === 'update_at_desc') {
+            $query = $query->orderBy('updated_at', 'desc');
         }
-        if ($sort === 'create_at_asc') {
-            $query = $query->orderBy('created_at', 'asc');
+        if ($sort === 'update_at_asc') {
+            $query = $query->orderBy('updated_at', 'asc');
         }
         if ($sort === 'like_count_desc') {
             $query = $query->withCount('likes')->orderBy('likes_count', 'desc');
@@ -106,5 +101,4 @@ class Article extends Model
 
         return $query;
     }
-
 }
