@@ -97,11 +97,6 @@ class AchievementController extends Controller
         $achievement->solution = $request->input('solution');
         $achievement->save();
 
-        $declaration = Declaration::where('article_id', $article->id)->first();
-        $declaration->article_id = $article->id;
-        $declaration->declaration = "end";
-        $declaration->save();
-
         $article->status = $request->input('achievement');
         $article->save();
 

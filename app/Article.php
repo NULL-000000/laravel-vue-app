@@ -38,11 +38,6 @@ class Article extends Model
         return $this->hasOne('App\Achievement');
     }
 
-    public function declaration(): HasOne
-    {
-        return $this->hasOne('App\Declaration');
-    }
-
     public function isLikedBy(?User $user): bool
     {
         return $user
