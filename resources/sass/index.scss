@@ -158,6 +158,25 @@ body {
             max-height: 2000px;
         }
         main {
+            .terms-main,
+            .privacy-main {
+                .card-body {
+                    padding: 0%;
+                    .terms-title,
+                    .privacy-title {
+                        font-size: 1.2rem;
+                    }
+                    .card-title {
+                        font-size: 1rem;
+                    }
+                    .card-text {
+                        font-size: .6rem;
+                        p {
+                            margin: .5rem;
+                        }
+                    }
+                }
+            }
             padding: 1rem 0.5rem;
             .tags-title {
                 font-size: 1rem;
