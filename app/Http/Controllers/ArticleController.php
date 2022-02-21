@@ -163,7 +163,7 @@ class ArticleController extends Controller
         //カテゴリ
         $status = $request->input('status') ?? 'all';
         //ソート
-        $sort = $request->input('sort') ?? 'create_at_desc';
+        $sort = $request->input('sort') ?? 'update_at_desc';
 
         //ソート・検索
         $articles = app()->make(Article::class)->searchForArticlesBy($keywords, $status, $sort)->with(['user', 'likes', 'comments'])->paginate(10);

@@ -74,9 +74,9 @@ class Article extends Model
         $query = app()->make(Article::class);
 
         //キーワード検索
-        if(!empty($keywords)) {
+        if (!empty($keywords)) {
             foreach ($keywords as $keyword) {
-                $query = $query->where('title','like','%'.$keyword.'%');
+                $query = $query->where('title', 'like', '%' . $keyword . '%');
             }
         }
 
@@ -86,10 +86,10 @@ class Article extends Model
         }
 
         //並び替え機能
-        if ($sort === 'create_at_desc') {
+        if ($sort === 'update_at_desc') {
             $query = $query->orderBy('updated_at', 'desc');
         }
-        if ($sort === 'create_at_asc') {
+        if ($sort === 'update_at_asc') {
             $query = $query->orderBy('updated_at', 'asc');
         }
         if ($sort === 'like_count_desc') {
@@ -101,5 +101,4 @@ class Article extends Model
 
         return $query;
     }
-
 }

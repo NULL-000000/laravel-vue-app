@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\User;
-use App\Declaration;
 use App\Achievement;
 use App\Http\Requests\AchievementRequest;
 use Illuminate\Http\Request;
