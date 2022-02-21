@@ -7,7 +7,7 @@
     @include('nav')
 
     <main>
-        <div class="container">
+        <div class="container p-0">
 
             @include('users.user')
 
