@@ -10,7 +10,10 @@
             </ul>
         </nav>
         <div class="footer-icon">
-            <a class="title" href="/"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+            {{-- <a class="title" href="/"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a> --}}
+            <a class="icon" href="/">
+                <img src="{{ asset('images/to-do-sengen_icon.png') }}" alt="">
+            </a>
         </div>
         <div class="footer-name">
             <p class="title">Copyright &copy; 2022 Kakeru Sasaki All Rights Reserved.</p>

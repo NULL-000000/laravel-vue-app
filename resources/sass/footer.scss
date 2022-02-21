@@ -13,11 +13,11 @@ footer {
             display: flex;
             align-items: center;
             justify-content: center;
-            .title {
-                padding: 1rem 2rem;
-                font-weight: bold;
-                font-size: 2rem;
-                color: #fff;
+            .icon {
+                padding: 2rem;
+                img {
+                    width: 400px;
+                }
                 &:hover {
                     opacity: 0.6;
                 }
@@ -69,8 +69,10 @@ footer {
     footer {
         .container {
             .footer-icon {
-                .title {
-                    font-size: 1.5rem;
+                .icon {
+                    img {
+                        width: 250px;
+                    }
                 }
             }
             .footer-item {
