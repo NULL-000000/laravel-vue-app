@@ -76,7 +76,7 @@ class Article extends Model
         //キーワード検索
         if (!empty($keywords)) {
             foreach ($keywords as $keyword) {
-                $query = $query->where('title', 'like', '%' . $keyword . '%');
+                $query = $query->where('title', 'like', '%' . $keyword . '%')->orwhere('body', 'like', '%' . $keyword . '%');
             }
         }
 
