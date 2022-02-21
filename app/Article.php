@@ -63,7 +63,7 @@ class Article extends Model
     public function category($status)
     {
         //サービスコンテナ
-        $query = app()->make(Article::class)->orderBy('created_at', 'desc');
+        $query = app()->make(Article::class)->orderBy('updated_at', 'desc');
 
         //カテゴリ検索
         if ($status !== null && $status !== 'all') {
@@ -92,10 +92,10 @@ class Article extends Model
 
         //並び替え機能
         if ($sort === 'create_at_desc') {
-            $query = $query->orderBy('created_at', 'desc');
+            $query = $query->orderBy('updated_at', 'desc');
         }
         if ($sort === 'create_at_asc') {
-            $query = $query->orderBy('created_at', 'asc');
+            $query = $query->orderBy('updated_at', 'asc');
         }
         if ($sort === 'like_count_desc') {
             $query = $query->withCount('likes')->orderBy('likes_count', 'desc');

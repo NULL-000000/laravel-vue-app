@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first()->load(['articles.user', 'articles.likes', 'articles.tags']);
         $navuser = User::where('id', Auth::id())->first();
-        $articles = $user->articles->sortByDesc('created_at');
+        $articles = $user->articles->sortByDesc('updated_at');
         $tabs_status = $request->input('tabs_status') ?? 'show';
 
         return view('users.show', [
@@ -143,7 +143,7 @@ class UserController extends Controller
         $user = User::where('name', $name)->first()
             ->load(['likes.user', 'likes.likes', 'likes.tags']);
 
-        $articles = $user->likes->sortByDesc('created_at');
+        $articles = $user->likes->sortByDesc('updated_at');
 
         $tabs_status = $request->input('tabs_status') ?? 'likes';
 
