@@ -33,7 +33,7 @@
             <div class="form-header failure">
                 <div class="form-title">SENGEN 失敗<i class="fas fa-times ml-1"></i></div>
             </div>
-            <div class="form-card">
+            <div class="form-card achivement-detail">
                 @include('articles.detail')
             </div>
             <form method="POST" action="{{ route('achievement.update', ['article' => $article]) }}">

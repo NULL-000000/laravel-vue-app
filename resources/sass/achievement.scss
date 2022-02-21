@@ -64,14 +64,15 @@
         .form-footer {
             display: flex;
             justify-content: flex-end;
-            padding: .8rem 1rem;
+            justify-content: center;
+            padding: 2rem .5rem;
             .form-check-btn {
-                width: 120px;
+                width: 260px;
                 opacity: 1;
                 border-radius: 3px;
                 color: $color_white;
-                font-size: 1rem;
-                padding: 0.2rem 0;
+                font-size: 1.2rem;
+                padding: .5rem 0;
                 transition: 0.2s;
                 .form-check-text {
                     &:after {
