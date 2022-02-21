@@ -60,6 +60,9 @@ body {
             font-size: 1.4rem;
             text-align: left;
             padding: 1rem 0;
+            color: $color_stylish;
+            max-width: 300px;
+            margin: auto;
         }
         .ranking {
             counter-reset: rank;
@@ -77,7 +80,7 @@ body {
                         justify-content: space-between;
                         padding: 0%;
                         width: 200px;
-                        color: black;
+                        color: $color_stylish;
                         span {
                             font-size: 1rem;
                             justify-content: space-between;
@@ -85,16 +88,7 @@ body {
                     }
                 }
                 &:hover {
-                    color: $color_white;
-                    background-color: $color_grey_dark;
-                    opacity: 0.8;
-                    a {
-                        li {
-                            span {
-                                color: $color_white;
-                            }
-                        }
-                    }
+                    background-color: $color_mdb_light;
                 }
             }
             .ranking-item::before {
