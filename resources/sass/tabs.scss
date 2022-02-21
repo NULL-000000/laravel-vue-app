@@ -4,7 +4,7 @@
             transition: 0s;
             a {
                 padding: 0.5rem 0px;
-                color: $color_stylish;
+                color: $color_stylish_dark;
                 border: none;
             }
             form {
@@ -16,16 +16,20 @@
                     appearance: none;
                     width: 100%;
                     padding: 0.5rem 0;
-                    color: $color_stylish;
+                    color: $color_stylish_dark;
                 }
             }
             &:hover {
+                a {
+                    background-color: $color_stylish;
+                    color: $color_white;
+                }
                 form {
                     button {
-                        background-color: $color_mdb_light;
+                        background-color: $color_stylish;
+                        color: $color_white;
                     }
                 }
-                background-color: $color_mdb_light;
                 opacity: 0.6;
             }
         }
@@ -40,7 +44,7 @@
                 }
                 form {
                     button {
-                        font-size: .6rem;
+                        font-size: 0.6rem;
                     }
                 }
             }

@@ -60,7 +60,7 @@ body {
             font-size: 1.4rem;
             text-align: left;
             padding: 1rem 0;
-            color: $color_stylish;
+            color: $color_stylish_dark;
             max-width: 300px;
             margin: auto;
         }
@@ -80,7 +80,7 @@ body {
                         justify-content: space-between;
                         padding: 0%;
                         width: 200px;
-                        color: $color_stylish;
+                        color: $color_stylish_dark;
                         span {
                             font-size: 1rem;
                             justify-content: space-between;
@@ -88,7 +88,16 @@ body {
                     }
                 }
                 &:hover {
-                    background-color: $color_mdb_light;
+                    color: $color_white;
+                    background-color: $color_stylish;
+                    opacity: 0.6;
+                    a {
+                        li {
+                            span {
+                                color: $color_white;
+                            }
+                        }
+                    }
                 }
             }
             .ranking-item::before {
@@ -149,7 +158,7 @@ body {
             max-height: 2000px;
         }
         main {
-            padding: 1rem .5rem;
+            padding: 1rem 0.5rem;
             .tags-title {
                 font-size: 1rem;
             }
