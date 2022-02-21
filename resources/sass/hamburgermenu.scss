@@ -2,7 +2,7 @@
 * 変数
 *----------------------------*/
 
-$small: 600px;
+$small: 640px;
 
 /*----------------------------
 * メニュー開閉ボタン
@@ -27,7 +27,8 @@ $small: 600px;
         right: 20px;
         z-index: 3;
         border: none;
-        background: #263238;
+        // background: #263238;
+        background: $color_stylish_dark;
         color: #fff;
         // right: 1rem;
         // top: 1rem;
@@ -51,6 +52,7 @@ $small: 600px;
     left: 0;
     z-index: 1;
     background-color: #37474F;
+    background-color: $color_stylish_dark;
     visibility: visible;
     opacity: 1;
     /* アニメーション前のメニューの状態 */
