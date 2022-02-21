@@ -19,6 +19,7 @@ $small: 640px;
 }
 
 .menu-btn{
+    margin-top: .25rem;
     display: none;
     @media (max-width: ($small - 1)) {
         display: block;
