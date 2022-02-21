@@ -7,7 +7,7 @@
     @include('nav')
 
     <main>
-        <div class="container">
+        <div class="container p-0">
             <div class="row justify-content-center">
                 <div class="col-md-8 p-0">
                     <div class="mb-3">

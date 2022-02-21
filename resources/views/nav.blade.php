@@ -1,7 +1,10 @@
 <!-- Header Start -->
 <header class="site-header">
     <div class="wrapper site-header__wrapper">
-        <a href="/" class="brand"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a>
+        {{-- <a href="/" class="brand"><i class="far fa-sticky-note mr-1"></i>TO DO SENGEN</a> --}}
+        <a class="icon" href="/">
+            <img src="{{ asset('images/to-do-sengen_icon.png') }}" alt="">
+        </a>
         <nav class="nav">
             <ul class="nav__wrapper">
                 @guest

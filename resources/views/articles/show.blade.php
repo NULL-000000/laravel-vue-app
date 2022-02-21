@@ -10,7 +10,7 @@
     <main>
         <div class="container mt-3 mb-5">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-8 p-0">
                     <div class="mb-3">
 
                         @include('articles.detail')
