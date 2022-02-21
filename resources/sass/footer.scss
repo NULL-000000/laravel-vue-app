@@ -9,7 +9,7 @@ footer {
         max-width: 1200px;
         padding: 20px 20px;
         margin: 0 auto;
-        .footA {
+        .footer-icon {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -23,7 +23,7 @@ footer {
                 }
             }
         }
-        .footB {
+        .footer-item {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -51,8 +51,8 @@ footer {
                 }
             }
         }
-        .footC {
-            padding: 20px 0;
+        .footer-name {
+            padding: 20px 0 40px 0;
             text-align: center;
             display: flex;
             align-items: center;
@@ -68,12 +68,12 @@ footer {
 @media (max-width: 639px) {
     footer {
         .container {
-            .footA {
+            .footer-icon {
                 .title {
                     font-size: 1.5rem;
                 }
             }
-            .footB {
+            .footer-item {
                 ul {
                     flex-direction: column;
                 }
@@ -82,7 +82,7 @@ footer {
                     font-size: 1rem;
                 }
             }
-            .footC {
+            .footer-name {
                 .title {
                     font-size: 0.8rem;
                 }
