@@ -23,6 +23,7 @@ $small: 640px;
 .site-header {
     position: relative;
     background-color: $color_stylish_dark;
+    // height: 80px;
 }
 
 .site-header__wrapper {
@@ -52,7 +53,7 @@ $small: 640px;
     a {
         color: honeydew;
         display: block;
-        padding: 1.5rem 1rem;
+        padding: 1.5rem .5rem;
         margin: auto;
     }
 
