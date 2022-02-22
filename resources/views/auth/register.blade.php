@@ -19,7 +19,7 @@
                         <div class="form-card">
                             <div class="form-content">
                                 <div class="form-header">
-                                    <div class="form-title">アカウント登録<i class="fas fa-edit ml-2"></i></div>
+                                    <div class="form-title">ユーザー登録<i class="fas fa-edit ml-2"></i></div>
                                 </div>
                                 <div class="form-body pt-0 mt-3">
                                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
