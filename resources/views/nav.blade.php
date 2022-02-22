@@ -37,13 +37,13 @@
                                 {{-- @if ($user->image) --}}
                                 @if (!empty($user->image))
                                     <img src="{{ $user->image }}" alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @else
                                     <img src="https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80"
                                         alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @endif
@@ -52,13 +52,13 @@
                                 {{-- @if ($navuser->image) --}}
                                 @if (!empty($navuser->image))
                                     <img src="{{ $navuser->image }}" alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @else
                                     <img src="https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80"
                                         alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @endif

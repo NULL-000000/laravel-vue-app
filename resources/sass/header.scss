@@ -55,6 +55,10 @@ $small: 640px;
         display: block;
         padding: 1.5rem .5rem;
         margin: auto;
+        transition: 0s;
+        &:hover {
+            opacity: 0.6;
+        }
     }
 
     .search {
