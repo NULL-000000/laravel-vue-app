@@ -23,8 +23,10 @@
                     <input type="hidden" name="solution" value="unspecified">
                 </div>
                 <div class="form-footer">
-                    <button class="form-check-btn success" type="submit">
-                        <span class="form-check-text">達成</span>
+                    <button class="form-check-btn success btn btn-block text-white mt-2 mb-2" type="submit">
+                        <span class="form-check-text">
+                            達成
+                        </span>
                     </button>
                 </div>
             </form>
@@ -50,8 +52,10 @@
                     <input type="hidden" name="enthusiasm" value="unspecified">
                 </div>
                 <div class="form-footer">
-                    <button class="form-check-btn failure" type="submit">
-                        <span class="form-check-text">失敗</span>
+                    <button class="form-check-btn failure btn btn-block text-white mt-2 mb-2" type="submit">
+                        <span class="form-check-text">
+                            失敗
+                        </span>
                     </button>
                 </div>
             </form>
