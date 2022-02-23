@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('status')->nullable();
             $table->string('title');
             $table->dateTime('period')->nullable();
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }
