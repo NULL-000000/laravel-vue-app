@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'のいいねした記事')
+@section('title', $user->name . 'のいいね - TO DO SENGEN -')
 
 @section('content')
 

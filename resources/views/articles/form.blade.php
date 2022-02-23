@@ -55,9 +55,16 @@
                 </div>
             @endif
         </div>
-        <div class="form-footer m-2">
+        <div class="form-footer">
+            {{-- <div class="card-check">
+                <button type="submit" class="check-btn default-color btn btn-block">
+                    <span class="check-text">
+                        SENGEN
+                    </span>
+                </button>
+            </div> --}}
             <div class="card-check">
-                <button type="submit" class="check-btn default-color">
+                <button class="check-btn btn btn-block btn-default text-white mt-2 mb-2" type="submit">
                     <span class="check-text">
                         SENGEN
                     </span>

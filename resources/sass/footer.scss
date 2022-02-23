@@ -43,11 +43,11 @@ footer {
                 font-size: 1.2rem;
                 text-decoration: none;
                 line-height: 20px;
-                border-bottom: 3px solid $color_stylish_dark;
+                border-bottom: 2px solid $color_stylish_dark;
                 transition: 0.2s;
-                letter-spacing: 3px;
+                letter-spacing: 2px;
                 &:hover {
-                    border-bottom: 3px solid $color_white;
+                    border-bottom: 2px solid $color_white;
                 }
             }
         }

@@ -6,7 +6,7 @@
             <img src="{{ asset('images/to-do-sengen_icon.png') }}" alt="">
         </a>
         <nav class="nav">
-            <ul class="nav__wrapper">
+            <ul class="nav__wrapper pl-0">
                 @guest
                     <li class="nav__item"><a href="/">ホーム</a></li>
                     <li class="nav__item"><a href="{{ route('register') }}">ユーザー登録</a></li>
@@ -18,7 +18,8 @@
                     <li class="nav__item">
                         <!-- 検索フォーム -->
                         <form method="GET" action="{{ route('articles.search') }}"
-                            class="d-none d-md-flex input-group w-auto mx-auto search">
+                            {{-- class="d-none d-md-flex input-group w-auto mx-auto search"> --}}
+                            class="d-flex input-group pl-0 w-auto mx-auto search">
                             <input autocomplete="off" type="text" class="form-control rounded" placeholder='検索...'
                                 name="keyword" />
                             <button type="submit" class="input-group-text border-0"><i class="fas fa-search"></i></button>
@@ -36,13 +37,13 @@
                                 {{-- @if ($user->image) --}}
                                 @if (!empty($user->image))
                                     <img src="{{ $user->image }}" alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @else
                                     <img src="https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80"
                                         alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @endif
@@ -51,13 +52,13 @@
                                 {{-- @if ($navuser->image) --}}
                                 @if (!empty($navuser->image))
                                     <img src="{{ $navuser->image }}" alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @else
                                     <img src="https://images.unsplash.com/photo-1531934788018-04c3cd417b80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80"
                                         alt="Contact Person"
-                                        class="img-fuild rounded-circle btn btn-outline-dark waves-effect m-0 p-0"
+                                        class="img-fuild rounded-circle btn waves-effect m-0 p-0"
                                         width="35" height="35"
                                         style="background-position:center; border-radius:50%; object-fit:cover;" />
                                 @endif
@@ -98,7 +99,7 @@
             @guest
                 <div class="menu" v-bind:class="{'is-active' : open }">
                     <div class="menu__item">
-                        <a href="/"><i class="fas fa-pen mr-1"></i>ホーム</a>
+                        <a href="/">ホーム</a>
                     </div>
                     <div class="menu__item">
                         <a href="{{ route('register') }}">ユーザー登録</a>
@@ -116,7 +117,7 @@
                 <div class="menu" v-bind:class="{'is-active' : open }">
                     <div class="menu__item">
                         <a href="{{ route('users.show', ['name' => Auth::user()->name]) }}"><i
-                                class="fas fa-pen mr-1"></i>マイページ</a>
+                                class="fas fa-user mr-1"></i>マイページ</a>
                     </div>
                     <div class="menu__item">
                         <a href="{{ route('articles.search') }}"><i class="fas fa-search mr-1"></i>検索</a>
@@ -127,7 +128,7 @@
                     <div class="menu__item">
                         <form name="logout" method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="javascript:logout.submit()"><i class="fas fa-pen mr-1"></i>ログアウト</a>
+                            <a href="javascript:logout.submit()"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>
                         </form>
                     </div>
                 </div>

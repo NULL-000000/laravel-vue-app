@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '退会')
+@section('title', '退会 - TO DO SENGEN -')
 
 @section('content')
 

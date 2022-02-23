@@ -59,15 +59,15 @@
             margin: 0;
             font-size: 1rem;
             position: relative;
-            padding: .8rem 1rem;
+            padding: 1rem;
         }
         .form-footer {
             display: flex;
             justify-content: flex-end;
             justify-content: center;
-            padding: 2rem .5rem;
+            padding: 1rem;
             .form-check-btn {
-                width: 260px;
+                // width: 260px;
                 opacity: 1;
                 border-radius: 3px;
                 color: $color_white;
@@ -126,6 +126,11 @@
                 }
                 textarea {
                     font-size: .8rem;
+                }
+            }
+            .form-footer {
+                .form-check-btn {
+                    font-size: 1rem;
                 }
             }
         }
