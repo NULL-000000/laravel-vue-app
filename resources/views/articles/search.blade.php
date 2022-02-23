@@ -1,6 +1,10 @@
 @extends('app')
 
-@section('title', '記事一覧')
+@if (!empty($keyword))
+    @section('title', $keyword . ' -TO DO SENGEN -')
+@else
+    @section('title', '検索 -TO DO SENGEN -')
+@endif
 
 @section('content')
 

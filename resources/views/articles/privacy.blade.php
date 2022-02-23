@@ -1,27 +1,11 @@
 @extends('app')
 
-@section('title', 'プライバシーポリシー')
+@section('title', 'プライバシーポリシー -TO DO SENGEN -')
 
 @section('content')
 
     @include('nav')
 
-    {{-- <header>
-        <div>
-            <div class="container" style="max-width: 900px;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb small pl-0 mb-0" style="background-color: #eceff1;">
-                        <li class="breadcrumb-item">
-                            <a href="/" class="text-muted">TO DO SENGEN</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            プライバシーポリシー
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </header> --}}
     <main>
         <div class="container mt-1" style="max-width: 900px;">
             <nav aria-label="breadcrumb">

@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name)
+@section('title', $user->name . ' - TO DO SENGEN -')
 
 @section('content')
 

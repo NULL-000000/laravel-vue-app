@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '記事更新')
+@section('title', '達成チェック - TO DO SENGEN -')
 
 @section('content')
 
