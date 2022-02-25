@@ -61,7 +61,7 @@
                                                 name="password_confirmation" required>
                                         </div>
                                         <button class="btn btn-block btn-default text-white mt-2 mb-2" type="submit">
-                                            <b>アカウント登録</b>
+                                            <b>ユーザー登録</b>
                                         </button>
                                     </form>
                                 </div>
