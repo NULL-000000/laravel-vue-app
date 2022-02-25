@@ -43,7 +43,7 @@
                                             <label for="name">ユーザー名</label>
                                             <input class="form-control" type="text" id="name" name="name" required
                                                 value="{{ old('name') }}">
-                                            {{-- <small>英数字3〜16文字(登録後の変更はできません)</small> --}}
+                                            <small>15文字以内で入力してください</small>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">メールアドレス</label>
@@ -61,7 +61,7 @@
                                                 name="password_confirmation" required>
                                         </div>
                                         <button class="btn btn-block btn-default text-white mt-2 mb-2" type="submit">
-                                            <b>アカウント登録</b>
+                                            <b>ユーザー登録</b>
                                         </button>
                                     </form>
                                 </div>

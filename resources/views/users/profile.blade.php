@@ -27,7 +27,7 @@
                     <label for="name">ユーザーネーム</label>
                     <input class="form-control" type="text" id="name" name="name" placeholder="ユーザーネームを入力" required
                         value="{{ $user->name }}">
-                    <p class="text-muted small m-1">3〜15文字で入力してください</p>
+                    <p class="text-muted small m-1">15文字以内で入力してください</p>
                 </div>
                 <div class="form-group">
                     <label for="introduction">プロフィール</label>

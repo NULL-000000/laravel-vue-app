@@ -14,7 +14,7 @@
                         <div class="form-card">
                             <div class="form-content">
                                 <div class="form-header">
-                                    <div class="form-title">アカウント登録<i class="fas fa-edit ml-2"></i></div>
+                                    <div class="form-title">ユーザー登録<i class="fas fa-edit ml-2"></i></div>
                                 </div>
                                 <div class="form-body">
                                     @include('error_card_list')
@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <label for="name">ユーザー名</label>
                                             <input class="form-control" type="text" id="name" name="name" required>
-                                            <small>英数字3〜16文字(登録後の変更はできません)</small>
+                                            <small>15文字以内で入力してください</small>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">メールアドレス</label>
@@ -40,7 +40,7 @@
                                             @endif
                                         </div>
                                         <button class="btn btn-block btn-default text-white mt-2 mb-2" type="submit">
-                                            <b>アカウント登録</b>
+                                            <b>ユーザー登録</b>
                                         </button>
                                     </form>
                                 </div>

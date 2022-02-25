@@ -52,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'name' => ['required', 'string', 'min:1', 'max:15', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -108,16 +108,14 @@ class RegisterController extends Controller
         //google
         if($provider === 'google') {
             $request->validate([
-                'name' => ['required', 'string', 'min:3', 'max:15', 'unique:users'],
-                'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+                'name' => ['required', 'string', 'min:1', 'max:15', 'unique:users'],
                 'token' => ['required', 'string'],
             ]);
 
         //twitter
         } elseif($provider === 'twitter') {
             $request->validate([
-                'name' => ['required', 'string', 'min:3', 'max:15', 'unique:users'],
-                'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+                'name' => ['required', 'string', 'min:1', 'max:15', 'unique:users'],
                 'token' => ['required', 'string'],
                 'tokenSecret' => ['required', 'string'],
             ]);
