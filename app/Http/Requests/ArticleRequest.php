@@ -28,10 +28,10 @@ class ArticleRequest extends FormRequest
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
             'period' => 'required|date',
             'body' => 'required|max:255',
-            'study' => 'max:1000',
-            'enthusiasm' => 'max:1000',
-            'cause' => 'max:1000',
-            'solution' => 'max:1000',
+            'study' => 'nullable|string|max:255',
+            'enthusiasm' => 'nullable|string|max:255',
+            'cause' => 'nullable|string|max:255',
+            'solution' => 'nullable|string|max:255',
         ];
     }
 

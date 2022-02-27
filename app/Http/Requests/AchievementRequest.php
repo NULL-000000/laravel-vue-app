@@ -24,10 +24,10 @@ class AchievementRequest extends FormRequest
     public function rules()
     {
         return [
-            'study' => 'required|string|max:255',
-            'enthusiasm' => 'required|string|max:255',
-            'cause' => 'required|string|max:255',
-            'solution' => 'required|string|max:255',
+            'study' => 'nullable|string|max:255',
+            'enthusiasm' => 'nullable|string|max:255',
+            'cause' => 'nullable|string|max:255',
+            'solution' => 'nullable|string|max:255',
         ];
     }
 

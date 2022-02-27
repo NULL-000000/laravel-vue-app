@@ -104,11 +104,11 @@ class ArticleController extends Controller
             $article->tags()->attach($tag);
         });
 
-        $achievement = Achievement::where('id', $article->id)->first();
-        $achievement->study = $request->input('study') ?? 'unspecified';
-        $achievement->enthusiasm = $request->input('enthusiasm') ?? 'unspecified';
-        $achievement->cause = $request->input('cause') ?? 'unspecified';
-        $achievement->solution = $request->input('solution') ?? 'unspecified';
+        $achievement = Achievement::where('article_id', $article->id)->first();
+        $achievement->study = $request->input('study');
+        $achievement->enthusiasm = $request->input('enthusiasm');
+        $achievement->cause = $request->input('cause');
+        $achievement->solution = $request->input('solution');
         $achievement->save();
 
         return redirect()->route('articles.index');
