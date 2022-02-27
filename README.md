@@ -1,78 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# **TO DO SENGEN**
+**日々のタスクを『SENGEN』することで、ユーザーのタスク達成をサポートするSNS型ToDo管理アプリです。**
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+URL: https://to-do-sengen.com
 
-## About Laravel
+・ゲストログイン機能搭載
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+・レスポンシブWebデザイン（PC推奨）
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![top](public/images/top_todosengen.png)
+<br>
+<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# **アプリ概要**
+## **コンセプト**
 
-## Learning Laravel
+- 目標を宣言することによるプレッシャーを有効活用し、ユーザーの目標達成をサポートする
+- 『SENGEN』を達成するまでの過程をユーザー同士で共有し、お互いに高め合う環境を提供する
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## **特徴**
+- 『SENGEN』を達成するまでの努力過程を発信、共有できる
+- 『SENGEN』投稿をカテゴリ別で表示する
+- 『SENGEN』を達成できた要因や、失敗した原因の分析結果を発信、共有できる
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## **解説記事**( Qiita )
+URL: https://qiita.com/NULL_000000/items/b5c06cca2dd17e4dd00b
 
-## Laravel Sponsors
+開発の背景から解説しています。
+<br>
+<br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# **使用画面のイメージ**
+![image](/public/images/image_todosengen.jpg)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+# **使用技術**
+- **フロントエンド**
+  - **Vue.js 2.6.12**
+  - **jQuery 3.4.1**
+  - **HTML / CSS / Sass / MDBootstrap**
+- **バックエンド**
+  - **PHP 7.4.25**
+  - **Laravel 6.20.41**
+  - **PHPUnit 8.0**
+- **インフラ**
+  - **AWS ( EC2, ALB, ACM, S3, RDS, CodeDeploy, SNS, Chatbot, Route53, VPC, EIP, IAM )**
+  - **Docker 20.10.11 / docker-compose 2.2.1**（開発環境）
+  - **Circle CI 2.1**
+  - **nginx 1.12.2**
+  - **MySQL 5.5.68**
 
-## Contributing
+# **インフラ構成図**
+![image](/public/images/infra_todosengen.jpg)
+<br>
+<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# **DB設計**
+## **ER図**
+![image](/public/images/er_todosengen.jpg)
+<br>
+<br>
 
-## Code of Conduct
+## **各テーブルについて**
+| テーブル名   | 説明                                |
+|:-:           |:-:                                  |
+| users        | 登録ユーザー情報                    |
+| follows      | フォロー中/フォロワーのユーザー情報 |
+| articles     | ユーザー投稿情報                    |
+| achievements | ユーザー投稿の達成チェック情報      |
+| tags         | ユーザー投稿のタグ情報              |
+| article_tag  | articlesとtagsの中間テーブル        |
+| likes        | ユーザー投稿のいいね情報            |
+| comments     | ユーザー投稿のコメント情報          |
+<br>
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# **機能一覧**
+- **ユーザー登録関連**
+  - ユーザー登録・ログイン・ログアウト
+  - ゲストログイン機能
+  - Googleアカウントを利用したユーザー登録・ログイン機能
+    - GCP（Google Cloud Platform）のOAuth認証
+  - Twitterアカウントを利用したユーザー登録・ログイン機能
+    - TwitterのOAuth認証
+  - プロフィール編集機能
+  - メールアドレス変更機能（SendGrid）
+  - パスワード再設定・変更機能（SendGrid）
+- **ユーザー投稿機能**（CRUD）
+- **SENGEN達成のチェック機能**（CRUD）
+- **ランキング機能**
+  - ユーザー投稿達成数
+  - ユーザー投稿タグ数
+- **ページネーション機能**
+- **コメント機能**（CRUD）
+- **タグ機能**（Vue.js / Vue Tags Input）
+- **いいね機能**（Vue.js / axios）
+- **フォロー機能**（Vue.js / axios）
+- **検索機能**
+  - キーワード検索
+  - ソート検索（昇順、降順、いいね順、コメント数順）
+  - カテゴリ検索
+    - ユーザー投稿一覧画面（すべて、宣言中、達成、失敗）
+    - ユーザー詳細画面（SENGEN、いいね、フォロー、フォロワー）
+- **画像アップロード機能**（AWS S3バケット）
+- **お問い合わせ機能**（SendGrid）
+- **PHPUnitテスト**
+- **レスポンシブWebデザイン**
+  - ハンバーガーメニュー（Vue.js / axios）
+<br>
+<br>
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# **作者**
+- Kakeru Sasaki
+- Twitterアカウント：[NULL/ナル@IT業界1年生](https://twitter.com/_NULL_000000_)
