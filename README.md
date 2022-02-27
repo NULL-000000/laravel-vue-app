@@ -7,7 +7,7 @@ URL: https://to-do-sengen.com
 
 ・レスポンシブWebデザイン（PC推奨）
 
-![top](public/images/top_todosengen.png)
+![top](public/images/README.md/top_todosengen.png)
 <br>
 <br>
 
@@ -30,7 +30,7 @@ URL: https://qiita.com/NULL_000000/items/b5c06cca2dd17e4dd00b
 <br>
 
 # **使用画面のイメージ**
-![image](/public/images/image_todosengen.jpg)
+![image](/public/images/README.md/image_todosengen.png)
 
 # **使用技術**
 - **フロントエンド**
@@ -49,13 +49,14 @@ URL: https://qiita.com/NULL_000000/items/b5c06cca2dd17e4dd00b
   - **MySQL 5.5.68**
 
 # **インフラ構成図**
-![image](/public/images/infra_todosengen.jpg)
+![infra](/public/images/README.md/infra_todosengen.png)
 <br>
 <br>
 
 # **DB設計**
 ## **ER図**
-![image](/public/images/er_todosengen.jpg)
+![er](/public/images/README.md/er_todosengen.png)
+
 <br>
 <br>
 
