@@ -1,7 +1,7 @@
 # **TO DO SENGEN**
 **日々のタスクを『SENGEN』することで、ユーザーのタスク達成をサポートするSNS型ToDo管理アプリです。**
 
-URL: https://to-do-sengen.com
+URL: https://to-do-sengen.com　(サービス停止中)
 
 ・ゲストログイン機能搭載
 
